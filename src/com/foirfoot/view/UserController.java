@@ -22,26 +22,19 @@ public class UserController {
     @FXML
     private Button logInButton;
     @FXML
-    private Button cancelButton;
-    @FXML
-    private TextField userName;
+    private TextField userEmail;
     @FXML
     private PasswordField password;
     @FXML
     private Label wrongLogIn;
 
-    public void userLogin(ActionEvent event) throws IOException{
-        checkLogin();
-
-    }
-    public void checkLogin() throws IOException{
-        System.out.println("click");
+    public void login() {
         // Main m = new Main(); autre vue (pour la connexion)
-        if(userName.getText().isEmpty() && password.getText().isEmpty()){
+        if(userEmail.getText().isEmpty() && password.getText().isEmpty()){
             wrongLogIn.setText("Please enter your data");
         } else {
             try {
-                facade.login(userName.getText(), password.getText());
+                facade.login(userEmail.getText(), password.getText());
                 wrongLogIn.setText("success");
                 //m.changeScene("afterLogin.fxml");
             } catch (WrongPasswordException e) {
@@ -53,7 +46,7 @@ public class UserController {
     }
 
     public void cancelButtonOnAction(ActionEvent event){
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        Stage stage = (Stage) logInButton.getScene().getWindow();
         stage.close();
     }
 
