@@ -1,6 +1,6 @@
-import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class UserDAOMySQL implements DAO{
@@ -13,7 +13,10 @@ public class UserDAOMySQL implements DAO{
     }
 
     public Optional<User> getUserByEmail(String email){
-        User user = null; // add value from database
+        User user = null;
+        if (email.equals( "leobrunet91@gmail.com")){
+            user = new User("leobrunet91@gmail.com", "123456"); // add value from database
+        }
         return Optional.ofNullable(user);
     }
 

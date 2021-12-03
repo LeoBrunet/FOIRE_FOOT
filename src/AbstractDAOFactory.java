@@ -1,6 +1,3 @@
-public abstract class AbstractDAOFactory {
-
-    public UserDAOMySQL createUserDAOMYSQL(){
-        return new UserDAOMySQL();
-    };
+public interface AbstractDAOFactory<T> {
+    public T create(String mySQLDAOType);
 }
