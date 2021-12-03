@@ -1,3 +1,11 @@
+package com.foirfoot.model;
+
+import com.foirfoot.dao.AbstractDAOFactory;
+import com.foirfoot.dao.MySQLDAOFactory;
+import com.foirfoot.dao.UserDAOMySQL;
+import exceptions.UserNotFoundException;
+import exceptions.WrongPasswordException;
+
 import java.util.Optional;
 
 public class Facade {

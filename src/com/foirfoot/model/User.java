@@ -1,7 +1,14 @@
+package com.foirfoot.model;
+
+import exceptions.WrongPasswordException;
+
 import java.io.File;
 import java.util.Objects;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 public class User implements Role{
+    private int id;
     private String name;
     private String firstname;
     private String email_address;
@@ -9,9 +16,30 @@ public class User implements Role{
     private String tel;
     private File picture;
 
-    public User(String email_address, String password) {
+    public User(int id, String email_address, String password) {
+        this.id = id;
         this.email_address = email_address;
         this.password = password;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setEmail(String email_address) {
+        this.email_address = email_address;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email_address;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public User login(String password) throws WrongPasswordException {
@@ -23,7 +51,7 @@ public class User implements Role{
     }
 
     private boolean comparePassword(String password){
-        return password.equals(this.password);
+        return DigestUtils.sha1Hex(password).equals(this.password);
     }
 
     @Override
@@ -41,7 +69,7 @@ public class User implements Role{
 
     @Override
     public String toString() {
-        return "User{" +
+        return "com.foirfoot.model.User{" +
                 "email_address='" + email_address + '\'' +
                 ", password='" + password + '\'' +
                 '}';
