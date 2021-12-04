@@ -46,7 +46,7 @@ public class User implements Role{
         if(comparePassword(password)) {
             return this;
         } else {
-            throw new WrongPasswordException("Password provided mismatch.");
+            throw new WrongPasswordException();
         }
     }
 

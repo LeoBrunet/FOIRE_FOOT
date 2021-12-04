@@ -15,7 +15,7 @@ public class Facade {
     public User login(String email_address, String password) throws UserNotFoundException, WrongPasswordException {
         UserDAOMySQL userDAOMySQL = (UserDAOMySQL) this.abstractDAOFactory.create("User");
         Optional<User> optionalUser = userDAOMySQL.getUserByEmail(email_address);
-        User userFoundInDatabase = optionalUser.orElseThrow(() -> new UserNotFoundException("User not found in database."));
+        User userFoundInDatabase = optionalUser.orElseThrow(UserNotFoundException::new);
         return userFoundInDatabase.login(password);
     }
 }

@@ -5,10 +5,7 @@ import exceptions.UserNotFoundException;
 import exceptions.WrongPasswordException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class UserController {
@@ -33,12 +30,13 @@ public class UserController {
         } else {
             try {
                 facade.login(userEmail.getText(), password.getText());
-                wrongLogIn.setText("success");
+                //wrongLogIn.setStyle("-fx-font: 1.0 System");
+                wrongLogIn.setStyle("-fx-font: 15.0 System;-fx-text-fill: #4f8000");
+                wrongLogIn.setText("Connexion...");
                 //m.changeScene("afterLogin.fxml");
-            } catch (WrongPasswordException e) {
-                wrongLogIn.setText("Wrong password");
-            } catch (UserNotFoundException e) {
-                wrongLogIn.setText("Wrong user");
+            } catch (WrongPasswordException | UserNotFoundException e) {
+                wrongLogIn.setStyle("-fx-font: 15.0 System;-fx-text-fill: #e10000");
+                wrongLogIn.setText(e.getMessage());
             }
         }
     }

@@ -44,7 +44,7 @@
       <Button fx:id="logInButton" layoutX="244.0" layoutY="166.0" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #000980;" text="Valider" textFill="WHITE" />
       <ImageView fitHeight="126.0" fitWidth="222.0" layoutX="2.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../images/Logo_v1.PNG" />
+            <Image url="@images/logo_v1.png" />
          </image>
       </ImageView>
       <Label fx:id="wrongLogIn" layoutX="324.0" layoutY="266.0" />
