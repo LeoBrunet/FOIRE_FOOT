@@ -48,5 +48,20 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/javafx-sdk-17.0.1/src.zip</systemPath>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx</artifactId>
+            <version>11.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>11.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>11.0.2</version>
+        </dependency>
     </dependencies>
 </project>
