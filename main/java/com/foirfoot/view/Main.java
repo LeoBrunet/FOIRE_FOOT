@@ -1,14 +1,10 @@
 package com.foirfoot.view;
 
+import com.foirfoot.model.User;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -21,19 +17,20 @@ import java.util.Objects;
 public class Main extends Application {
     private static Stage stg; //fake stage
 
+    private User connectedUser;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         stg = primaryStage;
         primaryStage.setResizable(true);
-        primaryStage.setTitle("Foir'Foot");
+        primaryStage.setTitle("Foir'Foot : login");
 
-        InputStream path_icon = Main.class.getResourceAsStream("images/ballon.png");
+        InputStream path_icon = Main.class.getResourceAsStream("assets/images/ballon.png");
         if (path_icon != null) {
             primaryStage.getIcons().add(new Image(path_icon));
         }
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("new_login.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user/login.fxml")));
         primaryStage.initStyle(StageStyle.DECORATED);
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.setMinHeight(400);
@@ -41,9 +38,17 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public void changeScene(String fxml) throws IOException {
-        Parent pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
+    public static void changeScene(String fxml) {
+        fxml = fxml + ".fxml";
+        Parent pane = null;
+        try {
+            pane = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource(fxml)));
+        } catch (IOException e) {
+            System.err.println("File unreachable : " + fxml);
+            e.printStackTrace();
+        }
         stg.getScene().setRoot(pane);
+        stg.setTitle(stg.getTitle().split(" :")[0] + " : " + fxml.split("/")[1].replace(".fxml", ""));
     }
 
 
@@ -51,5 +56,7 @@ public class Main extends Application {
         launch(args);
     }
 
-
+    public static void setConnectedUser(User connectedUser) {
+        connectedUser = connectedUser;
+    }
 }

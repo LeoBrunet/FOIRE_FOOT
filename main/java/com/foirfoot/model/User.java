@@ -11,14 +11,26 @@ public class User implements Role{
     private int id;
     private String name;
     private String firstname;
-    private String email_address;
+    private String email;
     private String password;
     private String tel;
     private File picture;
 
-    public User(int id, String email_address, String password) {
+    public User(int id, String email, String password) {
         this.id = id;
-        this.email_address = email_address;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(String name, String firstname, String email, String password) {
+        this.name = name;
+        this.firstname = firstname;
+        this.email = email;
         this.password = password;
     }
 
@@ -26,8 +38,8 @@ public class User implements Role{
         this.id = id;
     }
 
-    public void setEmail(String email_address) {
-        this.email_address = email_address;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setPassword(String password) {
@@ -35,11 +47,19 @@ public class User implements Role{
     }
 
     public String getEmail() {
-        return email_address;
+        return email;
     }
 
     public String getPassword() {
         return password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getFirstName() {
+        return firstname;
     }
 
     public User login(String password) throws WrongPasswordException {
@@ -59,18 +79,18 @@ public class User implements Role{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(email_address, user.email_address) && Objects.equals(password, user.password);
+        return Objects.equals(email, user.email) && Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(email_address, password);
+        return Objects.hash(email, password);
     }
 
     @Override
     public String toString() {
         return "com.foirfoot.model.User{" +
-                "email_address='" + email_address + '\'' +
+                "email_address='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

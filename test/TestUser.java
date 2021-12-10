@@ -1,5 +1,3 @@
-package user;
-
 import com.foirfoot.dao.UserDAOMySQL;
 import com.foirfoot.model.Facade;
 import com.foirfoot.model.User;
@@ -8,11 +6,12 @@ import exceptions.WrongPasswordException;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class TestLogin {
+public class TestUser {
     private final static Facade facade = new Facade();
 
     @Test
@@ -40,5 +39,11 @@ public class TestLogin {
     public void testGetAllUsers() {
         List<User> users = new UserDAOMySQL().getAll();
         assertEquals(1, users.size());
+    }
+
+    @Test(expected = SQLIntegrityConstraintViolationException.class)
+    public void createUserAlreadyExist() throws SQLIntegrityConstraintViolationException {
+        UserDAOMySQL user = new UserDAOMySQL();
+        user.save(new User("admin", DigestUtils.sha1Hex("admin")));
     }
 }

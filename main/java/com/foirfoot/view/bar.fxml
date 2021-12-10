@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: #cccccc;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foirfoot.view.BarController">
+    <HBox alignment="CENTER_LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+        <Text fx:id="home" onMouseClicked="#goToHome" text="Home" wrappingWidth="32.162109375">
+            <HBox.margin>
+                <Insets right="10.0" />
+            </HBox.margin>
+        </Text>
+        <Text fx:id="shop" onMouseClicked="#goToShop" text="Shop">
+            <HBox.margin>
+                <Insets right="10.0"/>
+            </HBox.margin>
+        </Text>
+        <Text fx:id="clubs" text="Clubs">
+            <HBox.margin>
+                <Insets right="10.0" />
+            </HBox.margin>
+        </Text>
+        <Text fx:id="players" text="Players">
+            <HBox.margin>
+                <Insets right="10.0" />
+            </HBox.margin>
+        </Text>
+    </HBox>
+   <HBox AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <children>
+         <ImageView pickOnBounds="true" preserveRatio="true">
+             <image>
+                 <Image url="@assets/images/user.png" />
+             </image>
+         </ImageView>
+      </children></HBox>
+</AnchorPane>

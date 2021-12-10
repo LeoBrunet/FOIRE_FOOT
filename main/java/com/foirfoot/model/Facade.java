@@ -6,16 +6,24 @@ import com.foirfoot.dao.UserDAOMySQL;
 import exceptions.UserNotFoundException;
 import exceptions.WrongPasswordException;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Optional;
 
 public class Facade {
 
     private final AbstractDAOFactory<?> abstractDAOFactory = new MySQLDAOFactory();
 
-    public User login(String email_address, String password) throws UserNotFoundException, WrongPasswordException {
+    public User login(String email, String password) throws UserNotFoundException, WrongPasswordException {
         UserDAOMySQL userDAOMySQL = (UserDAOMySQL) this.abstractDAOFactory.create("User");
-        Optional<User> optionalUser = userDAOMySQL.getUserByEmail(email_address);
+        Optional<User> optionalUser = userDAOMySQL.getUserByEmail(email);
         User userFoundInDatabase = optionalUser.orElseThrow(UserNotFoundException::new);
         return userFoundInDatabase.login(password);
+    }
+
+    public User register(String name, String firstName, String email, String password) throws SQLIntegrityConstraintViolationException{
+        UserDAOMySQL userDAOMySQL = (UserDAOMySQL) this.abstractDAOFactory.create("User");
+        User user = new User(name, firstName, email, password);
+        userDAOMySQL.save(user);
+        return user;
     }
 }

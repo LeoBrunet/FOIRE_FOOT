@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
-<AnchorPane minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foirfoot.view.UserController">
+<AnchorPane minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foirfoot.view.user.UserController">
     <children>
-        <SplitPane dividerPositions="0.35" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <SplitPane dividerPositions="0.35" stylesheets="@../assets/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="200.0" prefHeight="400.0" style="-fx-background-color: #19318880;">
                     <children>
@@ -17,7 +17,7 @@
                             <children>
                                 <ImageView fitHeight="113.0" fitWidth="200.0">
                                     <image>
-                                        <Image url="@images/logo_transparent.png" />
+                                        <Image url="@../assets/images/logo_transparent.png" />
                                     </image>
                                 </ImageView>
                             </children>
@@ -26,16 +26,16 @@
                 </AnchorPane>
                 <AnchorPane prefHeight="400.0">
                     <children>
-                        <VBox alignment="CENTER" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+                        <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <VBox alignment="CENTER_LEFT">
+                                <VBox alignment="CENTER_LEFT" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="80.0">
                                     <children>
-                                        <Text fill="#193188" layoutX="20.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Se Connecter">
+                                        <Text fill="#193188" layoutX="20.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in">
                                             <font>
-                                                <Font size="25.0" />
+                                                <Font name="System Bold" size="25.0" />
                                             </font>
                                         </Text>
-                                        <Text fill="#193188" layoutX="246.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Identifiant">
+                                        <Text fill="#193188" layoutX="246.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email address">
                                             <font>
                                                 <Font size="14.0" />
                                             </font>
@@ -48,14 +48,14 @@
                                                 <Cursor fx:constant="TEXT" />
                                             </cursor>
                                         </TextField>
-                                        <Text fill="#193188" layoutX="246.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe">
+                                        <Text fill="#193188" layoutX="246.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
                                             <font>
                                                 <Font size="14.0" />
                                             </font>
                                         </Text>
-                                        <PasswordField fx:id="password" layoutX="246.0" layoutY="125.0" />
+                                        <PasswordField fx:id="password" layoutX="246.0" layoutY="125.0" promptText="••••••••"/>
                                         <Label fx:id="wrongLogIn" style="-fx-font: 1.0 System;" />
-                                        <Button fx:id="logInButton" layoutX="244.0" layoutY="166.0" mnemonicParsing="false" onAction="#login" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #193188;" text="Valider" textFill="WHITE">
+                                        <Button fx:id="logInButton" layoutX="244.0" layoutY="166.0" mnemonicParsing="false" onAction="#login" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #193188;" text="Connection" textFill="WHITE">
                                             <VBox.margin>
                                                 <Insets top="15.0" />
                                             </VBox.margin>
@@ -64,10 +64,19 @@
                                     <VBox.margin>
                                         <Insets left="100.0" right="100.0" />
                                     </VBox.margin>
+                                    <opaqueInsets>
+                                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                                    </opaqueInsets>
                                 </VBox>
+                                <AnchorPane prefHeight="16.0" prefWidth="187.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                    <children>
+                                        <Text layoutX="54.0" layoutY="12.94921875" strokeType="OUTSIDE" strokeWidth="0.0" text="No account yet?" AnchorPane.leftAnchor="54.0" AnchorPane.topAnchor="0.0" />
+                                        <Text fx:id="register" fill="#193188" onMouseClicked="#goToRegister" strokeType="OUTSIDE" strokeWidth="0.0" text="Register" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    </children>
+                                </AnchorPane>
                             </children>
 
-                        </VBox>
+                        </AnchorPane>
                     </children>
                 </AnchorPane>
             </items>

@@ -72,8 +72,14 @@ public class UserDAOMySQL implements DAO<User>{
     }
 
     @Override
-    public void update(Object o, String[] params) {
-
+    public void update(User user, String[] params) {
+        try {
+            String query = "INSERT INTO USERS (email, password) VALUES ('" +user.getEmail()+ "','" + DigestUtils.sha1Hex(user.getPassword()) +"')";
+            PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

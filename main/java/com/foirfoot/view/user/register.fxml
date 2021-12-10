@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foirfoot.view.user.UserController">
+    <children>
+        <SplitPane dividerPositions="0.35" stylesheets="@../assets/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="200.0" prefHeight="400.0" style="-fx-background-color: #19318880;">
+                    <children>
+                        <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <ImageView fitHeight="113.0" fitWidth="200.0">
+                                    <image>
+                                        <Image url="@../assets/images/logo_transparent.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutY="200.0" prefHeight="400.0">
+                    <children>
+                        <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <VBox alignment="CENTER_LEFT" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="80.0">
+                                    <children>
+                                        <Text fill="#193188" layoutX="20.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inscrivez-vous">
+                                            <font>
+                                                <Font name="System Bold" size="25.0" />
+                                            </font>
+                                        </Text>
+                                        <HBox prefWidth="200.0">
+                                            <VBox.margin>
+                                                <Insets top="20.0" />
+                                            </VBox.margin>
+                                            <children>
+                                                <VBox prefWidth="100.0">
+                                                    <children>
+                                                        <Text fill="#193188" strokeType="OUTSIDE" strokeWidth="0.0" text="Fisrt Name">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Text>
+                                                        <TextField fx:id="userFirstName" promptText="John">
+                                                            <cursor>
+                                                                <Cursor fx:constant="TEXT" />
+                                                            </cursor>
+                                                            <VBox.margin>
+                                                                <Insets right="5.0" />
+                                                            </VBox.margin>
+                                                        </TextField>
+                                                    </children>
+                                                </VBox>
+                                                <VBox prefWidth="100.0">
+                                                    <children>
+                                                        <Text fill="#193188" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                            <VBox.margin>
+                                                                <Insets left="5.0" />
+                                                            </VBox.margin>
+                                                        </Text>
+                                                        <TextField fx:id="userName" promptText="Stones">
+                                                            <cursor>
+                                                                <Cursor fx:constant="TEXT" />
+                                                            </cursor>
+                                                            <VBox.margin>
+                                                                <Insets left="5.0" />
+                                                            </VBox.margin>
+                                                        </TextField>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </HBox>
+                                        <Text fill="#193188" layoutX="246.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Identifiant">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                            <VBox.margin>
+                                                <Insets />
+                                            </VBox.margin>
+                                        </Text>
+                                        <TextField fx:id="userEmail" layoutX="246.0" layoutY="67.0" promptText="user@gmail.com">
+                                            <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                            </cursor>
+                                        </TextField>
+                                        <Text fill="#193188" layoutX="246.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Text>
+                                        <PasswordField fx:id="password" layoutX="246.0" layoutY="125.0" promptText="••••••••" />
+                                        <Label fx:id="wrongLogIn" style="-fx-font: 1.0 System;" />
+                                        <Button fx:id="logInButton" layoutX="244.0" layoutY="166.0" mnemonicParsing="false" onAction="#register" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #193188;" text="Inscription" textFill="WHITE">
+                                            <VBox.margin>
+                                                <Insets top="15.0" />
+                                            </VBox.margin>
+                                        </Button>
+                                    </children>
+                                </VBox>
+                                <AnchorPane prefHeight="16.0" prefWidth="187.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account?" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="0.0" />
+                                        <Text fx:id="changePageText" fill="#193188" onMouseClicked="#goToLogin" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+</AnchorPane>
