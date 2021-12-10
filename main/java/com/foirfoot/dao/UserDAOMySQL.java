@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import com.foirfoot.model.User;
-import com.foirfoot.utils.DatabaseConnection;
+import com.foirfoot.utils.MySQLConnection;
+import org.apache.commons.codec.digest.DigestUtils;
 
-public class UserDAOMySQL implements DAO{
+public class UserDAOMySQL implements DAO<User>{
 
-    private List<User> users = new ArrayList<>();
+    //private List<User> users = new ArrayList<>();
 
-    static Connection con = DatabaseConnection.getConnection();
+    //static Connection con = MySQLConnection.getConnection();
 
     @Override
     public Optional<User> get(long id) {
@@ -21,8 +22,8 @@ public class UserDAOMySQL implements DAO{
     public Optional<User> getUserByEmail(String email){
         User user = null;
         try {
-            String query = "select * from users where users.email = '" + email +"';";
-            PreparedStatement ps = con.prepareStatement(query);
+            String query = "SELECT * FROM USERS WHERE USERS.EMAIL = '" + email +"';";
+            PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 user = new User(rs.getInt("id"), rs.getString("email"), rs.getString("password"));
@@ -37,8 +38,8 @@ public class UserDAOMySQL implements DAO{
     public List<User> getAll (){
         List<User> users = new ArrayList<>();
         try {
-            String query = "select * from users";
-            PreparedStatement ps = con.prepareStatement(query);
+            String query = "SELECT * FROM USERS";
+            PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -53,8 +54,21 @@ public class UserDAOMySQL implements DAO{
     }
 
     @Override
-    public void save(Object o) {
-
+    public void save(User user) throws SQLIntegrityConstraintViolationException {
+        try {
+            String query = "INSERT INTO USERS (email, password, first_name, name) VALUES ('" +
+                    user.getEmail()+ "','" +
+                    DigestUtils.sha1Hex(user.getPassword()) +"','"+
+                    user.getFirstName()+"','" +
+                    user.getName() + "')";
+            System.out.println(query);
+            PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
+            ps.executeUpdate();
+        } catch (SQLIntegrityConstraintViolationException sqlIntegrityConstraintViolationException){
+            throw sqlIntegrityConstraintViolationException;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -63,7 +77,7 @@ public class UserDAOMySQL implements DAO{
     }
 
     @Override
-    public void delete(Object o) {
+    public void delete(User user) {
 
     }
 }
