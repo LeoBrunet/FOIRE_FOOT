@@ -3,6 +3,8 @@ package com.foirfoot.model;
 import com.foirfoot.dao.AbstractDAOFactory;
 import com.foirfoot.dao.MySQLDAOFactory;
 import com.foirfoot.dao.UserDAOMySQL;
+import com.foirfoot.model.user.RoleName;
+import com.foirfoot.model.user.User;
 import exceptions.UserNotFoundException;
 import exceptions.WrongPasswordException;
 
@@ -22,7 +24,7 @@ public class Facade {
 
     public User register(String name, String firstName, String email, String password) throws SQLIntegrityConstraintViolationException{
         UserDAOMySQL userDAOMySQL = (UserDAOMySQL) this.abstractDAOFactory.create("User");
-        User user = new User(name, firstName, email, password);
+        User user = new User(name, firstName, email, password, RoleName.classic, null, null, false);
         userDAOMySQL.save(user);
         return user;
     }

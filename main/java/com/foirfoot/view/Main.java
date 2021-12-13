@@ -1,6 +1,6 @@
 package com.foirfoot.view;
 
-import com.foirfoot.model.User;
+import com.foirfoot.model.user.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

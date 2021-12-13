@@ -1,5 +1,7 @@
-package com.foirfoot.model;
+package com.foirfoot.model.user;
 
+import com.foirfoot.model.club.Club;
+import com.foirfoot.model.team.Team;
 import exceptions.WrongPasswordException;
 
 import java.io.File;
@@ -7,16 +9,17 @@ import java.util.Objects;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
-public class User implements Role{
+public class User {
     private int id;
-    private String name;
-    private String firstname;
     private String email;
     private String password;
+    private String name;
+    private String firstname;
     private String tel;
     private File picture;
+    private Role role;
 
-    public User(int id, String email, String password) {
+    /*public User(int id, String email, String password) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -32,10 +35,20 @@ public class User implements Role{
         this.firstname = firstname;
         this.email = email;
         this.password = password;
-    }
+    }*/
 
-    public void setId(int id) {
-        this.id = id;
+    public User(String name, String firstname, String email, String password, RoleName roleName, Club club, Team team, boolean isClubCreator) {
+        this.name = name;
+        this.firstname = firstname;
+        this.email = email;
+        this.password = password;
+        if (roleName == RoleName.player){
+            this.role = new Player(club, team, isClubCreator);
+        } else if (roleName == RoleName.coach) {
+            this.role = new Coach(club, team, isClubCreator);
+        } else{
+            this.role = null;
+        }
     }
 
     public void setEmail(String email) {
