@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foirfoot.view.shop.BasketController">
+
+    <fx:include source="../bar.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   <Button layoutX="409.0" layoutY="300.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Valid" AnchorPane.leftAnchor="409.0" AnchorPane.topAnchor="299.0" />
+   <Label layoutX="109.0" layoutY="90.0" text="My Basket ">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </Label>
+   <Button layoutX="102.0" layoutY="300.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Delete All" AnchorPane.leftAnchor="109.0" AnchorPane.topAnchor="299.0" />
+   <Button layoutX="376.0" layoutY="93.0" mnemonicParsing="false" text="Continue my shopping" />
+   <Circle fill="#eceff2" layoutX="137.0" layoutY="165.0" radius="28.0" stroke="BLACK" strokeType="INSIDE" />
+</AnchorPane>
