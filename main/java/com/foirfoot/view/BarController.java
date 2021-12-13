@@ -21,6 +21,10 @@ public class BarController {
         Main.changeScene("shop/shop");
     }
 
+    public void goToProfile() {
+        Main.changeScene("user/profile");
+    }
+
     /**
      * Example of fonction to underline text in JavaFX text field.
      */

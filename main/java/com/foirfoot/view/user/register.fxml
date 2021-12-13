@@ -30,7 +30,7 @@
                             <children>
                                 <VBox alignment="CENTER_LEFT" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="80.0">
                                     <children>
-                                        <Text fill="#193188" layoutX="20.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inscrivez-vous">
+                                        <Text fill="#193188" layoutX="20.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register">
                                             <font>
                                                 <Font name="System Bold" size="25.0" />
                                             </font>

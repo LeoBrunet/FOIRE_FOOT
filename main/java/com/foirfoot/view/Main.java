@@ -17,7 +17,7 @@ import java.util.Objects;
 public class Main extends Application {
     private static Stage stg; //fake stage
 
-    private User connectedUser;
+    public static User connectedUser;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -54,9 +54,5 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-    }
-
-    public static void setConnectedUser(User connectedUser) {
-        connectedUser = connectedUser;
     }
 }

@@ -89,8 +89,10 @@ public class User implements Role{
 
     @Override
     public String toString() {
-        return "com.foirfoot.model.User{" +
-                "email_address='" + email + '\'' +
+        return "User{" +
+                "name='" + name + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

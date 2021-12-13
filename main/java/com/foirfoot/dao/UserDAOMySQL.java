@@ -26,7 +26,7 @@ public class UserDAOMySQL implements DAO<User>{
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                user = new User(rs.getInt("id"), rs.getString("email"), rs.getString("password"));
+                user = new User(rs.getString("name"), rs.getString("first_name"),rs.getString("email"), rs.getString("password"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

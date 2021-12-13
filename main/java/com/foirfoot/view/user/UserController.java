@@ -47,7 +47,7 @@ public class UserController {
                 //wrongLogIn.setStyle("-fx-font: 1.0 System");
                 wrongLogIn.setStyle("-fx-font: 15.0 System;-fx-text-fill: #4f8000");
                 wrongLogIn.setText("Connexion...");
-                Main.setConnectedUser(user);
+                Main.connectedUser = user;
                 Main.changeScene("home/home");
             } catch (WrongPasswordException | UserNotFoundException e) {
                 wrongLogIn.setStyle("-fx-font: 15.0 System;-fx-text-fill: #e10000");
