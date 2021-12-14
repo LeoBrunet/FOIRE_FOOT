@@ -37,7 +37,7 @@ public class User {
         this.password = password;
     }*/
 
-    public User(String name, String firstname, String email, String password, RoleName roleName, Club club, Team team, boolean isClubCreator) {
+    public User(String email, String password, String name, String firstname, RoleName roleName, Club club, Team team, boolean isClubCreator) {
         this.name = name;
         this.firstname = firstname;
         this.email = email;

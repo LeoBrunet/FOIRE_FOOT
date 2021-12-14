@@ -22,10 +22,9 @@ public class Facade {
         return userFoundInDatabase.login(password);
     }
 
-    public User register(String name, String firstName, String email, String password) throws SQLIntegrityConstraintViolationException{
+    public void register(String name, String firstName, String email, String password) throws SQLIntegrityConstraintViolationException{
         UserDAOMySQL userDAOMySQL = (UserDAOMySQL) this.abstractDAOFactory.create("User");
-        User user = new User(name, firstName, email, password, RoleName.classic, null, null, false);
+        User user = new User(email, password, name, firstName, RoleName.classic, null, null, false);
         userDAOMySQL.save(user);
-        return user;
     }
 }

@@ -33,7 +33,7 @@ public class UserDAOMySQL implements DAO<User>{
                 Club club = new Club(rs.getString("club_name"));
                 Team team = new Team(rs.getString("team_name"));
                 boolean isClubCreator = rs.getInt("user_id") == rs.getInt("creator_user_id");
-                user = new User(rs.getString("user_email"), rs.getString("user_password"),rs.getString("user_email"), rs.getString("user_password"), RoleName.values()[rs.getInt("user_role")], club, team, isClubCreator);
+                user = new User(rs.getString("user_email"), rs.getString("user_password"),rs.getString("user_name"), rs.getString("user_first_name"), RoleName.values()[rs.getInt("user_role")], club, team, isClubCreator);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -52,7 +52,7 @@ public class UserDAOMySQL implements DAO<User>{
                 Club club = new Club(rs.getString("club_name"));
                 Team team = new Team(rs.getString("team_name"));
                 boolean isClubCreator = rs.getInt("user_id") == rs.getInt("creator_user_id");
-                users.add(new User(rs.getString("user_email"), rs.getString("user_password"),rs.getString("user_email"), rs.getString("user_password"), RoleName.values()[rs.getInt("user_role")], club, team, isClubCreator));
+                users.add(new User(rs.getString("user_email"), rs.getString("user_password"),rs.getString("user_name"), rs.getString("user_first_name"), RoleName.values()[rs.getInt("user_role")], club, team, isClubCreator));
             }
         } catch (SQLException e) {
             e.printStackTrace();
