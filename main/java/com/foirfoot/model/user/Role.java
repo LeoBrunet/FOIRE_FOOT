@@ -6,38 +6,55 @@ import com.foirfoot.model.team.Team;
 import java.util.List;
 
 public abstract class Role {
+    private int clubId;
+    private int teamId;
+    private boolean isClubCreator;
+    private List<Integer> exTeamsId;
     private Club club;
     private Team team;
-    private boolean isClubCreator;
     private List<Team> exTeams;
 
+
+    public Role(int club_id, int teamId, boolean isClubCreator) {
+        this.clubId = club_id;
+        this.teamId = teamId;
+        this.isClubCreator = isClubCreator;
+    }
+
+    public Role(int club_id, int teamId, boolean isClubCreator, List<Integer> exTeamsId) {
+        this.clubId = club_id;
+        this.teamId = teamId;
+        this.isClubCreator = isClubCreator;
+        this.exTeamsId = exTeamsId;
+    }
+
     public Role(Club club, Team team, boolean isClubCreator) {
+        this.isClubCreator = isClubCreator;
         this.club = club;
         this.team = team;
-        this.isClubCreator = isClubCreator;
     }
 
     public Role(Club club, Team team, boolean isClubCreator, List<Team> exTeams) {
+        this.isClubCreator = isClubCreator;
         this.club = club;
         this.team = team;
-        this.isClubCreator = isClubCreator;
         this.exTeams = exTeams;
     }
 
-    public Club getClub() {
-        return club;
+    public int getClubId() {
+        return clubId;
     }
 
-    public void setClub(Club club) {
-        this.club = club;
+    public void setClubId(int clubId) {
+        this.clubId = clubId;
     }
 
-    public Team getTeam() {
-        return team;
+    public int getTeam() {
+        return teamId;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setTeam(int teamId) {
+        this.teamId = teamId;
     }
 
     public boolean isClubCreator() {
@@ -48,11 +65,23 @@ public abstract class Role {
         isClubCreator = clubCreator;
     }
 
-    public List<Team> getExTeams() {
-        return exTeams;
+    public List<Integer> getExTeams() {
+        return exTeamsId;
     }
 
-    public void setExTeams(List<Team> exTeams) {
-        this.exTeams = exTeams;
+    public void setExTeams(List<Integer> exTeams) {
+        this.exTeamsId = exTeams;
+    }
+
+    public Club getClub() {
+        return club;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }

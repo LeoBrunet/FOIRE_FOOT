@@ -37,7 +37,7 @@ public class User {
         this.password = password;
     }*/
 
-    public User(String email, String password, String name, String firstname, RoleName roleName, Club club, Team team, boolean isClubCreator) {
+    public User(String email, String password, String name, String firstname, RoleName roleName, int club, int team, boolean isClubCreator) {
         this.name = name;
         this.firstname = firstname;
         this.email = email;
@@ -47,7 +47,7 @@ public class User {
         } else if (roleName == RoleName.coach) {
             this.role = new Coach(club, team, isClubCreator);
         } else{
-            this.role = null;
+            this.role = new ClassicUser(club, -1, isClubCreator);
         }
     }
 
@@ -108,5 +108,17 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public Club getClub() {
+        return this.role.getClub();
+    }
+
+    public void setClub(Club club) {
+        this.role.setClub(club);
+    }
+
+    public int getClubId(){
+        return this.role.getClubId();
     }
 }

@@ -1,16 +1,13 @@
 package com.foirfoot.model.user;
 
-import com.foirfoot.model.club.Club;
-import com.foirfoot.model.team.Team;
-
 import java.util.List;
 
 public class Coach extends Role{
-    public Coach(Club club, Team team, boolean isClubCreator) {
+    public Coach(int club, int team, boolean isClubCreator) {
         super(club, team, isClubCreator);
     }
 
-    public Coach(Club club, Team team, boolean isClubCreator, List<Team> exTeams) {
+    public Coach(int club, int team, boolean isClubCreator, List<Integer> exTeams) {
         super(club, team, isClubCreator, exTeams);
     }
 }
