@@ -1,6 +1,7 @@
 import com.foirfoot.dao.UserDAOMySQL;
 import com.foirfoot.model.Facade;
-import com.foirfoot.model.User;
+import com.foirfoot.model.user.RoleName;
+import com.foirfoot.model.user.User;
 import exceptions.UserNotFoundException;
 import exceptions.WrongPasswordException;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -44,6 +45,6 @@ public class TestUser {
     @Test(expected = SQLIntegrityConstraintViolationException.class)
     public void createUserAlreadyExist() throws SQLIntegrityConstraintViolationException {
         UserDAOMySQL user = new UserDAOMySQL();
-        user.save(new User("admin", DigestUtils.sha1Hex("admin")));
+        user.save(new User(null, null, "admin", DigestUtils.sha1Hex("admin"), RoleName.classic, null, null, false));
     }
 }

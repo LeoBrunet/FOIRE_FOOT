@@ -1,7 +1,7 @@
 package com.foirfoot.view.user;
 
 import com.foirfoot.model.Facade;
-import com.foirfoot.model.User;
+import com.foirfoot.model.user.User;
 import com.foirfoot.view.Main;
 import exceptions.UserNotFoundException;
 import exceptions.WrongPasswordException;
