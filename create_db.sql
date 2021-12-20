@@ -46,7 +46,7 @@ ALTER TABLE USERS
     ADD FOREIGN KEY (team_id) REFERENCES TEAMS (team_id);
 
 INSERT INTO USERS (user_email, user_password, user_name, user_first_name, club_id, user_role)
-VALUES ('admin', SHA1('admin'), 'admin', 'admin', 1, 0);
+VALUES ('admin', SHA1('admin'), 'admin', 'admin', null, 0);
 
 INSERT INTO USERS (user_email, user_password, user_name, user_first_name, club_id, user_role)
 VALUES ('leobrunet91@gmail.com', SHA1('1234'), 'Brunet', 'Léo', 1, 1);
@@ -61,23 +61,11 @@ INSERT INTO USERS (user_email, user_password, user_name, user_first_name, club_i
 VALUES ('jose@gmail.com', SHA1('1234'), 'Mourinho', 'Jose', 2, 2);
 
 INSERT INTO CLUBS (club_name, creator_user_id, club_address, club_phone_number, club_website, club_image_name)
-VALUES ('FC Girondins de Bordeaux', 1, 'Rue Joliot-Curie, Le Haillan 33185 Bordeaux, France', '+330505156012',
+VALUES ('FC Girondins de Bordeaux', 3, 'Rue Joliot-Curie, Le Haillan 33185 Bordeaux, France', '+330505156012',
         'http://www.girondins.com', 'girondins.png');
 
 INSERT INTO CLUBS (club_name, creator_user_id, club_address, club_phone_number, club_website, club_image_name)
-VALUES ('Montpellier Hérault FC', 1, 'Rue Joliot-Curie, Le Haillan 33185 Bordeaux, France', '+330505156012',
+VALUES ('Montpellier Hérault FC', 2, 'Rue Joliot-Curie, Le Haillan 33185 Bordeaux, France', '+330505156012',
         'http://www.mhsc.com', 'mhsc.png');
 
 SET FOREIGN_KEY_CHECKS = 1; -- to re-enable them
-
-SELECT *
-FROM CLUBS;
-
-SELECT *
-FROM CLUBS
-         INNER JOIN USERS AS creator ON creator.user_id = CLUBS.creator_user_id
-         LEFT JOIN USERS AS member ON member.club_id = CLUBS.club_id
-         LEFT JOIN TEAMS ON CLUBS.club_id = TEAMS.club_id
-WHERE CLUBS.club_id = 1;
-
-SELECT * FROM USERS;
