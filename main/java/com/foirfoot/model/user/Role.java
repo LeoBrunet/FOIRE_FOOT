@@ -3,58 +3,28 @@ package com.foirfoot.model.user;
 import com.foirfoot.model.club.Club;
 import com.foirfoot.model.team.Team;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Role {
-    private int clubId;
-    private int teamId;
     private boolean isClubCreator;
-    private List<Integer> exTeamsId;
     private Club club;
     private Team team;
     private List<Team> exTeams;
 
 
     public Role(int club_id, int teamId, boolean isClubCreator) {
-        this.clubId = club_id;
-        this.teamId = teamId;
+        this.club = new Club(club_id);
+        this.team = new Team(teamId);
         this.isClubCreator = isClubCreator;
     }
 
-    public Role(int club_id, int teamId, boolean isClubCreator, List<Integer> exTeamsId) {
-        this.clubId = club_id;
-        this.teamId = teamId;
-        this.isClubCreator = isClubCreator;
-        this.exTeamsId = exTeamsId;
-    }
-
-    public Role(Club club, Team team, boolean isClubCreator) {
-        this.isClubCreator = isClubCreator;
-        this.club = club;
-        this.team = team;
-    }
-
-    public Role(Club club, Team team, boolean isClubCreator, List<Team> exTeams) {
-        this.isClubCreator = isClubCreator;
-        this.club = club;
-        this.team = team;
-        this.exTeams = exTeams;
-    }
-
-    public int getClubId() {
-        return clubId;
-    }
-
-    public void setClubId(int clubId) {
-        this.clubId = clubId;
-    }
-
-    public int getTeam() {
-        return teamId;
-    }
-
-    public void setTeam(int teamId) {
-        this.teamId = teamId;
+    public Role(int club_id, int teamId, boolean isClubCreator, List<Integer> exTeams) {
+        this(club_id, teamId, isClubCreator);
+        this.exTeams = new ArrayList<>();
+        for (int exTeamId : exTeams) {
+            this.exTeams.add(new Team(exTeamId));
+        }
     }
 
     public boolean isClubCreator() {
@@ -65,14 +35,6 @@ public abstract class Role {
         isClubCreator = clubCreator;
     }
 
-    public List<Integer> getExTeams() {
-        return exTeamsId;
-    }
-
-    public void setExTeams(List<Integer> exTeams) {
-        this.exTeamsId = exTeams;
-    }
-
     public Club getClub() {
         return club;
     }
@@ -81,7 +43,29 @@ public abstract class Role {
         this.club = club;
     }
 
+    public Team getTeam() {
+        return team;
+    }
+
     public void setTeam(Team team) {
         this.team = team;
+    }
+
+    public List<Team> getExTeams() {
+        return exTeams;
+    }
+
+    public void setExTeams(List<Team> exTeams) {
+        this.exTeams = exTeams;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "isClubCreator=" + isClubCreator +
+                ", club=" + club.toStringBis() +
+                ", team=" + team +
+                ", exTeams=" + exTeams +
+                '}';
     }
 }

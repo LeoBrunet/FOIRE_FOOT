@@ -1,5 +1,7 @@
 package com.foirfoot.model.user;
 
+import com.foirfoot.model.team.Team;
+
 import java.util.List;
 
 public class Coach extends Role{

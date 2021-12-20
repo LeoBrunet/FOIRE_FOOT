@@ -1,13 +1,11 @@
 package com.foirfoot.model.user;
 
 import com.foirfoot.model.club.Club;
-import com.foirfoot.model.team.Team;
 import exceptions.WrongPasswordException;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.File;
 import java.util.Objects;
-
-import org.apache.commons.codec.digest.DigestUtils;
 
 public class User {
     private int id;
@@ -18,24 +16,6 @@ public class User {
     private String tel;
     private File picture;
     private Role role;
-
-    /*public User(int id, String email, String password) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-    }
-
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-
-    public User(String name, String firstname, String email, String password) {
-        this.name = name;
-        this.firstname = firstname;
-        this.email = email;
-        this.password = password;
-    }*/
 
     public User(String email, String password, String name, String firstname, RoleName roleName, int club, int team, boolean isClubCreator) {
         this.name = name;
@@ -49,6 +29,15 @@ public class User {
         } else{
             this.role = new ClassicUser(club, -1, isClubCreator);
         }
+    }
+
+    public User(int id, String email, String password, String name, String firstname, RoleName roleName, int club, int team, boolean isClubCreator) {
+        this(email, password, name, firstname, roleName, club, team, isClubCreator);
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setEmail(String email) {
@@ -75,6 +64,22 @@ public class User {
         return firstname;
     }
 
+    public Club getClub() {
+        return this.role.getClub();
+    }
+
+    public void setClub(Club club) {
+        this.role.setClub(club);
+    }
+
+    public boolean isClubCreator() {
+        return this.role.isClubCreator();
+    }
+
+    public void setIsClubCreator(boolean isClubCreator) {
+        this.role.setClubCreator(isClubCreator);
+    }
+
     public User login(String password) throws WrongPasswordException {
         if(comparePassword(password)) {
             return this;
@@ -96,29 +101,16 @@ public class User {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(email, password);
-    }
-
-    @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
-                ", firstname='" + firstname + '\'' +
+                "id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", tel='" + tel + '\'' +
+                ", picture=" + picture +
+                ", role=" + role +
                 '}';
-    }
-
-    public Club getClub() {
-        return this.role.getClub();
-    }
-
-    public void setClub(Club club) {
-        this.role.setClub(club);
-    }
-
-    public int getClubId(){
-        return this.role.getClubId();
     }
 }

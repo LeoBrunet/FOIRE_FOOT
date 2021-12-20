@@ -14,9 +14,7 @@ public class BarController {
 
     @FXML
     public void initialize(){
-        if (Main.connectedUser.getClub() == null){
-            hideClubText();
-        }
+
     }
 
     public void goToHome(){
@@ -28,7 +26,11 @@ public class BarController {
     }
 
     public void goToClub() {
-        Main.changeScene("club/club", new ClubController(), new Object[]{Main.connectedUser.getClub()});
+        if (Main.connectedUser.getClub() == null){
+            Main.changeScene("club/no_club");
+        } else {
+            Main.changeScene("club/club", new ClubController(), new Object[]{Main.connectedUser.getClub()});
+        }
     }
 
     public void goToProfile() {

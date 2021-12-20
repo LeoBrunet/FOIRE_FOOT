@@ -28,13 +28,11 @@ public class ClubController extends Controller {
 
     @FXML
     public void initialize(){
-        // TODO Corriger ordre nom et prénom
+        System.out.println("initialize()");
         clubName.setText(this.club.getName());
         clubAddress.setText(this.club.getAddress());
         clubPhoneNumber.setText(this.club.getPhoneNumber());
         clubWebsite.setText(this.club.getWebsite());
-        System.out.println(club.getPlayers());
-        System.out.println(club.getCoaches());
 
         for (User p : club.getPlayers()) {
             players.getChildren().add(new Text(p.getFirstName() + " " + p.getName()));
@@ -43,7 +41,12 @@ public class ClubController extends Controller {
             coaches.getChildren().add(new Text(c.getFirstName() + " " + c.getName()));
         }
 
-        clubImageView.setImage(new Image(club.getImageIS()));
+        // TODO Image s'affiche que la premiere fois
+        // voir si le problème vient de sardine l 37 de ClubDAO
+        // essayer d'enregistrer une imag plutot qu'une InputStream
+        // clubImageView.setImage(club.image);
+        Image i = new Image(club.getImageIS());
+        clubImageView.setImage(i);
     }
 
     @Override
