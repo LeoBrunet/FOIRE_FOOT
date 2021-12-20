@@ -6,9 +6,9 @@ import java.util.Optional;
 
 public interface DAO<T> {
 
-    Optional<T> get(long id);
+    Optional<T> get(int id);
 
-    List<T> getAll();
+    List<Optional<T>> getAll();
 
     void save(T t) throws SQLIntegrityConstraintViolationException;
 

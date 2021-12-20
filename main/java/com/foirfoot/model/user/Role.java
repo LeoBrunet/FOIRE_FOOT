@@ -3,25 +3,36 @@ package com.foirfoot.model.user;
 import com.foirfoot.model.club.Club;
 import com.foirfoot.model.team.Team;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Role {
+    private boolean isClubCreator;
     private Club club;
     private Team team;
-    private boolean isClubCreator;
     private List<Team> exTeams;
 
-    public Role(Club club, Team team, boolean isClubCreator) {
-        this.club = club;
-        this.team = team;
+
+    public Role(int club_id, int teamId, boolean isClubCreator) {
+        this.club = new Club(club_id);
+        this.team = new Team(teamId);
         this.isClubCreator = isClubCreator;
     }
 
-    public Role(Club club, Team team, boolean isClubCreator, List<Team> exTeams) {
-        this.club = club;
-        this.team = team;
-        this.isClubCreator = isClubCreator;
-        this.exTeams = exTeams;
+    public Role(int club_id, int teamId, boolean isClubCreator, List<Integer> exTeams) {
+        this(club_id, teamId, isClubCreator);
+        this.exTeams = new ArrayList<>();
+        for (int exTeamId : exTeams) {
+            this.exTeams.add(new Team(exTeamId));
+        }
+    }
+
+    public boolean isClubCreator() {
+        return isClubCreator;
+    }
+
+    public void setClubCreator(boolean clubCreator) {
+        isClubCreator = clubCreator;
     }
 
     public Club getClub() {
@@ -40,19 +51,21 @@ public abstract class Role {
         this.team = team;
     }
 
-    public boolean isClubCreator() {
-        return isClubCreator;
-    }
-
-    public void setClubCreator(boolean clubCreator) {
-        isClubCreator = clubCreator;
-    }
-
     public List<Team> getExTeams() {
         return exTeams;
     }
 
     public void setExTeams(List<Team> exTeams) {
         this.exTeams = exTeams;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "isClubCreator=" + isClubCreator +
+                ", club=" + club.toStringBis() +
+                ", team=" + team +
+                ", exTeams=" + exTeams +
+                '}';
     }
 }
