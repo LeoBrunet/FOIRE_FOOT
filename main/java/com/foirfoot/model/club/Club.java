@@ -25,7 +25,7 @@ public class Club {
     }
 
     public Club(int id, String name, String address, String phoneNumber, String website, User creator, List<User> players, List<User> coachs, List<Team> teams, String imageName, InputStream imageIS) {
-        this(id);
+        this.id = id;
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -91,6 +91,8 @@ public class Club {
         return imageName;
     }
 
+    public List<Team> getTeams() { return teams; }
+
     public void setImageName(String imageName) {
         this.imageName = imageName;
     }
@@ -131,4 +133,6 @@ public class Club {
                 ", imageName='" + imageName + '\'' +
                 '}';
     }
+
+
 }

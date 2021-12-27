@@ -93,8 +93,8 @@
                 <!--<Image url="@../assets/images/girondins.png" />-->
             </ImageView>
         </HBox>
-        <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-            <Button maxWidth="Infinity" text="Teams" HBox.hgrow="ALWAYS">
+        <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" >
+            <Button maxWidth="Infinity" text="Teams" HBox.hgrow="ALWAYS" onAction="#goToTeams">
                 <HBox.margin>
                     <Insets bottom="10" left="10.0" right="5.0" />
                 </HBox.margin>

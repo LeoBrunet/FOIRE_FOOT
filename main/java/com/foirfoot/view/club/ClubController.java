@@ -3,6 +3,8 @@ package com.foirfoot.view.club;
 import com.foirfoot.model.club.Club;
 import com.foirfoot.model.user.User;
 import com.foirfoot.view.Controller;
+import com.foirfoot.view.Main;
+import com.foirfoot.view.team.TeamController;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -53,4 +55,18 @@ public class ClubController extends Controller {
     public void setParameter(Object[] params) {
         this.club = (Club) params[0];
     }
+
+    public void goToTeams() {
+        if (Main.connectedUser.getClub().getTeams().isEmpty()){
+            System.out.println("No Teams");
+            Main.changeScene("team/no_team");
+        } else {
+            System.out.println("Teams");
+            System.out.println(Main.connectedUser.getClub().getTeams());
+            /*Main.changeScene("team/no_team");*/
+            /*Main.changeScene("team/team", new TeamController(), new Object[]{Main.connectedUser.getClub().getTeams()});*/
+        }
+    }
+
+
 }

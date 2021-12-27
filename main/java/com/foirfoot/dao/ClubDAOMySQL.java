@@ -29,7 +29,8 @@ public class ClubDAOMySQL implements DAO<Club> {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 UserDAOMySQL userDAOMySQL = new UserDAOMySQL();
-                List<Team> teams = getAllTeamsOfClub(id);
+                TeamDAOMySQL teamDAOMySQL = new TeamDAOMySQL();
+                List<Team> teams = teamDAOMySQL.getAllTeamsOfClub(id);
                 List<User> players = userDAOMySQL.getAllUsersOfClubWithRole(id, RoleName.player);
                 List<User> coachs = userDAOMySQL.getAllUsersOfClubWithRole(id, RoleName.coach);
                 User creator = userDAOMySQL.get(id).orElseThrow(UserNotFoundException::new);
@@ -86,6 +87,7 @@ public class ClubDAOMySQL implements DAO<Club> {
             try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     club.setId(generatedKeys.getInt(1));
+                    System.out.println(club.getId());
                 }
                 else {
                     throw new SQLException("Creating user failed, no ID obtained.");
