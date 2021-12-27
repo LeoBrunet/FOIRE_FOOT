@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foirfoot.view.club.ClubController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
     <fx:include source="../bar.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
     <AnchorPane prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
         <Text fx:id="clubName" strokeType="OUTSIDE" strokeWidth="0.0" text="FC Girondins de Bordeaux" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
@@ -94,7 +94,7 @@
             </ImageView>
         </HBox>
         <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-            <Button maxWidth="Infinity" text="Teams" onAction="#goToTeams" HBox.hgrow="ALWAYS">
+            <Button maxWidth="Infinity" text="Teams" HBox.hgrow="ALWAYS">
                 <HBox.margin>
                     <Insets bottom="10" left="10.0" right="5.0" />
                 </HBox.margin>

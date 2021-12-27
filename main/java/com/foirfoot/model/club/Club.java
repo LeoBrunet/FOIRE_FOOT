@@ -91,8 +91,6 @@ public class Club {
         return imageName;
     }
 
-    public List<Team> getTeams(){ return teams; }
-
     public void setImageName(String imageName) {
         this.imageName = imageName;
     }

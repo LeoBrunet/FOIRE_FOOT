@@ -3,14 +3,11 @@ package com.foirfoot.view.club;
 import com.foirfoot.model.club.Club;
 import com.foirfoot.model.user.User;
 import com.foirfoot.view.Controller;
-import com.foirfoot.view.Main;
-import com.foirfoot.view.team.TeamController;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-
 
 public class ClubController extends Controller {
     private Club club;
@@ -51,14 +48,6 @@ public class ClubController extends Controller {
         Image i = new Image(club.getImageIS());
         clubImageView.setImage(i);
     }
-
-   /* public void goToTeams() {
-        if (Main.connectedUser.getClub().getTeams() == null){
-            Main.changeScene("team/no_team");
-        } else {
-            Main.changeScene("team/team", new TeamController(), new Object[]{Main.connectedUser.getClub().getTeams()});
-        }
-    }*/
 
     @Override
     public void setParameter(Object[] params) {
