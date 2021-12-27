@@ -1,6 +1,7 @@
 package com.foirfoot.view;
 
 import com.foirfoot.model.user.User;
+import com.foirfoot.view.club.ClubController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -54,6 +55,24 @@ public class Main extends Application {
         }
         stg.getScene().setRoot(pane);
         stg.setTitle(stg.getTitle().split(" :")[0] + " : " + fxml.split("/")[1].replace(".fxml", ""));
+    }
+
+    public static void changeScene(String fxml, Controller controller, Object[] params){
+        fxml = fxml + ".fxml";
+        Parent pane = null;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Objects.requireNonNull(Main.class.getResource(fxml)));
+            controller.setParameter(params);
+            fxmlLoader.setController(controller);
+            pane = fxmlLoader.load();
+        } catch (IOException e) {
+            System.err.println("File unreachable : " + fxml);
+            e.printStackTrace();
+        }
+        stg.getScene().setRoot(pane);
+        stg.setTitle(stg.getTitle().split(" :")[0] + " : " + fxml.split("/")[1].replace(".fxml", ""));
+
+
     }
 
 

@@ -3,6 +3,7 @@ package com.foirfoot.view.user;
 import com.foirfoot.model.Facade;
 import com.foirfoot.model.user.User;
 import com.foirfoot.view.Main;
+import exceptions.ClubNotFoundException;
 import exceptions.UserNotFoundException;
 import exceptions.WrongPasswordException;
 import javafx.event.ActionEvent;
@@ -17,10 +18,6 @@ import javafx.stage.Stage;
 import java.sql.SQLIntegrityConstraintViolationException;
 
 public class UserController {
-
-    public UserController() {
-
-    }
 
     Facade facade = new Facade();
     @FXML
@@ -49,7 +46,7 @@ public class UserController {
                 wrongLogIn.setText("Connexion...");
                 Main.connectedUser = user;
                 Main.changeScene("home/home");
-            } catch (WrongPasswordException | UserNotFoundException e) {
+            } catch (WrongPasswordException | UserNotFoundException | ClubNotFoundException e) {
                 wrongLogIn.setStyle("-fx-font: 15.0 System;-fx-text-fill: #e10000");
                 wrongLogIn.setText(e.getMessage());
             }
@@ -60,7 +57,6 @@ public class UserController {
         if (userEmail.getText().isEmpty() || password.getText().isEmpty() || userName.getText().isEmpty() || userFirstName.getText().isEmpty()) {
             wrongLogIn.setText("Please enter your data");
         } else {
-
             try {
                 facade.register(userName.getText(), userFirstName.getText(), userEmail.getText(), password.getText());
                 //wrongLogIn.setStyle("-fx-font: 1.0 System");
