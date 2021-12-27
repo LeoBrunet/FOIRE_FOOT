@@ -1,12 +1,21 @@
 package com.foirfoot.view.shop;
 
+import com.foirfoot.model.Facade;
+import com.foirfoot.view.Main;
+import javafx.fxml.FXML;
+import javafx.scene.text.Text;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class ProductController {
-    private TextField name;
+    public ProductController() {
 
-    public void ShowName(ActionEvent actionEvent){
-        System.out.println(name.getText());
     }
+
+    Facade facade = new Facade();
+
+
+
+
 }

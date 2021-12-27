@@ -1,4 +1,4 @@
-package com.foirfoot.model;
+package com.foirfoot.model.shop;
 
 public class Product {
      private String nameProduct;

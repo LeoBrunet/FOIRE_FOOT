@@ -30,7 +30,12 @@ public class Main extends Application {
             primaryStage.getIcons().add(new Image(path_icon));
         }
 
+        System.out.println(getClass());
+        System.out.println(getClass().getResource(""));
+        System.out.println(getClass().getResource("user"));
+        System.out.println(getClass().getResource("user/login.fxml"));
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user/login.fxml")));
+
         primaryStage.initStyle(StageStyle.DECORATED);
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.setMinHeight(400);
