@@ -2,13 +2,17 @@ package com.foirfoot.model;
 
 import com.foirfoot.dao.AbstractDAOFactory;
 import com.foirfoot.dao.MySQLDAOFactory;
+import com.foirfoot.dao.ResultDAOMySQL;
 import com.foirfoot.dao.UserDAOMySQL;
+import com.foirfoot.model.result.Result;
+import com.foirfoot.model.team.Team;
 import com.foirfoot.model.user.RoleName;
 import com.foirfoot.model.user.User;
 import exceptions.UserNotFoundException;
 import exceptions.WrongPasswordException;
 
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.List;
 import java.util.Optional;
 
 public class Facade {
@@ -26,5 +30,12 @@ public class Facade {
         UserDAOMySQL userDAOMySQL = (UserDAOMySQL) this.abstractDAOFactory.create("User");
         User user = new User(email, password, name, firstName, RoleName.classic, null, null, false);
         userDAOMySQL.save(user);
+    }
+
+    public List<Result> displayResult(Team team){
+        ResultDAOMySQL resultDAOMySQL = (ResultDAOMySQL) this.abstractDAOFactory.create("Result");
+        List<Result> results = resultDAOMySQL.getResultByTeam(team);
+        return results;
+
     }
 }

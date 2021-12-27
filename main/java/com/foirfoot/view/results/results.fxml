@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foirfoot.view.results.ResultsController">
+    <fx:include source="../bar.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   <VBox layoutX="19.0" layoutY="59.0" prefHeight="327.0" prefWidth="563.0" spacing="5.0">
+      <children>
+           <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" text="Latest results" textAlignment="CENTER">
+            <font>
+               <Font name="Segoe UI Bold" size="22.0" />
+            </font>
+            <VBox.margin>
+               <Insets top="5.0" />
+            </VBox.margin>
+         </Text>
+         <HBox alignment="CENTER" cache="true" prefHeight="100.0" prefWidth="200.0" style="-fx-padding: 10; -fx-border-color: black; -fx-border-radius: 5;">
+            <children>
+               <ImageView fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../../../../../../Desktop/IG4/Logo%20football/Montpellier_Hérault_Sport_Club_(logo,_2000).svg.png" />
+                  </image>
+               </ImageView>
+               <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <children>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MHSC 3 - 0 RCSA">
+                        <font>
+                           <Font name="Segoe UI Semibold" size="24.0" />
+                        </font>
+                     </Text>
+                     <HBox prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <VBox prefHeight="200.0" prefWidth="100.0">
+                              <children>
+                                 <HBox prefHeight="19.0" prefWidth="95.0" spacing="5.0">
+                                    <children>
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="12'" />
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CANTERO" />
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="17.0" prefWidth="95.0" spacing="5.0">
+                                    <children>
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="25'" />
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SAVANIER" />
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                    <children>
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="88'" />
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CANTERO" wrappingWidth="52.728515625" />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox prefHeight="200.0" prefWidth="100.0" />
+                        </children>
+                     </HBox>
+                  </children>
+                  <opaqueInsets>
+                     <Insets />
+                  </opaqueInsets>
+                  <HBox.margin>
+                     <Insets left="40.0" right="40.0" />
+                  </HBox.margin>
+               </VBox>
+               <ImageView fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../../../../../../Desktop/IG4/Logo%20football/1200px-Racing_Club_de_Strasbourg_Alsace_(RC_Strasbourg_-_RCS_-_RCSA)_logo_officiel.svg.png" />
+                  </image>
+               </ImageView>
+            </children>
+            <VBox.margin>
+               <Insets top="25.0" />
+            </VBox.margin>
+            <padding>
+               <Insets bottom="5.0" top="5.0" />
+            </padding>
+         </HBox>
+         <HBox alignment="CENTER" cache="true" prefHeight="100.0" prefWidth="200.0" style="-fx-padding: 10; -fx-border-color: black; -fx-border-radius: 5;">
+            <children>
+               <ImageView fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../../../../../../Desktop/IG4/Logo%20football/Montpellier_Hérault_Sport_Club_(logo,_2000).svg.png" />
+                  </image>
+               </ImageView>
+               <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <children>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MHSC 3 - 0 RCSA">
+                        <font>
+                           <Font name="Segoe UI Semibold" size="24.0" />
+                        </font>
+                     </Text>
+                     <HBox prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <VBox prefHeight="200.0" prefWidth="100.0">
+                              <children>
+                                 <HBox prefHeight="19.0" prefWidth="95.0" spacing="5.0">
+                                    <children>
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="12'" />
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CANTERO" />
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="17.0" prefWidth="95.0" spacing="5.0">
+                                    <children>
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="25'" />
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SAVANIER" />
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                    <children>
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="88'" />
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CANTERO" wrappingWidth="52.728515625" />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox prefHeight="200.0" prefWidth="100.0" />
+                        </children>
+                     </HBox>
+                  </children>
+                  <opaqueInsets>
+                     <Insets />
+                  </opaqueInsets>
+                  <HBox.margin>
+                     <Insets left="40.0" right="40.0" />
+                  </HBox.margin>
+               </VBox>
+               <ImageView fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../../../../../../Desktop/IG4/Logo%20football/1200px-Racing_Club_de_Strasbourg_Alsace_(RC_Strasbourg_-_RCS_-_RCSA)_logo_officiel.svg.png" />
+                  </image>
+               </ImageView>
+            </children>
+            <padding>
+               <Insets bottom="5.0" top="5.0" />
+            </padding>
+         </HBox>
+         <HBox alignment="CENTER" cache="true" prefHeight="100.0" prefWidth="200.0" style="-fx-padding: 10; -fx-border-color: black; -fx-border-radius: 5;">
+            <children>
+               <ImageView fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../../../../../../Desktop/IG4/Logo%20football/Montpellier_Hérault_Sport_Club_(logo,_2000).svg.png" />
+                  </image>
+               </ImageView>
+               <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <children>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MHSC 3 - 0 RCSA">
+                        <font>
+                           <Font name="Segoe UI Semibold" size="24.0" />
+                        </font>
+                     </Text>
+                     <HBox prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <VBox prefHeight="200.0" prefWidth="100.0">
+                              <children>
+                                 <HBox prefHeight="19.0" prefWidth="95.0" spacing="5.0">
+                                    <children>
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="12'" />
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CANTERO" />
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="17.0" prefWidth="95.0" spacing="5.0">
+                                    <children>
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="25'" />
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SAVANIER" />
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                    <children>
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="88'" />
+                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CANTERO" wrappingWidth="52.728515625" />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox prefHeight="200.0" prefWidth="100.0" />
+                        </children>
+                     </HBox>
+                  </children>
+                  <opaqueInsets>
+                     <Insets />
+                  </opaqueInsets>
+                  <HBox.margin>
+                     <Insets left="40.0" right="40.0" />
+                  </HBox.margin>
+               </VBox>
+               <ImageView fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../../../../../../Desktop/IG4/Logo%20football/1200px-Racing_Club_de_Strasbourg_Alsace_(RC_Strasbourg_-_RCS_-_RCSA)_logo_officiel.svg.png" />
+                  </image>
+               </ImageView>
+            </children>
+            <padding>
+               <Insets bottom="5.0" top="5.0" />
+            </padding>
+         </HBox>
+      </children></VBox>
+   <children>
+      <HBox layoutX="59.0" layoutY="90.0" prefHeight="100.0" prefWidth="483.0" />
+   </children>
+</AnchorPane>
