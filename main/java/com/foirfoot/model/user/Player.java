@@ -11,11 +11,11 @@ public class Player extends Role{
     private String preferredPosition;
 
 
-    public Player(Club club, Team team, boolean isClubCreator) {
+    public Player(int club, int team, boolean isClubCreator) {
         super(club, team, isClubCreator);
     }
 
-    public Player(Club club, Team team, boolean isClubCreator, List<Team> exTeams) {
+    public Player(int club, int team, boolean isClubCreator, List<Integer> exTeams) {
         super(club, team, isClubCreator, exTeams);
     }
 }

@@ -17,23 +17,15 @@
                 <Insets right="10.0"/>
             </HBox.margin>
         </Text>
-        <Text fx:id="clubs" text="Clubs">
-            <HBox.margin>
-                <Insets right="10.0" />
-            </HBox.margin>
-        </Text>
-        <Text fx:id="players" text="Players">
+        <Text fx:id="club" onMouseClicked="#goToClub" text="Club">
             <HBox.margin>
                 <Insets right="10.0" />
             </HBox.margin>
         </Text>
     </HBox>
-   <HBox AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-      <children>
-         <ImageView onMouseClicked="#goToProfile" pickOnBounds="true" preserveRatio="true">
-             <image>
-                 <Image url="@assets/images/user.png" />
-             </image>
-         </ImageView>
-      </children></HBox>
+    <HBox AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <ImageView onMouseClicked="#goToProfile" pickOnBounds="true" preserveRatio="true">
+            <Image url="@assets/images/user.png"/>
+        </ImageView>
+    </HBox>
 </AnchorPane>

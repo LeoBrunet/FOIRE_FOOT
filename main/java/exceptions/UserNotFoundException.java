@@ -2,6 +2,6 @@ package exceptions;
 
 public class UserNotFoundException extends Exception{
     public UserNotFoundException() {
-        super("Mauvais email.");
+        super("User not found");
     }
 }

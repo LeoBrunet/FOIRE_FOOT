@@ -8,6 +8,7 @@ public class ProfileController {
     @FXML
     public Text text;
 
+    @FXML
     public void initialize(){
         text.setText("Bienvenue, " + Main.connectedUser.getFirstName()+ ".");
     }
