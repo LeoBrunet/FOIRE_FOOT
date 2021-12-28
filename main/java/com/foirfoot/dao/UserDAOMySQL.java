@@ -1,5 +1,6 @@
 package com.foirfoot.dao;
 
+import com.foirfoot.model.shop.Basket;
 import com.foirfoot.model.user.RoleName;
 import com.foirfoot.model.user.User;
 import com.foirfoot.utils.MySQLConnection;
@@ -27,7 +28,7 @@ public class UserDAOMySQL implements DAO<User>{
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 boolean isClubCreator = rs.getInt("user_id") == rs.getInt("creator_user_id");
-                user = new User(rs.getInt("user_id"), rs.getString("user_email"), rs.getString("user_password"),rs.getString("user_name"), rs.getString("user_first_name"), RoleName.values()[rs.getInt("user_role")], rs.getInt("club_id"), rs.getInt("team_id"), isClubCreator);
+                user = new User(rs.getInt("user_id"), rs.getString("user_email"), rs.getString("user_password"),rs.getString("user_name"), rs.getString("user_first_name"), RoleName.values()[rs.getInt("user_role")], rs.getInt("club_id"), rs.getInt("team_id"), isClubCreator, new Basket());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -43,7 +44,8 @@ public class UserDAOMySQL implements DAO<User>{
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 boolean isClubCreator = rs.getInt("user_id") == rs.getInt("creator_user_id");
-                user = new User(rs.getInt("user_id"), rs.getString("user_email"), rs.getString("user_password"),rs.getString("user_name"), rs.getString("user_first_name"), RoleName.values()[rs.getInt("user_role")], rs.getInt("club_id"), rs.getInt("team_id"), isClubCreator);
+                Basket basket;// a enlever apres
+                user = new User(rs.getInt("user_id"), rs.getString("user_email"), rs.getString("user_password"),rs.getString("user_name"), rs.getString("user_first_name"), RoleName.values()[rs.getInt("user_role")], rs.getInt("club_id"), rs.getInt("team_id"), isClubCreator, new Basket());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -60,7 +62,8 @@ public class UserDAOMySQL implements DAO<User>{
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 boolean isClubCreator = rs.getInt("user_id") == rs.getInt("creator_user_id");
-                users.add(Optional.of(new User(rs.getInt("user_id"), rs.getString("user_email"), rs.getString("user_password"),rs.getString("user_name"), rs.getString("user_first_name"), RoleName.values()[rs.getInt("user_role")], rs.getInt("club_id"), rs.getInt("team_id"),  isClubCreator)));
+
+                users.add(Optional.of(new User(rs.getInt("user_id"), rs.getString("user_email"), rs.getString("user_password"),rs.getString("user_name"), rs.getString("user_first_name"), RoleName.values()[rs.getInt("user_role")], rs.getInt("club_id"), rs.getInt("team_id"),  isClubCreator,  new Basket())));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -76,7 +79,7 @@ public class UserDAOMySQL implements DAO<User>{
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 boolean isClubCreator = rs.getInt("user_id") == rs.getInt("creator_user_id");
-                players.add(new User(rs.getInt("user_id"), rs.getString("user_email"), rs.getString("user_password"),rs.getString("user_name"), rs.getString("user_first_name"), RoleName.values()[rs.getInt("user_role")], (int)clubId, rs.getInt("team_id"), isClubCreator));
+                players.add(new User(rs.getInt("user_id"), rs.getString("user_email"), rs.getString("user_password"),rs.getString("user_name"), rs.getString("user_first_name"), RoleName.values()[rs.getInt("user_role")], (int)clubId, rs.getInt("team_id"), isClubCreator, new Basket()));
             }
         } catch (SQLException e) {
             e.printStackTrace();

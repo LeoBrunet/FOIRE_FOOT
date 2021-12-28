@@ -5,13 +5,12 @@ import com.foirfoot.view.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class BasketController {
+public class PaymentTypeController {
     Facade facade = new Facade();
     @FXML
-    private Button validButton;
+    private Button validPaymentButton;
 
     public void goToPayment() {
-        Main.changeScene("shop/PaymentType");
+        Main.changeScene("shop/transaction");
     }
-
 }

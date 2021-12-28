@@ -5,6 +5,7 @@ import com.foirfoot.dao.ClubDAOMySQL;
 import com.foirfoot.dao.MySQLDAOFactory;
 import com.foirfoot.dao.UserDAOMySQL;
 import com.foirfoot.model.club.Club;
+import com.foirfoot.model.shop.Basket;
 import com.foirfoot.model.user.Role;
 import com.foirfoot.model.user.RoleName;
 import com.foirfoot.model.user.User;
@@ -37,7 +38,7 @@ public class Facade {
 
     public void register(String name, String firstName, String email, String password) throws SQLIntegrityConstraintViolationException{
         UserDAOMySQL userDAOMySQL = (UserDAOMySQL) this.abstractDAOFactory.create("User");
-        User user = new User(email, password, name, firstName, RoleName.classic, -1, -1, false);
+        User user = new User(email, password, name, firstName, RoleName.classic, -1, -1, false,new Basket());
         userDAOMySQL.save(user);
     }
 

@@ -1,5 +1,5 @@
 package com.foirfoot.model.shop;
 
-public enum Paiement {
+public enum PaymentType {
     CreditCard,Cash, Check
 }
