@@ -2,6 +2,7 @@ package com.foirfoot.view.home;
 
 import com.foirfoot.model.Facade;
 import com.foirfoot.model.club.Club;
+import com.foirfoot.model.user.User;
 import com.foirfoot.view.Main;
 import com.foirfoot.view.club.ClubController;
 import javafx.event.EventHandler;
@@ -32,21 +33,36 @@ public class HomeController {
 
     @FXML
     public void search() {
-        //TODO Get players and club match with research
+        content.getChildren().clear();
+
+        // Sum up of the research
         Text search = new Text("Recherche : " + searchField.getText());
         search.setFont(new Font("Segoe UI", 10));
         search.setStyle("-fx-fill: grey");
-
-        Text t = new Text("Club");
-        t.setFont(new Font("Segoe UI Bold", 18));
-
-        content.getChildren().clear();
         content.getChildren().add(search);
-        content.getChildren().add(t);
+
+        // RESULT OF THE RESEARCH
+        // Clubs
+        Text clubsText = new Text("Clubs");
+        clubsText.setFont(new Font("Segoe UI Bold", 18));
+        content.getChildren().add(clubsText);
+
         List<Club> clubs = facade.searchClubs(searchField.getText());
         for (Club club : clubs) {
             Text clubNameText = new Text(club.getName());
             clubNameText.setOnMouseClicked(mouseEvent -> goToClub(club));
+            content.getChildren().add(clubNameText);
+        }
+
+        // Users
+        Text usersText = new Text("Users");
+        usersText.setFont(new Font("Segoe UI Bold", 18));
+        content.getChildren().add(usersText);
+
+        List<User> users = facade.searchUsers(searchField.getText());
+        for (User user : users) {
+            Text clubNameText = new Text(user.getFirstName() + " " + user.getName());
+            //clubNameText.setOnMouseClicked(mouseEvent -> goToClub(club));
             content.getChildren().add(clubNameText);
         }
     }

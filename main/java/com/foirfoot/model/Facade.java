@@ -55,14 +55,12 @@ public class Facade {
     }
 
     public List<Club> searchClubs(String clubName){
-        ClubDAOMySQL clubDAOMySQL = new ClubDAOMySQL();
-        List<Club> clubs = clubDAOMySQL.searchClub(clubName);
-        return clubs;
+        ClubDAOMySQL clubDAOMySQL = (ClubDAOMySQL) this.abstractDAOFactory.create("Club");
+        return clubDAOMySQL.searchClub(clubName);
     }
 
     public List<User> searchUsers(String userName){
-        List<User> users = new ArrayList<>();
-
-        return users;
+        UserDAOMySQL userDAOMySQL  = (UserDAOMySQL) this.abstractDAOFactory.create("User");
+        return userDAOMySQL.searchUsers(userName);
     }
 }
