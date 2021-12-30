@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foirfoot.view.shop.HomeShopController">
+    <fx:include source="../bar.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   <AnchorPane layoutY="51.0" prefHeight="349.0" prefWidth="600.0">
+      <children>
+         <Label layoutX="248.0" layoutY="38.0" text="Montpellier Shop" />
+         <AnchorPane layoutX="37.0" layoutY="55.0" prefHeight="295.0" prefWidth="534.0">
+            <children>
+               <AnchorPane layoutX="14.0" layoutY="60.0" prefHeight="190.0" prefWidth="181.0">
+                  <children>
+                     <Label layoutX="66.0" layoutY="99.0" text="Glass MTP" />
+                     <Button layoutX="69.0" layoutY="122.0" mnemonicParsing="false" text="View" />
+                     <Button layoutX="54.0" layoutY="148.0" mnemonicParsing="false" text="Add to basket" />
+                     <ImageView fitHeight="92.0" fitWidth="104.0" layoutX="25.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                  </children>
+               </AnchorPane>
+               <AnchorPane layoutX="327.0" layoutY="53.0" prefHeight="190.0" prefWidth="181.0">
+                  <children>
+                     <Label layoutX="66.0" layoutY="99.0" text="Bag MTP" />
+                     <Button layoutX="69.0" layoutY="122.0" mnemonicParsing="false" text="View" />
+                     <Button layoutX="54.0" layoutY="148.0" mnemonicParsing="false" text="Add to basket" />
+                     <ImageView fitHeight="92.0" fitWidth="104.0" layoutX="17.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  </children>
+               </AnchorPane>
+               <Label layoutX="224.0" layoutY="14.0" text="Clothes" />
+               <AnchorPane layoutX="180.0" layoutY="53.0" prefHeight="190.0" prefWidth="173.0">
+                  <children>
+                     <Label layoutX="60.0" layoutY="106.0" text="Shirt MTP" />
+                     <Button layoutX="65.0" layoutY="130.0" mnemonicParsing="false" text="View" />
+                     <ImageView fitHeight="92.0" fitWidth="104.0" layoutX="35.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                     <Button layoutX="34.0" layoutY="159.0" mnemonicParsing="false" text="Add to basket" />
+                  </children>
+               </AnchorPane>
+            </children>
+         </AnchorPane>
+      </children>
+   </AnchorPane>
+</AnchorPane>

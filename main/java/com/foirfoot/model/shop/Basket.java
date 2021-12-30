@@ -1,33 +1,34 @@
 package com.foirfoot.model.shop;
-
+import java.util.*;
 import com.foirfoot.model.team.Team;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Basket {
-    private List<Product> listProduct ;// remplacer par un map <product, quantity>
+    private HashMap<Product,Integer> mapProduct ;
 
 
-    public Basket(List<Product> listProduct) {
-        this.listProduct = listProduct;
+    public Basket(HashMap<Product,Integer> mapProduct) {
+        this.mapProduct= mapProduct;
     }
     public Basket(){};
 
     public void addProduct(Product p){
-        this.listProduct.add(p);
+        this.mapProduct.put(p,1);
     }
     public void deleteProduct(Product p){
-                this.listProduct.remove(p);
+                this.mapProduct.remove(p);
 
     }
     public void deleteBasket(){
-        this.listProduct = null;//revoir pour la mettre vide mieux
+        this.mapProduct = null;//revoir pour la mettre vide mieux
     }
     public void validBasket(){
 
     }
     public boolean emptyBasket(){
-        return listProduct.size() == 0;
+        return mapProduct.size() == 0;
     }
 
     public void changeQuantity(Product p, int quantity){

@@ -22,7 +22,7 @@ public class BarController {
     }
 
     public void goToShop() {
-        Main.changeScene("shop/shop");
+        Main.changeScene("shop/basket");
     }
 
     public void goToClub() {
