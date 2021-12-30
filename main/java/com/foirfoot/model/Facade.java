@@ -5,6 +5,7 @@ import com.foirfoot.dao.ClubDAOMySQL;
 import com.foirfoot.dao.MySQLDAOFactory;
 import com.foirfoot.dao.UserDAOMySQL;
 import com.foirfoot.model.club.Club;
+import com.foirfoot.model.user.Player;
 import com.foirfoot.model.user.Role;
 import com.foirfoot.model.user.RoleName;
 import com.foirfoot.model.user.User;
@@ -15,6 +16,7 @@ import exceptions.WrongPasswordException;
 import java.io.InputStream;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class Facade {
@@ -50,5 +52,17 @@ public class Facade {
         creator.setIsClubCreator(true);
         userDAOMySQL.update(creator, null);
         return club;
+    }
+
+    public List<Club> searchClubs(String clubName){
+        ClubDAOMySQL clubDAOMySQL = new ClubDAOMySQL();
+        List<Club> clubs = clubDAOMySQL.searchClub(clubName);
+        return clubs;
+    }
+
+    public List<User> searchUsers(String userName){
+        List<User> users = new ArrayList<>();
+
+        return users;
     }
 }

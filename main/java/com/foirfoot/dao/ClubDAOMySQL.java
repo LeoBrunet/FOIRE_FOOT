@@ -20,6 +20,33 @@ import java.util.Optional;
 
 public class ClubDAOMySQL implements DAO<Club> {
 
+    private Club createClub(int id, ResultSet rs) {
+        Club club = null;
+        try {
+            UserDAOMySQL userDAOMySQL = new UserDAOMySQL();
+            List<Team> teams = getAllTeamsOfClub(id);
+            List<User> players = userDAOMySQL.getAllUsersOfClubWithRole(id, RoleName.player);
+            List<User> coachs = userDAOMySQL.getAllUsersOfClubWithRole(id, RoleName.coach);
+            User creator = userDAOMySQL.get(id).orElseThrow(UserNotFoundException::new);
+
+            Sardine sardine = SardineFactory.begin("leo-ig", "ftyx-mloi-fhci");
+            InputStream is = sardine.get("http://webdav-leo-ig.alwaysdata.net/foir_foot/images/" + rs.getString("club_image_name"));
+
+            club = new Club(rs.getString("club_name"), rs.getString("club_address"), rs.getString("club_phone_number"), rs.getString("club_website"), creator, players, coachs, teams, rs.getString("club_image_name"), is);
+
+            for (User p : players) {
+                p.setClub(club);
+            }
+            for (User c : coachs) {
+                c.setClub(club);
+            }
+            club.getCreator().setClub(club);
+        } catch (UserNotFoundException | SQLException | IOException e) {
+            e.printStackTrace();
+        }
+        return club;
+    }
+
     @Override
     public Optional<Club> get(int id) {
         Club club = null;
@@ -28,7 +55,7 @@ public class ClubDAOMySQL implements DAO<Club> {
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                UserDAOMySQL userDAOMySQL = new UserDAOMySQL();
+                /*UserDAOMySQL userDAOMySQL = new UserDAOMySQL();
                 List<Team> teams = getAllTeamsOfClub(id);
                 List<User> players = userDAOMySQL.getAllUsersOfClubWithRole(id, RoleName.player);
                 List<User> coachs = userDAOMySQL.getAllUsersOfClubWithRole(id, RoleName.coach);
@@ -45,9 +72,10 @@ public class ClubDAOMySQL implements DAO<Club> {
                 for (User c : coachs) {
                     c.setClub(club);
                 }
-                club.getCreator().setClub(club);
+                club.getCreator().setClub(club);*/
+                club = createClub(id, rs);
             }
-        } catch (SQLException | IOException | UserNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return Optional.ofNullable(club);
@@ -72,6 +100,33 @@ public class ClubDAOMySQL implements DAO<Club> {
     @Override
     public List<Optional<Club>> getAll() {
         List<Optional<Club>> clubs = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM CLUBS;";
+            PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int club_id = rs.getInt("club_id");
+                clubs.add(Optional.of(createClub(club_id, rs)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return clubs;
+    }
+
+    public List<Club> searchClub(String clubName) {
+        List<Club> clubs = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM CLUBS WHERE LOWER(CLUBS.club_name) LIKE '%" + clubName.toLowerCase() + "%';";
+            PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int club_id = rs.getInt("club_id");
+                clubs.add(createClub(club_id, rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return clubs;
     }
 
@@ -86,8 +141,7 @@ public class ClubDAOMySQL implements DAO<Club> {
             try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     club.setId(generatedKeys.getInt(1));
-                }
-                else {
+                } else {
                     throw new SQLException("Creating user failed, no ID obtained.");
                 }
             }
