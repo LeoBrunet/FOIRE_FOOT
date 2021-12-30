@@ -5,12 +5,11 @@ import com.foirfoot.view.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class PaymentTypeController {
+public class OrderSummaryController {
     Facade facade = new Facade();
     @FXML
-    private Button ValidPayment;
-
-    public void goToSummary() {
-        Main.changeScene("shop/orderSummary");
+    private Button SeeOrders;
+    public void goToSeeAll() {
+        Main.changeScene("shop/ordersList");
     }
 }

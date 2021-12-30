@@ -12,7 +12,7 @@
                 <Insets right="10.0" />
             </HBox.margin>
         </Text>
-        <Text fx:id="shop" onMouseClicked="#goToShop" text="Shop">
+        <Text fx:id="shop" onMouseClicked="#goToShop" text="My Basket">
             <HBox.margin>
                 <Insets right="10.0"/>
             </HBox.margin>

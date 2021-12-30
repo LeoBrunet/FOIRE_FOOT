@@ -8,10 +8,11 @@ import javafx.scene.control.Button;
 public class BasketController {
     Facade facade = new Facade();
     @FXML
-    private Button validButton;
-
-    public void goToPayment() {
-        Main.changeScene("shop/PaymentType");
+    private Button Valide;
+    public void goToTransaction() {
+        Main.changeScene("shop/transactionform");
     }
+
+
 
 }

@@ -14,8 +14,8 @@
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </Text>
-        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-            <Image url="@../assets/images/shopping-cart.png" />
+        <ImageView fx:id="caddie" onMouseClicked="#goToShopClub" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <Image  url="@../assets/images/shopping-cart.png" />
         </ImageView>
         <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
             <VBox>

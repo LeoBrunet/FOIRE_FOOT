@@ -54,7 +54,7 @@
    </VBox>
 
     <fx:include source="../bar.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-   <Button layoutX="425.0" layoutY="338.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Valid" AnchorPane.leftAnchor="425.0" AnchorPane.topAnchor="338.0" />
+   <Button fx:id="Valide" layoutX="425.0" layoutY="338.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" onAction="#goToTransaction" text="Valid" AnchorPane.leftAnchor="425.0" AnchorPane.topAnchor="338.0" />
    <Label layoutX="109.0" layoutY="90.0" text="My Basket ">
       <font>
          <Font size="20.0" />
