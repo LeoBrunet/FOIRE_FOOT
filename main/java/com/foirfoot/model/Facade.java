@@ -4,7 +4,6 @@ import com.foirfoot.dao.*;
 import com.foirfoot.model.club.Club;
 import com.foirfoot.model.shop.Basket;
 import com.foirfoot.model.shop.Product;
-import com.foirfoot.model.user.Role;
 import com.foirfoot.model.user.RoleName;
 import com.foirfoot.model.user.User;
 import exceptions.ClubNotFoundException;
@@ -14,6 +13,7 @@ import exceptions.WrongPasswordException;
 import java.io.InputStream;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class Facade {
@@ -47,6 +47,16 @@ public class Facade {
         return product;
 
     }
+
+    public List<Product> showProduct(){
+        ProductDAOMySQL productDAOMySQL = (ProductDAOMySQL) this.abstractDAOFactory.create("Product");
+        //List<Optional<Product>> products = productDAOMySQL.getAll();
+        return productDAOMySQL.showProduct();
+
+
+
+    }
+
 
     public Club createClub(String name, String address, String phoneNumber, String website, User creator, String localPathToImage, String imageName, InputStream imageIS) throws SQLIntegrityConstraintViolationException {
         ClubDAOMySQL clubDAOMySQL = (ClubDAOMySQL) this.abstractDAOFactory.create("Club");

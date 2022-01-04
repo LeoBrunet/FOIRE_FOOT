@@ -1,6 +1,8 @@
 package com.foirfoot.dao;
 
+import com.foirfoot.model.club.Club;
 import com.foirfoot.model.shop.Product;
+import com.foirfoot.model.team.Team;
 import com.foirfoot.utils.MySQLConnection;
 import com.github.sardine.Sardine;
 import com.github.sardine.SardineFactory;
@@ -47,6 +49,19 @@ public class ProductDAOMySQL implements DAO<Product>{
     @Override
     public List<Optional<Product>> getAll() {
         List<Optional<Product>> products = new ArrayList<>();
+        System.out.println(products);
+        return products;
+    }
+    public List<Product> showProduct() {
+        List<Product> products = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM PRODUCT ";
+            PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return products;
     }
 
