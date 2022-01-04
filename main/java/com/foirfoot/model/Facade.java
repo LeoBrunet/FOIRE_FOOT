@@ -7,10 +7,12 @@ import com.foirfoot.model.shop.Product;
 import com.foirfoot.model.user.RoleName;
 import com.foirfoot.model.user.User;
 import exceptions.ClubNotFoundException;
+import exceptions.ProductNotFoundException;
 import exceptions.UserNotFoundException;
 import exceptions.WrongPasswordException;
 
 import java.io.InputStream;
+import java.net.ProtocolException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,13 +50,14 @@ public class Facade {
 
     }
 
-    public List<Product> showProduct(){
+    public List<Product> getAllProducts() throws ProductNotFoundException {
         ProductDAOMySQL productDAOMySQL = (ProductDAOMySQL) this.abstractDAOFactory.create("Product");
-        //List<Optional<Product>> products = productDAOMySQL.getAll();
-        return productDAOMySQL.showProduct();
-
-
-
+        List<Optional<Product>> products = productDAOMySQL.getAll();
+        List<Product> returnedProducts = new ArrayList<>();
+        for (Optional<Product> product : products) {
+            returnedProducts.add(product.orElseThrow(ProductNotFoundException::new));
+        }
+        return returnedProducts;
     }
 
 

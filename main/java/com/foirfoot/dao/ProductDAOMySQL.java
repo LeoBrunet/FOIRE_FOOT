@@ -49,15 +49,13 @@ public class ProductDAOMySQL implements DAO<Product>{
     @Override
     public List<Optional<Product>> getAll() {
         List<Optional<Product>> products = new ArrayList<>();
-        System.out.println(products);
-        return products;
-    }
-    public List<Product> showProduct() {
-        List<Product> products = new ArrayList<>();
         try {
             String query = "SELECT * FROM PRODUCT ";
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                products.add(Optional.of(new Product(rs.getInt("product_id"),rs.getString("product_name"),rs.getString("product_description"),rs.getString("product_price"),rs.getString("product_stock"))));
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
