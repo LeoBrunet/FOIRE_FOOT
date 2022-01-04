@@ -1,10 +1,8 @@
 package com.foirfoot.model;
 
-import com.foirfoot.dao.AbstractDAOFactory;
-import com.foirfoot.dao.ClubDAOMySQL;
-import com.foirfoot.dao.MySQLDAOFactory;
-import com.foirfoot.dao.UserDAOMySQL;
+import com.foirfoot.dao.*;
 import com.foirfoot.model.club.Club;
+import com.foirfoot.model.team.Team;
 import com.foirfoot.model.user.Player;
 import com.foirfoot.model.user.Role;
 import com.foirfoot.model.user.RoleName;
@@ -52,6 +50,13 @@ public class Facade {
         creator.setIsClubCreator(true);
         userDAOMySQL.update(creator, null);
         return club;
+    }
+
+    public Team createTeam(Object category, Object type, Club club) throws SQLIntegrityConstraintViolationException {
+        TeamDAOMySQL teamDAOMySQL = (TeamDAOMySQL) this.abstractDAOFactory.create("Team");
+        Team team = new Team((String) category, (String) type, club);
+        teamDAOMySQL.save(team);
+        return team;
     }
 
     public List<Club> searchClubs(String clubName){
