@@ -1,5 +1,6 @@
 package com.foirfoot.view;
 
+import com.foirfoot.model.shop.Product;
 import com.foirfoot.model.user.User;
 import com.foirfoot.view.club.ClubController;
 import javafx.application.Application;
@@ -19,6 +20,7 @@ public class Main extends Application {
     private static Stage stg; //fake stage
 
     public static User connectedUser;
+    public static Product selectedProduct;
 
     @Override
     public void start(Stage primaryStage) throws Exception {

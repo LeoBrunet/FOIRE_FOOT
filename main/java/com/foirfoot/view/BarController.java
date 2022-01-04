@@ -11,7 +11,10 @@ public class BarController {
     private Text shop;
     @FXML
     private Text club;
-
+    @FXML
+    private Text product;
+    @FXML
+    private Text formProduct;
     @FXML
     public void initialize(){
 
@@ -20,9 +23,15 @@ public class BarController {
     public void goToHome(){
         Main.changeScene("home/home");
     }
+    public void goToForm() {
+        Main.changeScene("shop/formCreationProduct");
+    }
 
     public void goToShop() {
         Main.changeScene("shop/basket");
+    }
+    public void goToProduct() {
+        Main.changeScene("shop/product");
     }
 
     public void goToClub() {

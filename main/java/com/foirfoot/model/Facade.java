@@ -1,11 +1,9 @@
 package com.foirfoot.model;
 
-import com.foirfoot.dao.AbstractDAOFactory;
-import com.foirfoot.dao.ClubDAOMySQL;
-import com.foirfoot.dao.MySQLDAOFactory;
-import com.foirfoot.dao.UserDAOMySQL;
+import com.foirfoot.dao.*;
 import com.foirfoot.model.club.Club;
 import com.foirfoot.model.shop.Basket;
+import com.foirfoot.model.shop.Product;
 import com.foirfoot.model.user.Role;
 import com.foirfoot.model.user.RoleName;
 import com.foirfoot.model.user.User;
@@ -40,6 +38,13 @@ public class Facade {
         UserDAOMySQL userDAOMySQL = (UserDAOMySQL) this.abstractDAOFactory.create("User");
         User user = new User(email, password, name, firstName, RoleName.classic, -1, -1, false,new Basket());
         userDAOMySQL.save(user);
+    }
+    public Product createProduct(String name, String desc,String price, String stock) throws SQLIntegrityConstraintViolationException {
+        ProductDAOMySQL productDAOMySQL = (ProductDAOMySQL) this.abstractDAOFactory.create("Product");
+        Product product = new Product(name, desc, price, stock);
+        productDAOMySQL.save(product);
+        return product;
+
     }
 
     public Club createClub(String name, String address, String phoneNumber, String website, User creator, String localPathToImage, String imageName, InputStream imageIS) throws SQLIntegrityConstraintViolationException {

@@ -1,5 +1,6 @@
 import com.foirfoot.dao.UserDAOMySQL;
 import com.foirfoot.model.Facade;
+import com.foirfoot.model.shop.Basket;
 import com.foirfoot.model.user.RoleName;
 import com.foirfoot.model.user.User;
 import exceptions.ClubNotFoundException;
@@ -47,6 +48,6 @@ public class TestUser {
     @Test(expected = SQLIntegrityConstraintViolationException.class)
     public void createUserAlreadyExist() throws SQLIntegrityConstraintViolationException {
         UserDAOMySQL user = new UserDAOMySQL();
-        user.save(new User(null, null, "admin", DigestUtils.sha1Hex("admin"), RoleName.classic, -1, -1, false));
+        user.save(new User(null, null, "admin", DigestUtils.sha1Hex("admin"), RoleName.classic, -1, -1, false,new Basket()));
     }
 }

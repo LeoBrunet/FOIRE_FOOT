@@ -38,7 +38,7 @@
                <Label layoutX="55.0" layoutY="316.0" text="Delivery Status : Preparing" />
             </children>
          </AnchorPane>
-         <Button fx:id="SeeOrders" layoutX="466.0" layoutY="466.0" mnemonicParsing="false" onAction="#goToSeeAll" text="See all of my orders" />
+         <Button layoutX="466.0" layoutY="466.0" mnemonicParsing="false" text="See all of my orders" />
       </children>
    </AnchorPane>
 

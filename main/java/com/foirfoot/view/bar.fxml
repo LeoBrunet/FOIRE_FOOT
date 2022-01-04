@@ -17,6 +17,16 @@
                 <Insets right="10.0"/>
             </HBox.margin>
         </Text>
+        <Text fx:id="formProduct" onMouseClicked="#goToForm" text="Add a Product">
+                    <HBox.margin>
+                        <Insets right="10.0"/>
+                    </HBox.margin>
+        </Text>
+        <Text fx:id="product" onMouseClicked="#goToProduct" text="My Product">
+                    <HBox.margin>
+                        <Insets right="10.0"/>
+                    </HBox.margin>
+        </Text>
         <Text fx:id="club" onMouseClicked="#goToClub" text="Club">
             <HBox.margin>
                 <Insets right="10.0" />
