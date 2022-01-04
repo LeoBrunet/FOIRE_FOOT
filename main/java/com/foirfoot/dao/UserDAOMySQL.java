@@ -15,6 +15,17 @@ import java.util.Optional;
 
 public class UserDAOMySQL implements DAO<User>{
 
+    private User createUser(ResultSet rs) {
+        User user = null;
+        try {
+            boolean isClubCreator = rs.getInt("user_id") == rs.getInt("creator_user_id");
+            user = new User(rs.getInt("user_id"), rs.getString("user_email"), rs.getString("user_password"), rs.getString("user_name"), rs.getString("user_first_name"), RoleName.values()[rs.getInt("user_role")], rs.getInt("club_id"), rs.getInt("team_id"), isClubCreator);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
     public UserDAOMySQL(){
     }
 
@@ -77,6 +88,22 @@ public class UserDAOMySQL implements DAO<User>{
             while (rs.next()) {
                 boolean isClubCreator = rs.getInt("user_id") == rs.getInt("creator_user_id");
                 players.add(new User(rs.getInt("user_id"), rs.getString("user_email"), rs.getString("user_password"),rs.getString("user_name"), rs.getString("user_first_name"), RoleName.values()[rs.getInt("user_role")], (int)clubId, rs.getInt("team_id"), isClubCreator));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return players;
+    }
+
+    public List<User> getAllUsersOfTeamWithRole(long teamId, RoleName roleName) {
+        List<User> players = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM USERS INNER JOIN TEAMS T on USERS.team_id = T.team_id INNER JOIN CLUBS C on USERS.club_id = C.club_id WHERE USERS.team_id = "+teamId+" AND user_role = "+roleName.ordinal()+";";
+            PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                boolean isClubCreator = rs.getInt("user_id") == rs.getInt("creator_user_id");
+                players.add(new User(rs.getInt("user_id"), rs.getString("user_email"), rs.getString("user_password"),rs.getString("user_name"), rs.getString("user_first_name"), RoleName.values()[rs.getInt("user_role")], rs.getInt("club_id"), (int)teamId, isClubCreator));
             }
         } catch (SQLException e) {
             e.printStackTrace();

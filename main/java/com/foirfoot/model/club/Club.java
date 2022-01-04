@@ -105,6 +105,9 @@ public class Club {
         this.id = id;
     }
 
+    public void addTeam(Team team){
+        getTeams().add(team);
+    }
     @Override
     public String toString() {
         return "Club{" +

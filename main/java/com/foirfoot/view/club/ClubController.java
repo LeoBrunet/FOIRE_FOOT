@@ -4,7 +4,7 @@ import com.foirfoot.model.club.Club;
 import com.foirfoot.model.user.User;
 import com.foirfoot.view.Controller;
 import com.foirfoot.view.Main;
-import com.foirfoot.view.team.TeamController;
+import com.foirfoot.view.team.ListTeamsController;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -35,6 +35,7 @@ public class ClubController extends Controller {
         clubAddress.setText(this.club.getAddress());
         clubPhoneNumber.setText(this.club.getPhoneNumber());
         clubWebsite.setText(this.club.getWebsite());
+        System.out.println(club.getPlayers());
 
         for (User p : club.getPlayers()) {
             players.getChildren().add(new Text(p.getFirstName() + " " + p.getName()));
@@ -65,7 +66,7 @@ public class ClubController extends Controller {
             System.out.println(Main.connectedUser.getClub().getTeams());
             /*Main.changeScene("team/no_team");*/
             System.out.println(Main.connectedUser.getClub());
-            Main.changeScene("team/team", new TeamController(), new Object[]{Main.connectedUser.getClub()});
+            Main.changeScene("team/list_teams", new ListTeamsController(), new Object[]{Main.connectedUser.getClub()});
         }
     }
 

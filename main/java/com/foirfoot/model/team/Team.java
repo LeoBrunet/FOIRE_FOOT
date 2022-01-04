@@ -3,6 +3,7 @@ package com.foirfoot.model.team;
 import com.foirfoot.model.club.Club;
 import com.foirfoot.model.user.User;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Team {
@@ -11,6 +12,8 @@ public class Team {
     private Club club;
     private String category;
     private String type;
+    private List<User> players;
+    private List<User> coachs;
 
     public Team(int id) {
         this.id = id;
@@ -44,6 +47,16 @@ public class Team {
         this.type = type;
     }
 
+    public Team(int id, String name, Club club, String category, String type, List<User> players, List<User> coachs ) {
+        this.id = id;
+        this.name = name;
+        this.club = club;
+        this.category = category;
+        this.type = type;
+        this.players = players;
+        this.coachs = coachs;
+    }
+
     public int getId(){ return id; }
 
     public String getName(){
@@ -56,12 +69,24 @@ public class Team {
 
     public String getType() { return type; }
 
+    public List<User> getPlayers() {
+        return players;
+    }
+
+    public List<User> getCoachs() {
+        return coachs;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
 
     public void setClub(Club club) {
         this.club = club;
+    }
+
+    public void addTeam(Team team){
+        this.club.getTeams().add(team);
     }
 
     @Override
