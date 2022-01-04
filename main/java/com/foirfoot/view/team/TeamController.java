@@ -6,6 +6,7 @@ import com.foirfoot.model.team.Team;
 import com.foirfoot.model.user.User;
 import com.foirfoot.view.Controller;
 import com.foirfoot.view.Main;
+import exceptions.TeamNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -31,19 +32,22 @@ public class TeamController extends Controller {
     public void initialize() {
         System.out.println("initialize()");
         teamName.setText(team.getType() + " - " + team.getCategory() + " - " + team.getClub().getName());
-        /*numberPlayer.setText(String.valueOf(team.getPlayers().size()));*/
         category.setText(team.getCategory());
         type.setText(team.getType());
-        Optional<Team> t = facade.getTeam(team.getId());
-        System.out.println("uifgeeeeee");
-        System.out.println(t);
+        try {
+            team = facade.getTeam(team.getId());
+        } catch (TeamNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println(team);
 
-        /*for (User p : team.getPlayers()) {
+        for (User p : team.getPlayers()) {
             players.getChildren().add(new Text(p.getFirstName() + " " + p.getName()));
         }
         for (User c : team.getCoachs()) {
             coaches.getChildren().add(new Text(c.getFirstName() + " " + c.getName()));
-        }*/
+        }
+        this.numberPlayer.setText(String.valueOf(team.getPlayers().size()));
     }
 
     @Override

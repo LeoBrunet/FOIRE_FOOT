@@ -119,7 +119,7 @@ public class Club {
                 ", creator=" + creator +
                 ", players=" + players +
                 ", coachs=" + coachs +
-                ", teams=" + teams +
+                //", teams=" + teams +
                 ", imageIS=" + imageIS +
                 ", imageName='" + imageName + '\'' +
                 '}';

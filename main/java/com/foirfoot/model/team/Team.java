@@ -94,6 +94,19 @@ public class Team {
         return "Team{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", club=" + club +
+                ", category='" + category + '\'' +
+                ", type='" + type + '\'' +
+                ", players=" + players +
+                ", coachs=" + coachs +
+                '}';
+    }
+
+    public String toStringBis() {
+        return "Team{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", club=" + club +
                 ", category='" + category + '\'' +
                 ", type='" + type + '\'' +
                 '}';

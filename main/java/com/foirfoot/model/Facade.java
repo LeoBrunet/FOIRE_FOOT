@@ -6,6 +6,7 @@ import com.foirfoot.model.team.Team;
 import com.foirfoot.model.user.RoleName;
 import com.foirfoot.model.user.User;
 import exceptions.ClubNotFoundException;
+import exceptions.TeamNotFoundException;
 import exceptions.UserNotFoundException;
 import exceptions.WrongPasswordException;
 
@@ -57,10 +58,10 @@ public class Facade {
         return team;
     }
 
-    public Optional<Team> getTeam(int teamId) {
+    public Team getTeam(int teamId) throws TeamNotFoundException {
         Optional<Team> team = null;
         team = ((TeamDAOMySQL) this.abstractDAOFactory.create("Team")).get(teamId);
         System.out.println(team);
-        return team;
+        return team.orElseThrow(TeamNotFoundException::new);
     }
 }

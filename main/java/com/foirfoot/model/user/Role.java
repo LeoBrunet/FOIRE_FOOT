@@ -64,7 +64,7 @@ public abstract class Role {
         return "Role{" +
                 "isClubCreator=" + isClubCreator +
                 ", club=" + club.toStringBis() +
-                ", team=" + team +
+                ", team=" + team.toStringBis() +
                 ", exTeams=" + exTeams +
                 '}';
     }
