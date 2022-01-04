@@ -5,6 +5,7 @@ import com.foirfoot.model.club.Club;
 import com.foirfoot.model.shop.*;
 import com.foirfoot.model.user.RoleName;
 import com.foirfoot.model.user.User;
+import com.foirfoot.view.Main;
 import exceptions.ClubNotFoundException;
 import exceptions.ProductNotFoundException;
 import exceptions.UserNotFoundException;
@@ -40,23 +41,24 @@ public class Facade {
         User user = new User(email, password, name, firstName, RoleName.classic, -1, -1, false,new Basket());
         userDAOMySQL.save(user);
     }
-    public Product createProduct(String name, String desc,String price, String stock) throws SQLIntegrityConstraintViolationException {
+    public Product createProduct(String name, String desc,String price, String stock,int clubId) throws SQLIntegrityConstraintViolationException {
         ProductDAOMySQL productDAOMySQL = (ProductDAOMySQL) this.abstractDAOFactory.create("Product");
-        Product product = new Product(name, desc, price, stock);
+        Product product = new Product(name, desc, price, stock, Main.connectedUser.getClub().getId());
+        System.out.println(Main.connectedUser.getClub().toString());
         System.out.println(product.toString());
         productDAOMySQL.save(product);
         return product;
 
     }
 
-    public Address createAddress(  String address,String city, String country) throws SQLIntegrityConstraintViolationException {
+    /*public Address createAddress(  String address,String city, String country) throws SQLIntegrityConstraintViolationException {
         AddressDAOMySQL addressDAOMySQL = (AddressDAOMySQL) this.abstractDAOFactory.create("Adress");
         Address adress = new Address( address,city,country);
         System.out.println(adress.toString());
         addressDAOMySQL.save(adress);
         return adress;
 
-    }
+    }*/
 
     public List<Product> getAllProducts() throws ProductNotFoundException {
         ProductDAOMySQL productDAOMySQL = (ProductDAOMySQL) this.abstractDAOFactory.create("Product");

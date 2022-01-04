@@ -35,7 +35,7 @@ public class TransactionFormController {
         Main.changeScene("shop/basket");
     }
 
-    public void createTransaction() throws SQLIntegrityConstraintViolationException {
+    /*public void createTransaction() throws SQLIntegrityConstraintViolationException {
         if (userName.getText().isEmpty() || userFirstName.getText().isEmpty() || userAddress.getText().isEmpty() || userCity.getText().isEmpty() ||userCountry.getText().isEmpty()) {
         } else {
 
@@ -45,6 +45,6 @@ public class TransactionFormController {
 
 
         }
-    }
+    }*/
 
 }

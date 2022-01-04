@@ -33,7 +33,7 @@ public class ProductDAOMySQL implements DAO<Product>{
                 Sardine sardine = SardineFactory.begin("leo-ig", "ftyx-mloi-fhci");
                 InputStream is = sardine.get("http://webdav-leo-ig.alwaysdata.net/foir_foot/images/" + rs.getString("product_image"));
 
-                product = new Product(rs.getString("product_name"),  rs.getString("product_description"), rs.getString("product_price"),  rs.getString("product_stock"));
+                product = new Product(rs.getString("product_name"),  rs.getString("product_description"), rs.getString("product_price"),  rs.getString("product_stock"), rs.getInt("product_clubId"));
 
 
             }
@@ -54,7 +54,7 @@ public class ProductDAOMySQL implements DAO<Product>{
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
-                products.add(Optional.of(new Product(rs.getInt("product_id"),rs.getString("product_name"),rs.getString("product_description"),rs.getString("product_price"),rs.getString("product_stock"))));
+                products.add(Optional.of(new Product(rs.getInt("product_id"),rs.getString("product_name"),rs.getString("product_description"),rs.getString("product_price"),rs.getString("product_stock"),rs.getInt("product_clubId"))));
             }
 
         } catch (SQLException e) {
@@ -91,7 +91,7 @@ public class ProductDAOMySQL implements DAO<Product>{
     @Override
     public void update(Product product, String[] params) {
         try {
-            String query = "UPDATE PRODUCT SET product_id = '"+product.getId()+"',  product_description = '"+product.getDescription()+"', product_price = '"+product.getPrice()+" ', product_stock = '"+product.getStock()+"' WHERE product_id = "+product.getId()+"";
+            String query = "UPDATE PRODUCT SET product_id = '"+product.getId()+"',  product_description = '"+product.getDescription()+"', product_price = '"+product.getPrice()+" ', product_stock = '"+product.getStock()+"', product_clubId = '\"+product.getClubId()+\"' WHERE product_id = "+product.getId()+"";
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ps.executeUpdate();
         } catch (SQLException e) {

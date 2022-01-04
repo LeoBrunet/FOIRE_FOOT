@@ -9,14 +9,15 @@ CREATE TABLE PRODUCT
     product_description varchar(255) NOT NULL,
     product_price       varchar(255) NOT NULL,
     product_stock         varchar(255) NOT NULL,
+    product_clubId       MEDIUMINT,
 
     PRIMARY KEY (product_id)
 )ENGINE = InnoDB
  DEFAULT CHARSET = utf8;
-INSERT INTO PRODUCT (product_id, product_name,  product_description, product_price,  product_stock )
-VALUES (1, 'shirt MTP', 'beautiful shirt', 2, 2);
-INSERT INTO PRODUCT (product_id, product_name,  product_description, product_price,  product_stock )
-VALUES (2, 'tote bag',  'beautiful tote bag', 2, 2);
+INSERT INTO PRODUCT (product_id, product_name,  product_description, product_price,  product_stock ,product_clubId)
+VALUES (1, 'shirt MTP', 'beautiful shirt', 2, 2,1);
+INSERT INTO PRODUCT (product_id, product_name,  product_description, product_price,  product_stock,product_clubId )
+VALUES (2, 'tote bag',  'beautiful tote bag', 2, 2,2);
 CREATE TABLE TRANSACTION
 (
     transaction_id         MEDIUMINT    NOT NULL AUTO_INCREMENT,
@@ -37,7 +38,7 @@ CREATE TABLE ADDRESS
     address_city      varchar(255) NOT NULL ,
 
     address_country varchar(255) NOT NULL,
-    t
+
 
     PRIMARY KEY (address_id)
 )ENGINE = InnoDB

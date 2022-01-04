@@ -21,7 +21,7 @@ public class TransactionDAOMySQL implements DAO<Transaction>{
 
     @Override
     public void save(Transaction transaction) throws SQLIntegrityConstraintViolationException {
-        try {
+        /*try {
             String query = "INSERT INTO TRANSACTION (product_name, product_description,product_price,product_stock) " +
                     "VALUES ('" + product.getName() + "', '" + product.getDescription()+ "', '" + product.getPrice() + "', " +
                     "'" + product.getStock()  + "');";
@@ -40,7 +40,7 @@ public class TransactionDAOMySQL implements DAO<Transaction>{
             throw sqlIntegrityConstraintViolationException;
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
 
     }
 
