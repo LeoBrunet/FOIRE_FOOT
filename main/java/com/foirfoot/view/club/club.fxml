@@ -17,6 +17,11 @@
         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
             <Image url="@../assets/images/shopping-cart.png" />
         </ImageView>
+      <ImageView onMouseClicked="#goToClubModification" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="10.0">
+         <image>
+            <Image url="@../assets/images/pen.png" />
+         </image>
+      </ImageView>
         <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
             <VBox>
                 <padding>
@@ -47,45 +52,42 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                 <padding>
-                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                 </padding>
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
                     <font>
-                        <Font name="Segoe UI" size="14.0"/>
+                        <Font name="Segoe UI" size="14.0" />
                     </font>
                 </Text>
-                <Text fx:id="clubAddress" layoutX="20.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                      text="Rue Joliot-Curie, Le Haillan 33185 Bordeaux, France" wrappingWidth="180.0">
+                <Text fx:id="clubAddress" layoutX="20.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rue Joliot-Curie, Le Haillan 33185 Bordeaux, France" wrappingWidth="180.0">
                     <font>
-                        <Font name="Segoe UI" size="10.0"/>
+                        <Font name="Segoe UI" size="10.0" />
                     </font>
                 </Text>
                 <Text layoutX="20.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Website">
                     <font>
-                        <Font name="Segoe UI" size="14.0"/>
+                        <Font name="Segoe UI" size="14.0" />
                     </font>
                     <VBox.margin>
-                        <Insets top="10.0"/>
+                        <Insets top="10.0" />
                     </VBox.margin>
                 </Text>
-                <Text fx:id="clubWebsite" layoutX="20.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                      text="http://www.girondins.com" wrappingWidth="180.0">
+                <Text fx:id="clubWebsite" layoutX="20.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="http://www.girondins.com" wrappingWidth="180.0">
                     <font>
-                        <Font name="Segoe UI" size="10.0"/>
+                        <Font name="Segoe UI" size="10.0" />
                     </font>
                 </Text>
                 <Text layoutX="20.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone number">
                     <font>
-                        <Font name="Segoe UI" size="14.0"/>
+                        <Font name="Segoe UI" size="14.0" />
                     </font>
                     <VBox.margin>
-                        <Insets top="10.0"/>
+                        <Insets top="10.0" />
                     </VBox.margin>
                 </Text>
-                <Text fx:id="clubPhoneNumber" layoutX="20.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                      text="+330505156012" wrappingWidth="180.0">
+                <Text fx:id="clubPhoneNumber" layoutX="20.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+330505156012" wrappingWidth="180.0">
                     <font>
-                        <Font name="Segoe UI" size="10.0"/>
+                        <Font name="Segoe UI" size="10.0" />
                     </font>
                 </Text>
             </VBox>
@@ -93,8 +95,8 @@
                 <!--<Image url="@../assets/images/girondins.png" />-->
             </ImageView>
         </HBox>
-        <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" >
-            <Button maxWidth="Infinity" text="Teams" HBox.hgrow="ALWAYS" onAction="#goToTeams">
+        <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <Button maxWidth="Infinity" onAction="#goToTeams" text="Teams" HBox.hgrow="ALWAYS">
                 <HBox.margin>
                     <Insets bottom="10" left="10.0" right="5.0" />
                 </HBox.margin>

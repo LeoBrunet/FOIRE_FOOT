@@ -57,7 +57,7 @@ public class TypeDAOMySQL implements DAO<Type>{
     }
 
     @Override
-    public void update(Type type, String[] params) {
+    public void update(Type type) {
 
     }
 

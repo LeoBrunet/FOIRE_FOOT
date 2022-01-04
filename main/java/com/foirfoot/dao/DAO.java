@@ -12,7 +12,7 @@ public interface DAO<T> {
 
     void save(T t) throws SQLIntegrityConstraintViolationException;
 
-    void update(T t, String[] params);
+    void update(T t);
 
     void delete(T t);
 }

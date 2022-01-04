@@ -2,12 +2,12 @@ package com.foirfoot.dao;
 
 import com.foirfoot.model.club.Club;
 import com.foirfoot.model.team.Team;
-import com.foirfoot.model.user.*;
+import com.foirfoot.model.user.RoleName;
+import com.foirfoot.model.user.User;
 import com.foirfoot.utils.MySQLConnection;
 import com.github.sardine.Sardine;
 import com.github.sardine.SardineFactory;
 import exceptions.UserNotFoundException;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -20,6 +20,37 @@ import java.util.Optional;
 
 public class ClubDAOMySQL implements DAO<Club> {
 
+    private Club createClub(int id, ResultSet rs) {
+        Club club = null;
+        try {
+            UserDAOMySQL userDAOMySQL = new UserDAOMySQL();
+            TeamDAOMySQL teamDAOMySQL = new TeamDAOMySQL();
+            List<Team> teams = teamDAOMySQL.getAllTeamsOfClub(id);
+            List<User> players = userDAOMySQL.getAllUsersOfClubWithRole(id, RoleName.player);
+            List<User> coachs = userDAOMySQL.getAllUsersOfClubWithRole(id, RoleName.coach);
+            User creator = userDAOMySQL.get(rs.getInt("creator_user_id")).orElseThrow(UserNotFoundException::new);
+
+            Sardine sardine = SardineFactory.begin("leo-ig", "ftyx-mloi-fhci");
+            InputStream is = sardine.get("http://webdav-leo-ig.alwaysdata.net/foir_foot/images/" + rs.getString("club_image_name"));
+
+            club = new Club(rs.getInt("club_id"), rs.getString("club_name"), rs.getString("club_address"), rs.getString("club_phone_number"), rs.getString("club_website"), creator, players, coachs, teams, rs.getString("club_image_name"), is);
+
+            for (User p : players) {
+                p.setClub(club);
+            }
+            for (User c : coachs) {
+                c.setClub(club);
+            }
+            for (Team t : teams) {
+                t.setClub(club);
+            }
+            club.getCreator().setClub(club);
+        } catch (UserNotFoundException | SQLException | IOException e) {
+            e.printStackTrace();
+        }
+        return club;
+    }
+
     @Override
     public Optional<Club> get(int id) {
         Club club = null;
@@ -28,54 +59,44 @@ public class ClubDAOMySQL implements DAO<Club> {
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                UserDAOMySQL userDAOMySQL = new UserDAOMySQL();
-                TeamDAOMySQL teamDAOMySQL = new TeamDAOMySQL();
-                List<Team> teams = teamDAOMySQL.getAllTeamsOfClub(id);
-                List<User> players = userDAOMySQL.getAllUsersOfClubWithRole(id, RoleName.player);
-                List<User> coachs = userDAOMySQL.getAllUsersOfClubWithRole(id, RoleName.coach);
-                User creator = userDAOMySQL.get(rs.getInt("creator_user_id")).orElseThrow(UserNotFoundException::new);
-
-                Sardine sardine = SardineFactory.begin("leo-ig", "ftyx-mloi-fhci");
-                InputStream is = sardine.get("http://webdav-leo-ig.alwaysdata.net/foir_foot/images/" + rs.getString("club_image_name"));
-
-                club = new Club(rs.getInt("club_id"), rs.getString("club_name"), rs.getString("club_address"), rs.getString("club_phone_number"), rs.getString("club_website"), creator, players, coachs, teams, rs.getString("club_image_name"), is);
-
-                for (User p : players) {
-                    p.setClub(club);
-                }
-                for (User c : coachs) {
-                    c.setClub(club);
-                }
-                for (Team t : teams) {
-                    t.setClub(club);
-                }
-                club.getCreator().setClub(club);
+                club = createClub(id, rs);
             }
-        } catch (SQLException | IOException | UserNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return Optional.ofNullable(club);
     }
 
-    // TODO Passer dans le TeamDAOFactory
-   /* private List<Team> getAllTeamsOfClub(long id) {
-        List<Team> teams = new ArrayList<>();
+    @Override
+    public List<Optional<Club>> getAll() {
+        List<Optional<Club>> clubs = new ArrayList<>();
         try {
-            String query = "SELECT * FROM TEAMS WHERE club_id = " + id + ";";
+            String query = "SELECT * FROM CLUBS;";
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                teams.add(new Team(rs.getString("team_name")));
+                int club_id = rs.getInt("club_id");
+                clubs.add(Optional.of(createClub(club_id, rs)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return teams;
-    }*/
+        return clubs;
+    }
 
-    @Override
-    public List<Optional<Club>> getAll() {
-        List<Optional<Club>> clubs = new ArrayList<>();
+    public List<Club> searchClub(String clubName) {
+        List<Club> clubs = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM CLUBS WHERE LOWER(CLUBS.club_name) LIKE '%" + clubName.toLowerCase() + "%';";
+            PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int club_id = rs.getInt("club_id");
+                clubs.add(createClub(club_id, rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return clubs;
     }
 
@@ -90,9 +111,7 @@ public class ClubDAOMySQL implements DAO<Club> {
             try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     club.setId(generatedKeys.getInt(1));
-                    System.out.println(club.getId());
-                }
-                else {
+                } else {
                     throw new SQLException("Creating user failed, no ID obtained.");
                 }
             }
@@ -113,13 +132,36 @@ public class ClubDAOMySQL implements DAO<Club> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     @Override
-    public void update(Club club, String[] params) {
+    public void update(Club club) {
+        try {
+            String query = "UPDATE CLUBS SET " +
+                    "club_name = '" + club.getName() + "'" +
+                    ", creator_user_id = " + club.getCreator().getId() +
+                    ", club_address = '" + club.getAddress() + "'" +
+                    ", club_phone_number = '" + club.getPhoneNumber() + "'" +
+                    ", club_website = '" + club.getWebsite() + "'" +
+                    ", club_image_name = '" + club.getImageName() + "' " +
+                    "WHERE club_id = "+club.getId()+";";
+            System.out.println(query);
+            PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void update(Club club, String localPathToImage) {
+        update(club);
+        try {
+            Sardine sardine = SardineFactory.begin("leo-ig", "ftyx-mloi-fhci");
+            byte[] data = FileUtils.readFileToByteArray(new File(localPathToImage));
+            sardine.put("http://webdav-leo-ig.alwaysdata.net/foir_foot/images/" + club.getImageName(), data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

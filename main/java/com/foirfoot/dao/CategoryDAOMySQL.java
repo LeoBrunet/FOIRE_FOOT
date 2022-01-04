@@ -60,7 +60,7 @@ public class CategoryDAOMySQL implements DAO<Category>{
     }
 
     @Override
-    public void update(Category category, String[] params) {
+    public void update(Category category) {
 
     }
 

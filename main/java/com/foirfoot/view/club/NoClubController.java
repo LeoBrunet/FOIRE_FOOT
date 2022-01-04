@@ -11,6 +11,6 @@ public class NoClubController {
 
     @FXML
     private void goToClubCreation(){
-        Main.changeScene("club/clubCreation");
+        Main.changeScene("club/clubCreationModification", new ClubCreationModificationController(), new Object[]{null, false});
     }
 }

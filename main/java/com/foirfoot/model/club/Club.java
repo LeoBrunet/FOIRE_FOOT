@@ -51,10 +51,6 @@ public class Club {
         this.imageName = imageName;
     }
 
-    public Club(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return name;
     }
@@ -103,6 +99,34 @@ public class Club {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public List<User> getCoachs() {
+        return coachs;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+
+    public void setImageIS(InputStream imageIS) {
+        this.imageIS = imageIS;
     }
 
     public void addTeam(Team team){
