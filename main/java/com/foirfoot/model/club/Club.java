@@ -26,7 +26,7 @@ public class Club {
     }
 
     public Club(int id, String name, String address, String phoneNumber, String website, User creator, List<User> players, List<User> coachs, List<Team> teams, String imageName, InputStream imageIS) {
-        this(id);
+        this.id = id;
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -50,10 +50,6 @@ public class Club {
         this.teams = teams;
         this.imageIS = imageIS;
         this.imageName = imageName;
-    }
-
-    public Club(String name) {
-        this.name = name;
     }
 
     public String getName() {
@@ -92,6 +88,8 @@ public class Club {
         return imageName;
     }
 
+    public List<Team> getTeams() { return teams; }
+
     public void setImageName(String imageName) {
         this.imageName = imageName;
     }
@@ -104,6 +102,37 @@ public class Club {
         this.id = id;
     }
 
+    public List<User> getCoachs() {
+        return coachs;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+
+    public void setImageIS(InputStream imageIS) {
+        this.imageIS = imageIS;
+    }
+
+    public void addTeam(Team team){
+        getTeams().add(team);
+    }
     @Override
     public String toString() {
         return "Club{" +
@@ -115,7 +144,7 @@ public class Club {
                 ", creator=" + creator +
                 ", players=" + players +
                 ", coachs=" + coachs +
-                ", teams=" + teams +
+                //", teams=" + teams +
                 ", imageIS=" + imageIS +
                 ", imageName='" + imageName + '\'' +
                 '}';

@@ -39,6 +39,7 @@ public class BarController {
         if (Main.connectedUser.getClub() == null){
             Main.changeScene("club/no_club");
         } else {
+            System.out.println(Main.connectedUser.getClub());
             Main.changeScene("club/club", new ClubController(), new Object[]{Main.connectedUser.getClub()});
         }
     }

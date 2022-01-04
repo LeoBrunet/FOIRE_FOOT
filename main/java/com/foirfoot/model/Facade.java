@@ -2,12 +2,15 @@ package com.foirfoot.model;
 
 import com.foirfoot.dao.*;
 import com.foirfoot.model.club.Club;
+import com.foirfoot.model.team.Team;
+import com.foirfoot.model.user.Player;
 import com.foirfoot.model.shop.*;
 import com.foirfoot.model.user.RoleName;
 import com.foirfoot.model.user.User;
 import com.foirfoot.view.Main;
 import exceptions.ClubNotFoundException;
 import exceptions.ProductNotFoundException;
+import exceptions.TeamNotFoundException;
 import exceptions.UserNotFoundException;
 import exceptions.WrongPasswordException;
 
@@ -38,7 +41,7 @@ public class Facade {
 
     public void register(String name, String firstName, String email, String password) throws SQLIntegrityConstraintViolationException{
         UserDAOMySQL userDAOMySQL = (UserDAOMySQL) this.abstractDAOFactory.create("User");
-        User user = new User(email, password, name, firstName, RoleName.classic, -1, -1, false,new Basket());
+        User user = new User(email, password, name, firstName, RoleName.classic, -1, -1, false, new Basket());
         userDAOMySQL.save(user);
     }
     public Product createProduct(String name, String desc,String price, String stock,int clubId) throws SQLIntegrityConstraintViolationException {
@@ -78,7 +81,57 @@ public class Facade {
         clubDAOMySQL.save(club, localPathToImage);
         creator.setClub(club);
         creator.setIsClubCreator(true);
-        userDAOMySQL.update(creator, null);
+        userDAOMySQL.update(creator);
         return club;
+    }
+
+    public Club updateClubAndClubImage(String name, String address, String phoneNumber, String website, User creator, String localPathToImage, String imageName, InputStream imageIS, Club originalClub) throws SQLIntegrityConstraintViolationException {
+        ClubDAOMySQL clubDAOMySQL = (ClubDAOMySQL) this.abstractDAOFactory.create("Club");
+        originalClub.setName(name);
+        originalClub.setAddress(address);
+        originalClub.setPhoneNumber(phoneNumber);
+        originalClub.setWebsite(website);
+        originalClub.setImageName(imageName);
+        originalClub.setImageIS(imageIS);
+        clubDAOMySQL.update(originalClub, localPathToImage);
+        //TODO Vérifier si nécessaire
+        //creator.setClub(originalClub);
+        return originalClub;
+    }
+
+    public Club updateClub(String name, String address, String phoneNumber, String website, User creator, Club originalClub) throws SQLIntegrityConstraintViolationException {
+        ClubDAOMySQL clubDAOMySQL = (ClubDAOMySQL) this.abstractDAOFactory.create("Club");
+        originalClub.setName(name);
+        originalClub.setAddress(address);
+        originalClub.setPhoneNumber(phoneNumber);
+        originalClub.setWebsite(website);
+        clubDAOMySQL.update(originalClub);
+        //TODO Vérifier si nécessaire
+        //creator.setClub(originalClub);
+        return originalClub;
+    }
+
+    public Team createTeam(Object category, Object type, Club club) throws SQLIntegrityConstraintViolationException {
+        TeamDAOMySQL teamDAOMySQL = (TeamDAOMySQL) this.abstractDAOFactory.create("Team");
+        Team team = new Team((String) category, (String) type, club);
+        teamDAOMySQL.save(team);
+        return team;
+    }
+
+    public Team getTeam(int teamId) throws TeamNotFoundException {
+        Optional<Team> team = null;
+        team = ((TeamDAOMySQL) this.abstractDAOFactory.create("Team")).get(teamId);
+        System.out.println(team);
+        return team.orElseThrow(TeamNotFoundException::new);
+    }
+
+    public List<Club> searchClubs(String clubName){
+        ClubDAOMySQL clubDAOMySQL = (ClubDAOMySQL) this.abstractDAOFactory.create("Club");
+        return clubDAOMySQL.searchClub(clubName);
+    }
+
+    public List<User> searchUsers(String userName){
+        UserDAOMySQL userDAOMySQL  = (UserDAOMySQL) this.abstractDAOFactory.create("User");
+        return userDAOMySQL.searchUsers(userName);
     }
 }

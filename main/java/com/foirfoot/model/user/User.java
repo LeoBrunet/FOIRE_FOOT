@@ -16,6 +16,7 @@ public class User {
     private String firstname;
     private String tel;
     private File picture;
+    private RoleName roleName;
     private Role role;
     private Basket basket;
 
@@ -24,6 +25,7 @@ public class User {
         this.firstname = firstname;
         this.email = email;
         this.password = password;
+        this.roleName = roleName;
         if (roleName == RoleName.player){
             this.role = new Player(club, team, isClubCreator);
         } else if (roleName == RoleName.coach) {
@@ -81,6 +83,10 @@ public class User {
 
     public void setIsClubCreator(boolean isClubCreator) {
         this.role.setClubCreator(isClubCreator);
+    }
+
+    public RoleName getRoleName() {
+        return roleName;
     }
 
     public User login(String password) throws WrongPasswordException {

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foirfoot.view.team.NoTeamController">
+    <fx:include source="../bar.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                AnchorPane.topAnchor="0.0"/>
+    <VBox alignment="CENTER" layoutX="250.0" layoutY="100.0" prefHeight="200.0" prefWidth="100.0"
+          AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+          AnchorPane.topAnchor="50.0">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Your club still don't have teams.">
+            <font>
+                <Font name="Segoe UI Bold" size="24.0"/>
+            </font>
+        </Text>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Would you like to create a team?">
+            <font>
+                <Font name="Segoe UI Bold" size="24.0"/>
+            </font>
+        </Text>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0"
+              text="An administrator will validate the creation by verifying that the team exists.">
+            <font>
+                <Font name="Segoe UI" size="16.0"/>
+            </font>
+        </Text>
+        <Button fx:id="createTeam" onAction="#goToTeamCreation"
+                style="-fx-background-color: #193188;" text="Create a team"
+                textFill="WHITE">
+            <VBox.margin>
+                <Insets top="20.0"/>
+            </VBox.margin>
+        </Button>
+    </VBox>
+
+</AnchorPane>
