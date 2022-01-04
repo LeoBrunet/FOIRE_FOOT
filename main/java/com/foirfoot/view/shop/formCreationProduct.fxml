@@ -14,7 +14,7 @@
          <Label layoutX="224.0" layoutY="24.0" prefHeight="16.0" prefWidth="121.0" text="Montpellier Club Shop" />
          <AnchorPane layoutX="95.0" layoutY="41.0" prefHeight="290.0" prefWidth="379.0">
             <children>
-               <TextField fx:id="productName" layoutX="117.0" layoutY="43.0" promptText="gngngn">
+               <TextField fx:id="nameProduct" layoutX="117.0" layoutY="43.0" promptText="gngngn">
                   <cursor>
                      <Cursor fx:constant="TEXT" />
                   </cursor></TextField>

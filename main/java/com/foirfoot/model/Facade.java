@@ -42,6 +42,7 @@ public class Facade {
     public Product createProduct(String name, String desc,String price, String stock) throws SQLIntegrityConstraintViolationException {
         ProductDAOMySQL productDAOMySQL = (ProductDAOMySQL) this.abstractDAOFactory.create("Product");
         Product product = new Product(name, desc, price, stock);
+        System.out.println(product.toString());
         productDAOMySQL.save(product);
         return product;
 

@@ -53,6 +53,14 @@ public class Product {
           return this.id;
      }
 
-
-
+     @Override
+     public String toString() {
+          return "Product{" +
+                  "id=" + id +
+                  ", nameProduct='" + nameProduct + '\'' +
+                  ", description='" + description + '\'' +
+                  ", price='" + price + '\'' +
+                  ", stock='" + stock + '\'' +
+                  '}';
+     }
 }

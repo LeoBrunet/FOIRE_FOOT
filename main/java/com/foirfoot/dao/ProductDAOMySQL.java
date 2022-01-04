@@ -55,7 +55,7 @@ public class ProductDAOMySQL implements DAO<Product>{
         try {
             String query = "INSERT INTO PRODUCT (product_name, product_description,product_price,product_stock) " +
                     "VALUES ('" + product.getName() + "', '" + product.getDescription()+ "', '" + product.getPrice() + "', " +
-                    "'" + product.getStock() + "', '"  + "');";
+                    "'" + product.getStock()  + "');";
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.executeUpdate();
             try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
