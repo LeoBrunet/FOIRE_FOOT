@@ -12,57 +12,66 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1">
 
-    <fx:include source="../bar.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-    <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
-      <children>
-         <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" stylesheets="@../assets/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-           <items>
-             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                  <children>
-                     <ImageView fx:id="pictureProduct" fitHeight="348.0" fitWidth="296.0">
-                        <image>
-                           <Image url="@../../../../../../../../Downloads/polvorones-1-removebg-preview.png" />
-                        </image>
-                     </ImageView>
-                  </children></AnchorPane>
-             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="348.0" prefWidth="331.0">
-                  <children>
-                     <VBox alignment="TOP_CENTER" layoutX="31.0" layoutY="49.0" prefHeight="259.0" prefWidth="217.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <fx:include source="../bar.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                AnchorPane.topAnchor="0.0"/>
+    <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+        <children>
+            <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0"
+                       stylesheets="@../assets/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                       AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <items>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                         <children>
-                           <Label fx:id="productName" text="T-Shirt MHSC" textAlignment="CENTER">
-                              <VBox.margin>
-                                 <Insets bottom="10.0" />
-                              </VBox.margin>
-                              <font>
-                                 <Font name="Segoe UI Black" size="13.0" />
-                              </font>
-                           </Label>
-                           <Label fx:id="descProduit" text="Description of shirt">
-                              <VBox.margin>
-                                 <Insets bottom="10.0" />
-                              </VBox.margin>
-                           </Label>
-                            <Spinner fx:id="SizeProduct" prefHeight="26.0" prefWidth="56.0" />
-                            <Button fx:id="addBasketButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" style="-fx-background-color: #193188;" text="Add to basket" textFill="WHITE">
-                              <VBox.margin>
-                                 <Insets top="10.0" />
-                              </VBox.margin>
-                              <font>
-                                 <Font name="Segoe UI" size="13.0" />
-                              </font>
-                           </Button>
+                            <ImageView fx:id="pictureProduct" fitHeight="348.0" fitWidth="296.0">
+                            </ImageView>
                         </children>
-                        <padding>
-                           <Insets top="100.0" />
-                        </padding>
-                     </VBox>
-                  </children>
-               </AnchorPane>
-           </items>
-         </SplitPane>
-      
-          <Text fx:id="continue" onMouseClicked="#goToShop" text="Continue my shopping" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-      </children></AnchorPane>
+                    </AnchorPane>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="348.0" prefWidth="331.0">
+                        <children>
+                            <VBox alignment="TOP_CENTER" layoutX="31.0" layoutY="49.0" prefHeight="259.0"
+                                  prefWidth="217.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <children>
+                                    <Label fx:id="productName" text="T-Shirt MHSC" textAlignment="CENTER">
+                                        <VBox.margin>
+                                            <Insets bottom="10.0"/>
+                                        </VBox.margin>
+                                        <font>
+                                            <Font name="Segoe UI Black" size="13.0"/>
+                                        </font>
+                                    </Label>
+                                    <Label fx:id="descProduit" text="Description of shirt">
+                                        <VBox.margin>
+                                            <Insets bottom="10.0"/>
+                                        </VBox.margin>
+                                    </Label>
+                                    <Spinner fx:id="SizeProduct" prefHeight="26.0" prefWidth="56.0"/>
+                                    <Button fx:id="addBasketButton" mnemonicParsing="false" prefHeight="26.0"
+                                            prefWidth="100.0" style="-fx-background-color: #193188;"
+                                            text="Add to basket" textFill="WHITE">
+                                        <VBox.margin>
+                                            <Insets top="10.0"/>
+                                        </VBox.margin>
+                                        <font>
+                                            <Font name="Segoe UI" size="13.0"/>
+                                        </font>
+                                    </Button>
+                                </children>
+                                <padding>
+                                    <Insets top="100.0"/>
+                                </padding>
+                            </VBox>
+                        </children>
+                    </AnchorPane>
+                </items>
+            </SplitPane>
+
+            <Text fx:id="continue" onMouseClicked="#goToShop" text="Continue my shopping" AnchorPane.rightAnchor="10.0"
+                  AnchorPane.topAnchor="10.0"/>
+        </children>
+    </AnchorPane>
 </AnchorPane>

@@ -6,6 +6,7 @@ import com.foirfoot.model.shop.Product;
 import com.foirfoot.view.Controller;
 import com.foirfoot.view.Main;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
 import java.awt.*;
@@ -16,13 +17,11 @@ public class ProductController extends Controller {
 
     Facade facade = new Facade();
     @FXML
-    public Text text;
-    @FXML
-    public Text shopping;
+    public Label productName;
 
     @FXML
     public void initialize() {
-        text.setText("Look, " + this.product.getName() + ".");
+        productName.setText(this.product.getName());
     }
 
     public void goToShop() {

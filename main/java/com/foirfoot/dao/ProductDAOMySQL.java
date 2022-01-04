@@ -63,6 +63,22 @@ public class ProductDAOMySQL implements DAO<Product>{
         return products;
     }
 
+    public List<Optional<Product>> getAllProductsOfClub(int clubId) {
+        List<Optional<Product>> products = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM PRODUCT WHERE product_clubId = " + clubId;
+            PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                products.add(Optional.of(new Product(rs.getInt("product_id"),rs.getString("product_name"),rs.getString("product_description"),rs.getString("product_price"),rs.getString("product_stock"),rs.getInt("product_clubId"))));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+
     @Override
     public void save(Product product) throws SQLIntegrityConstraintViolationException {
         try {

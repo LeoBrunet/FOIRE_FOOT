@@ -6,7 +6,9 @@ import com.foirfoot.view.Main;
 import exceptions.ProductNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
+import javafx.scene.control.Label;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -19,21 +21,22 @@ public class HomeShopSideClubController {
     @FXML
     private AnchorPane content;
     @FXML
-    private Text productName;
+    private Label productName;
     @FXML
     private Text productDesc;
     @FXML
     private Text productPrice;
     @FXML
     private Button but;
-
+    @FXML
+    private FlowPane listProducts;
 
     @FXML
     public void initialize() {
-        content.getChildren().clear();
+        /*content.getChildren().clear();
 
         Text productsText = new Text("Products");
-        content.getChildren().add(productsText);
+        content.getChildren().add(productsText);*/
         List<Product> products = new ArrayList<>();
         try {
             products = facade.getAllProducts();
@@ -42,9 +45,12 @@ public class HomeShopSideClubController {
         }
 
         for (Product product : products) {
-            Text productName = new Text(product.getName());
-            productName.setOnMouseClicked(mouseEvent -> goToProduct(product));
-            System.out.println(product.getName());
+            //Text productName = new Text(product.getName());
+            ProductComponent productComponent = new ProductComponent();
+            productComponent.setProductName(product.getName());
+            productComponent.setButtonViewAction(mouseEvent -> goToProduct(product));
+            listProducts.getChildren().add(productComponent);
+            //System.out.println(product.getName());
         }
     }
 
