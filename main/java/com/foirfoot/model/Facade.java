@@ -30,7 +30,7 @@ public class Facade {
             e.printStackTrace();
         }
         userFoundInDatabase.setClub(club);
-        System.out.println(userFoundInDatabase.getClub().getId());
+        //System.out.println(userFoundInDatabase.getClub().getId());
         return userFoundInDatabase.login(password);
     }
 

@@ -55,7 +55,7 @@ public class ClubDAOMySQL implements DAO<Club> {
     }
 
     // TODO Passer dans le TeamDAOFactory
-    private List<Team> getAllTeamsOfClub(long id) {
+   /* private List<Team> getAllTeamsOfClub(long id) {
         List<Team> teams = new ArrayList<>();
         try {
             String query = "SELECT * FROM TEAMS WHERE club_id = " + id + ";";
@@ -68,7 +68,7 @@ public class ClubDAOMySQL implements DAO<Club> {
             e.printStackTrace();
         }
         return teams;
-    }
+    }*/
 
     @Override
     public List<Optional<Club>> getAll() {
