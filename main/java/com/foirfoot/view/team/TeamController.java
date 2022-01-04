@@ -12,18 +12,23 @@ import javafx.scene.text.Text;
 
 public class TeamController extends Controller {
     private Club club;
-    @FXML
-    private Team team;
+
     @FXML
     private Text teamName;
     @FXML
     private VBox teams;
-    @FXML
 
+    @FXML
     public void initialize(){
         System.out.println("initialize()");
         for (Team t : club.getTeams()) {
-            teams.getChildren().add(new Text(t.getName()));
+            System.out.println(t);
+            teams.getChildren().add(new Text(t.getType() + " " + t.getCategory()));
         }
+    }
+
+    @Override
+    public void setParameter(Object[] params) {
+        this.club = (Club) params[0];
     }
 }

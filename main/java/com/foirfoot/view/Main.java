@@ -57,6 +57,7 @@ public class Main extends Application {
         Parent pane = null;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Objects.requireNonNull(Main.class.getResource(fxml)));
+            System.out.println(Main.class.getResource(fxml));
             controller.setParameter(params);
             fxmlLoader.setController(controller);
             pane = fxmlLoader.load();

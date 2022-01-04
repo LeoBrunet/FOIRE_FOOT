@@ -60,4 +60,17 @@ public class Team {
         this.id = id;
     }
 
+    public void setClub(Club club) {
+        this.club = club;
+    }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

@@ -5,6 +5,7 @@ import com.foirfoot.model.team.Team;
 import com.foirfoot.model.user.RoleName;
 import com.foirfoot.model.user.User;
 import com.foirfoot.utils.MySQLConnection;
+import exceptions.ClubNotFoundException;
 import exceptions.UserNotFoundException;
 
 import java.sql.*;
@@ -23,11 +24,12 @@ public class TeamDAOMySQL implements DAO<Team>{
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 ClubDAOMySQL clubDAOMySQL = new ClubDAOMySQL();
-                Club club = clubDAOMySQL.get(id).orElseThrow(UserNotFoundException::new);
 
-                team = new Team(rs.getInt("team_id"),rs.getString("team_name"),club,rs.getString("category"),rs.getString("type"));
+                team = new Team(rs.getInt("team_id"),rs.getString("team_name"),null,rs.getString("category"),rs.getString("type"));
+                Club club = clubDAOMySQL.get(id).orElseThrow(ClubNotFoundException::new);
+                team.setClub(club);
             }
-        } catch (SQLException | UserNotFoundException e) {
+        } catch (SQLException | ClubNotFoundException e) {
             e.printStackTrace();
         }
         return Optional.ofNullable(team);
@@ -45,7 +47,7 @@ public class TeamDAOMySQL implements DAO<Team>{
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                teams.add(new Team(rs.getString("team_name")));
+                teams.add(new Team(rs.getInt("team_id"), rs.getString("team_name"), null, rs.getString("category"), rs.getString("type")));
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -64,7 +64,8 @@ public class ClubController extends Controller {
             System.out.println("Teams");
             System.out.println(Main.connectedUser.getClub().getTeams());
             /*Main.changeScene("team/no_team");*/
-            /*Main.changeScene("team/team", new TeamController(), new Object[]{Main.connectedUser.getClub().getTeams()});*/
+            System.out.println(Main.connectedUser.getClub());
+            Main.changeScene("team/team", new TeamController(), new Object[]{Main.connectedUser.getClub()});
         }
     }
 

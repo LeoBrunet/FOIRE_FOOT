@@ -33,18 +33,21 @@ public class ClubDAOMySQL implements DAO<Club> {
                 List<Team> teams = teamDAOMySQL.getAllTeamsOfClub(id);
                 List<User> players = userDAOMySQL.getAllUsersOfClubWithRole(id, RoleName.player);
                 List<User> coachs = userDAOMySQL.getAllUsersOfClubWithRole(id, RoleName.coach);
-                User creator = userDAOMySQL.get(id).orElseThrow(UserNotFoundException::new);
+                User creator = userDAOMySQL.get(rs.getInt("creator_user_id")).orElseThrow(UserNotFoundException::new);
 
                 Sardine sardine = SardineFactory.begin("leo-ig", "ftyx-mloi-fhci");
                 InputStream is = sardine.get("http://webdav-leo-ig.alwaysdata.net/foir_foot/images/" + rs.getString("club_image_name"));
 
-                club = new Club(rs.getString("club_name"), rs.getString("club_address"), rs.getString("club_phone_number"), rs.getString("club_website"), creator, players, coachs, teams, rs.getString("club_image_name"), is);
+                club = new Club(rs.getInt("club_id"), rs.getString("club_name"), rs.getString("club_address"), rs.getString("club_phone_number"), rs.getString("club_website"), creator, players, coachs, teams, rs.getString("club_image_name"), is);
 
                 for (User p : players) {
                     p.setClub(club);
                 }
                 for (User c : coachs) {
                     c.setClub(club);
+                }
+                for (Team t : teams) {
+                    t.setClub(club);
                 }
                 club.getCreator().setClub(club);
             }
