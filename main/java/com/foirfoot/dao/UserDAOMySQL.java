@@ -124,7 +124,7 @@ public class UserDAOMySQL implements DAO<User> {
     }
 
     @Override
-    public void update(User user, String[] params) {
+    public void update(User user) {
         try {
             String query = "UPDATE USERS SET club_id = '" + user.getClub().getId() + "', user_email = '" + user.getEmail() + "', user_first_name = '" + user.getFirstName() + "', user_name = '" + user.getName() + "' WHERE user_id = " + user.getId() + "";
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);

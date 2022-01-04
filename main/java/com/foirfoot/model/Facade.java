@@ -48,8 +48,34 @@ public class Facade {
         clubDAOMySQL.save(club, localPathToImage);
         creator.setClub(club);
         creator.setIsClubCreator(true);
-        userDAOMySQL.update(creator, null);
+        userDAOMySQL.update(creator);
         return club;
+    }
+
+    public Club updateClubAndClubImage(String name, String address, String phoneNumber, String website, User creator, String localPathToImage, String imageName, InputStream imageIS, Club originalClub) throws SQLIntegrityConstraintViolationException {
+        ClubDAOMySQL clubDAOMySQL = (ClubDAOMySQL) this.abstractDAOFactory.create("Club");
+        originalClub.setName(name);
+        originalClub.setAddress(address);
+        originalClub.setPhoneNumber(phoneNumber);
+        originalClub.setWebsite(website);
+        originalClub.setImageName(imageName);
+        originalClub.setImageIS(imageIS);
+        clubDAOMySQL.update(originalClub, localPathToImage);
+        //TODO Vérifier si nécessaire
+        //creator.setClub(originalClub);
+        return originalClub;
+    }
+
+    public Club updateClub(String name, String address, String phoneNumber, String website, User creator, Club originalClub) throws SQLIntegrityConstraintViolationException {
+        ClubDAOMySQL clubDAOMySQL = (ClubDAOMySQL) this.abstractDAOFactory.create("Club");
+        originalClub.setName(name);
+        originalClub.setAddress(address);
+        originalClub.setPhoneNumber(phoneNumber);
+        originalClub.setWebsite(website);
+        clubDAOMySQL.update(originalClub);
+        //TODO Vérifier si nécessaire
+        //creator.setClub(originalClub);
+        return originalClub;
     }
 
     public Team createTeam(Object category, Object type, Club club) throws SQLIntegrityConstraintViolationException {

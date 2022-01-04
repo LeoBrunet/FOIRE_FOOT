@@ -2,12 +2,12 @@ package com.foirfoot.dao;
 
 import com.foirfoot.model.club.Club;
 import com.foirfoot.model.team.Team;
-import com.foirfoot.model.user.*;
+import com.foirfoot.model.user.RoleName;
+import com.foirfoot.model.user.User;
 import com.foirfoot.utils.MySQLConnection;
 import com.github.sardine.Sardine;
 import com.github.sardine.SardineFactory;
 import exceptions.UserNotFoundException;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -132,13 +132,36 @@ public class ClubDAOMySQL implements DAO<Club> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     @Override
-    public void update(Club club, String[] params) {
+    public void update(Club club) {
+        try {
+            String query = "UPDATE CLUBS SET " +
+                    "club_name = '" + club.getName() + "'" +
+                    ", creator_user_id = " + club.getCreator().getId() +
+                    ", club_address = '" + club.getAddress() + "'" +
+                    ", club_phone_number = '" + club.getPhoneNumber() + "'" +
+                    ", club_website = '" + club.getWebsite() + "'" +
+                    ", club_image_name = '" + club.getImageName() + "' " +
+                    "WHERE club_id = "+club.getId()+";";
+            System.out.println(query);
+            PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void update(Club club, String localPathToImage) {
+        update(club);
+        try {
+            Sardine sardine = SardineFactory.begin("leo-ig", "ftyx-mloi-fhci");
+            byte[] data = FileUtils.readFileToByteArray(new File(localPathToImage));
+            sardine.put("http://webdav-leo-ig.alwaysdata.net/foir_foot/images/" + club.getImageName(), data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

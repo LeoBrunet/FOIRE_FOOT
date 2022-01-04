@@ -81,7 +81,7 @@ public class TeamDAOMySQL implements DAO<Team>{
     }
 
     @Override
-    public void update(Team team, String[] params) {
+    public void update(Team team) {
 
 
     }
