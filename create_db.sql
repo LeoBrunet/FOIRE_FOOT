@@ -70,3 +70,4 @@ VALUES ('Montpellier Hérault FC', 2, 'Rue Joliot-Curie, Le Haillan 33185 Bordea
 
 SET FOREIGN_KEY_CHECKS = 1; -- to re-enable them
 
+DELETE FROM CLUBS WHERE CLUBS.club_id = 11

@@ -17,7 +17,7 @@
         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
             <Image url="@../assets/images/shopping-cart.png" />
         </ImageView>
-      <ImageView onMouseClicked="#goToClubModification" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="10.0">
+      <ImageView fx:id="editClub" onMouseClicked="#goToClubModification" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="10.0">
          <image>
             <Image url="@../assets/images/pen.png" />
          </image>

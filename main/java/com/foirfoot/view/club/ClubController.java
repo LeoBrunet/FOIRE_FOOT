@@ -4,7 +4,7 @@ import com.foirfoot.model.club.Club;
 import com.foirfoot.model.user.User;
 import com.foirfoot.view.Controller;
 import com.foirfoot.view.Main;
-import com.foirfoot.view.team.TeamController;
+import com.foirfoot.view.team.ListTeamsController;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -35,10 +35,11 @@ public class ClubController extends Controller {
     private VBox coaches;
     @FXML
     private ImageView clubImageView;
+    @FXML
+    private ImageView editClub;
 
     @FXML
     public void initialize() {
-        System.out.println("initialize()");
         clubName.setText(this.club.getName());
         clubAddress.setText(this.club.getAddress());
         clubPhoneNumber.setText(this.club.getPhoneNumber());
@@ -62,6 +63,10 @@ public class ClubController extends Controller {
             }
         }
         clubImageView.setImage(new Image(file.toURI().toString()));
+
+        if (club.getId() != Main.connectedUser.getClub().getId()){
+            editClub.setVisible(false);
+        }
     }
 
     @Override
@@ -71,14 +76,9 @@ public class ClubController extends Controller {
 
     public void goToTeams() {
         if (Main.connectedUser.getClub().getTeams().isEmpty()) {
-            System.out.println("No Teams");
             Main.changeScene("team/no_team");
         } else {
-            System.out.println("Teams");
-            System.out.println(Main.connectedUser.getClub().getTeams());
-            /*Main.changeScene("team/no_team");*/
-            System.out.println(Main.connectedUser.getClub());
-            Main.changeScene("team/team", new TeamController(), new Object[]{Main.connectedUser.getClub()});
+            Main.changeScene("team/list_teams", new ListTeamsController(), new Object[]{club});
         }
     }
 

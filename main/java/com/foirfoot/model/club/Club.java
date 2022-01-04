@@ -129,6 +129,9 @@ public class Club {
         this.imageIS = imageIS;
     }
 
+    public void addTeam(Team team){
+        getTeams().add(team);
+    }
     @Override
     public String toString() {
         return "Club{" +
@@ -140,7 +143,7 @@ public class Club {
                 ", creator=" + creator +
                 ", players=" + players +
                 ", coachs=" + coachs +
-                ", teams=" + teams +
+                //", teams=" + teams +
                 ", imageIS=" + imageIS +
                 ", imageName='" + imageName + '\'' +
                 '}';

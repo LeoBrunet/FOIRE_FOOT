@@ -3,27 +3,20 @@ package com.foirfoot.view.team;
 import com.foirfoot.dao.CategoryDAOMySQL;
 import com.foirfoot.dao.TypeDAOMySQL;
 import com.foirfoot.model.Facade;
-import com.foirfoot.model.category.Category;
 import com.foirfoot.model.club.Club;
 import com.foirfoot.model.team.Team;
-import com.foirfoot.model.type.Type;
-import com.foirfoot.model.user.User;
+import com.foirfoot.view.Controller;
 import com.foirfoot.view.Main;
-import com.foirfoot.view.club.ClubController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.sql.SQLIntegrityConstraintViolationException;
 
-public class TeamCreationController {
+public class TeamCreationController extends Controller {
 
     private final Facade facade = new Facade();
     private Club club;
@@ -61,13 +54,21 @@ public class TeamCreationController {
         } else {
             try {
                 Team team = facade.createTeam(category.getValue(), type.getValue(), Main.connectedUser.getClub());
-                System.out.print(Main.connectedUser.getClub().getId());
-                /*goToTeam();*/
+                System.out.print(Main.connectedUser.getClub());
+                Main.connectedUser.getClub().addTeam(team);
+                Main.changeScene("team/list_teams", new ListTeamsController(), new Object[]{Main.connectedUser.getClub()});
             }  catch (SQLIntegrityConstraintViolationException throwables) {
                 throwables.printStackTrace();
             }
         }
     }
+
+
+    @Override
+    public void setParameter(Object[] params) {
+        this.club = (Club) params[0];
+    }
+
 
 /*
     public void goToTeam() {

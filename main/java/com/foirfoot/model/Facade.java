@@ -8,6 +8,7 @@ import com.foirfoot.model.user.Role;
 import com.foirfoot.model.user.RoleName;
 import com.foirfoot.model.user.User;
 import exceptions.ClubNotFoundException;
+import exceptions.TeamNotFoundException;
 import exceptions.UserNotFoundException;
 import exceptions.WrongPasswordException;
 
@@ -32,6 +33,7 @@ public class Facade {
             e.printStackTrace();
         }
         userFoundInDatabase.setClub(club);
+        //System.out.println(userFoundInDatabase.getClub().getId());
         return userFoundInDatabase.login(password);
     }
 
@@ -83,6 +85,13 @@ public class Facade {
         Team team = new Team((String) category, (String) type, club);
         teamDAOMySQL.save(team);
         return team;
+    }
+
+    public Team getTeam(int teamId) throws TeamNotFoundException {
+        Optional<Team> team = null;
+        team = ((TeamDAOMySQL) this.abstractDAOFactory.create("Team")).get(teamId);
+        System.out.println(team);
+        return team.orElseThrow(TeamNotFoundException::new);
     }
 
     public List<Club> searchClubs(String clubName){

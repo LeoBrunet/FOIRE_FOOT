@@ -24,10 +24,22 @@ public class TeamDAOMySQL implements DAO<Team>{
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 ClubDAOMySQL clubDAOMySQL = new ClubDAOMySQL();
-
-                team = new Team(rs.getInt("team_id"),rs.getString("team_name"),null,rs.getString("category"),rs.getString("type"));
-                Club club = clubDAOMySQL.get(id).orElseThrow(ClubNotFoundException::new);
+                UserDAOMySQL userDAOMySQL = new UserDAOMySQL();
+                List<User> players = userDAOMySQL.getAllUsersOfTeamWithRole(id, RoleName.player);
+                List<User> coachs = userDAOMySQL.getAllUsersOfTeamWithRole(id, RoleName.coach);
+                System.out.println(players);
+                team = new Team(rs.getInt("team_id"),rs.getString("team_name"),null,rs.getString("category"),rs.getString("type"), players, coachs);
+                System.out.println(team);
+                Club club = clubDAOMySQL.get(rs.getInt("club_id")).orElseThrow(ClubNotFoundException::new);
                 team.setClub(club);
+                for (User p : players) {
+                    p.setClub(club);
+                }
+                for (User c : coachs) {
+                    c.setClub(club);
+                }
+                System.out.println(team);
+                System.out.println("oui");
             }
         } catch (SQLException | ClubNotFoundException e) {
             e.printStackTrace();
