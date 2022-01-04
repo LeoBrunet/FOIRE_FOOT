@@ -50,7 +50,7 @@ public class Facade {
         clubDAOMySQL.save(club, localPathToImage);
         creator.setClub(club);
         creator.setIsClubCreator(true);
-        userDAOMySQL.update(creator, null);
+        userDAOMySQL.update(creator);
         return club;
     }
 
