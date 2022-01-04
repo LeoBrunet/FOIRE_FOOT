@@ -1,21 +1,20 @@
 package com.foirfoot.model.shop;
 
 public class Address {
-    private int number;
+    private int id;
     private String street;
     private String city;
     private String postalCode;
 
-    public Address(int number, String street, String city, String postalCode){
-        this.number = number;
+    public Address(int id, String street, String city, String postalCode){
+        this.id = id;
+
         this.street = street;
         this.city = city;
         this.postalCode = postalCode;
     }
 
-    public int getNumber() {
-        return number;
-    }
+
 
     public String getCity() {
         return city;
@@ -33,9 +32,6 @@ public class Address {
         this.city = city;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
-    }
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
@@ -48,7 +44,7 @@ public class Address {
     @Override
     public String toString() {
         return "Address{" +
-                "number=" + number +
+
                 ", street='" + street + '\'' +
                 ", city='" + city + '\'' +
                 ", postalCode='" + postalCode + '\'' +

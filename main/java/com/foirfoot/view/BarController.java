@@ -15,6 +15,7 @@ public class BarController {
     private Text product;
     @FXML
     private Text formProduct;
+
     @FXML
     public void initialize(){
 

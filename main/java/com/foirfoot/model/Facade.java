@@ -2,8 +2,7 @@ package com.foirfoot.model;
 
 import com.foirfoot.dao.*;
 import com.foirfoot.model.club.Club;
-import com.foirfoot.model.shop.Basket;
-import com.foirfoot.model.shop.Product;
+import com.foirfoot.model.shop.*;
 import com.foirfoot.model.user.RoleName;
 import com.foirfoot.model.user.User;
 import exceptions.ClubNotFoundException;
@@ -47,6 +46,15 @@ public class Facade {
         System.out.println(product.toString());
         productDAOMySQL.save(product);
         return product;
+
+    }
+
+    public Address createAddress(  String address,String city, String country) throws SQLIntegrityConstraintViolationException {
+        AddressDAOMySQL addressDAOMySQL = (AddressDAOMySQL) this.abstractDAOFactory.create("Adress");
+        Address adress = new Address( address,city,country);
+        System.out.println(adress.toString());
+        addressDAOMySQL.save(adress);
+        return adress;
 
     }
 
