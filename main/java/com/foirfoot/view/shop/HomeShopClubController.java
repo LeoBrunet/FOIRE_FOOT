@@ -25,7 +25,7 @@ public class HomeShopClubController extends Controller {
     @FXML
     public void initialize() {
 
-        if (!Main.isClubCreatorOf(club.getId())) {
+        if (!Main.isClubCreatorOf(club.getCreator().getId())) {
             this.addProduct.setVisible(false);
         }
         List<Product> products = new ArrayList<>();
@@ -45,6 +45,9 @@ public class HomeShopClubController extends Controller {
 
     public void goToProduct(Product product) {
         Main.changeScene("shop/product", new ProductController(), new Object[]{product});
+    }
+    public void goToCreationProduct() {
+        Main.changeScene("shop/formCreationProduct");
     }
 
     @Override
