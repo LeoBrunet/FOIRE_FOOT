@@ -26,7 +26,7 @@ public class BarController {
     }
 
     public void goToShop() {
-        Main.changeScene("shop/baskettruetrue", new BasketController(),new Object[]{Main.connectedUser.getName()});
+        Main.changeScene("shop/basket", new BasketController(),new Object[]{Main.connectedUser.getBasket()});
     }
 
     public void goToClub() {

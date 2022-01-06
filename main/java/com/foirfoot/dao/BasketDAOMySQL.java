@@ -51,7 +51,8 @@ public class BasketDAOMySQL implements DAO<Basket>{
     public void delete(Basket basket) {
 
     }
-    public List<Product> SearchSameId(int user_id){
-        return null;
+
+    public Basket getBasketOfUser(int user_id) {
+        return new Basket();
     }
 }

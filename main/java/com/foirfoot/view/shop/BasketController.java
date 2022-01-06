@@ -10,6 +10,7 @@ import exceptions.ProductNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,25 +20,22 @@ public class BasketController extends Controller {
 
     private Basket basket;
     @FXML
-    private FlowPane listProducts;
+    private VBox listProducts;
     @FXML
     private Button valid;
 
     @FXML
     public void initialize() {
-
-
-
         List<Product> products = new ArrayList<>();
         products = this.basket.getListProduct();
 
 
-        /*for (Product product : products) {
-            ProductComponent productComponent = new ProductComponent(Main.isClubCreatorOf(club.getId()));
-            productComponent.setProductName(product.getName());
-            productComponent.setButtonViewAction(mouseEvent -> goToProduct(product));
-            listProducts.getChildren().add(productComponent);
-        }*/
+        for (Product product : products) {
+            BasketProductComponent basketProductComponent = new BasketProductComponent();
+            basketProductComponent.setProductName(product.getName());
+            basketProductComponent.setProductPrice(product.getPrice() + "$");
+            listProducts.getChildren().add(basketProductComponent);
+        }
     }
 
     public void goToProduct(Product product) {
@@ -45,15 +43,14 @@ public class BasketController extends Controller {
     }
 
 
-
     @Override
     public void setParameter(Object[] params) {
-
+        this.basket = (Basket) params[0];
     }
+
     public void goToTransaction() {
         Main.changeScene("shop/transactionform");
     }
-
 
 
 }

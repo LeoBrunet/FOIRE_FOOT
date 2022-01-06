@@ -17,10 +17,12 @@ import java.util.Optional;
 public class UserDAOMySQL implements DAO<User> {
 
     private User createUser(ResultSet rs) {
+        BasketDAOMySQL basketDAOMySQL = new BasketDAOMySQL();
         User user = null;
         try {
+            Basket basket = basketDAOMySQL.getBasketOfUser(rs.getInt("user_id"));
             boolean isClubCreator = rs.getInt("user_id") == rs.getInt("creator_user_id");
-            user = new User(rs.getInt("user_id"), rs.getString("user_email"), rs.getString("user_password"), rs.getString("user_name"), rs.getString("user_first_name"), RoleName.values()[rs.getInt("user_role")], rs.getInt("club_id"), rs.getInt("team_id"), isClubCreator, new Basket());
+            user = new User(rs.getInt("user_id"), rs.getString("user_email"), rs.getString("user_password"), rs.getString("user_name"), rs.getString("user_first_name"), RoleName.values()[rs.getInt("user_role")], rs.getInt("club_id"), rs.getInt("team_id"), isClubCreator, basket);
         } catch (SQLException e) {
             e.printStackTrace();
         }

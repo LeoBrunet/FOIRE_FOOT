@@ -1,68 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foirfoot.view.shop.BasketController">
-   <VBox layoutX="76.0" layoutY="119.0" prefHeight="166.0" prefWidth="449.0">
-      <children>
-         <AnchorPane prefHeight="200.0" prefWidth="200.0">
-            <children>
-               <Label layoutX="97.0" layoutY="14.0" text="Shirt Montpellier" />
-               <Circle fill="#eceff2" layoutX="50.0" layoutY="42.0" radius="28.0" stroke="BLACK" strokeType="INSIDE" />
-               <MenuButton layoutX="101.0" layoutY="42.0" mnemonicParsing="false" text="Quantity">
-                 <items>
-                   <MenuItem mnemonicParsing="false" text="Action 1" />
-                   <MenuItem mnemonicParsing="false" text="Action 2" />
-                 </items>
-               </MenuButton>
-               <Label layoutX="397.0" layoutY="33.0" text="13.91$" />
-               <ImageView fitHeight="26.0" fitWidth="38.0" layoutX="317.0" layoutY="29.0">
-                  <image>
-                     <Image url="@../../../../../../../../Downloads/images.png" />
-                  </image>
-               </ImageView>
-            </children>
-         </AnchorPane>
-         <AnchorPane prefHeight="200.0" prefWidth="200.0">
-            <children>
-               <Label layoutX="93.0" layoutY="14.0" text="Glass Montpellier" />
-               <Circle fill="#eceff2" layoutX="50.0" layoutY="42.0" radius="28.0" stroke="BLACK" strokeType="INSIDE" />
-               <MenuButton layoutX="99.0" layoutY="42.0" mnemonicParsing="false" text="Quantity">
-                 <items>
-                   <MenuItem mnemonicParsing="false" text="Action 1" />
-                   <MenuItem mnemonicParsing="false" text="Action 2" />
-                 </items>
-               </MenuButton>
-               <Label layoutX="397.0" layoutY="33.0" text="2.91$" />
-               <ImageView fitHeight="26.0" fitWidth="38.0" layoutX="317.0" layoutY="20.0">
-                  <image>
-                     <Image url="@../../../../../../../../Downloads/images.png" />
-                  </image>
-               </ImageView>
-            </children>
-         </AnchorPane>
-      </children>
-   </VBox>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+            <fx:include source="../bar.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <AnchorPane layoutY="51.0" prefHeight="349.0" prefWidth="600.0">
+                    <children>
+                        <Label layoutX="248.0" layoutY="38.0" text="My Basket" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
 
-    <fx:include source="../bar.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-   <Button fx:id="Valide" layoutX="425.0" layoutY="338.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" onAction="#goToTransaction" text="Valid" AnchorPane.leftAnchor="425.0" AnchorPane.topAnchor="338.0" />
-   <Label layoutX="109.0" layoutY="90.0" text="My Basket ">
-      <font>
-         <Font size="20.0" />
-      </font>
-   </Label>
-   <Button layoutX="102.0" layoutY="300.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Delete All" AnchorPane.leftAnchor="109.0" AnchorPane.topAnchor="299.0" />
-   <Button layoutX="376.0" layoutY="93.0" mnemonicParsing="false" text="Continue my shopping" />
-   <Label layoutX="410.0" layoutY="291.0" text="Total :" />
-   <Label layoutX="468.0" layoutY="291.0" text="16,82$" />
-   <ImageView fitHeight="133.0" fitWidth="169.0" layoutX="-45.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" />
+
+                        <Button fx:id="valid" mnemonicParsing="false" onAction="#goToTransaction" text="Valid basket" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                            <VBox fx:id="listProducts" prefHeight="400.0" prefWidth="580.0">
+                            </VBox>
+                        </ScrollPane>
+                        <Button mnemonicParsing="false" text="Delete All" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+                        <Label text="Total" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="10.0" />
+                        <Label text="16,82$" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0" />
+                    </children>
+                </AnchorPane>
+
 </AnchorPane>

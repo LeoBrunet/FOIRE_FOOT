@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -15,73 +16,56 @@ import javafx.scene.layout.VBox;
 
 public class BasketProductComponent extends AnchorPane {
     private Label productName;
-    private Label productDesc;
     private Label productPrice;
 
-    private ImageView productImageView;
-    private Button view;
-    private Button addToBasket;
-    private Button change;
-    private Button delete;
-
+    private ImageView productImage;
+    private MenuButton productQuantity;
 
     public BasketProductComponent() {
-        this.setPrefHeight(200.0);
-        this.setPrefWidth(190.0);
-
-        VBox vBox = new VBox();
-        vBox.setAlignment(Pos.TOP_CENTER);
-        setAnchor(vBox);
-        getChildren().add(vBox);
-
-        productImageView = new ImageView();
-        vBox.getChildren().add(productImageView);
-
-        productName = new Label();
-        VBox.setMargin(productName, new Insets(10, 0, 0, 0));
-        vBox.getChildren().add(productName);
-
-        productDesc = new Label();
-        VBox.setMargin(productDesc, new Insets(10, 0, 0, 0));
-        vBox.getChildren().add(productDesc);
-
-        productPrice = new Label();
-        VBox.setMargin(productPrice, new Insets(10, 0, 0, 0));
-        vBox.getChildren().add(productPrice);
+        this.setPrefHeight(100.0);
+        this.setPrefWidth(580.0);
 
         HBox hBox = new HBox();
-        VBox.setMargin(hBox, new Insets(10, 0, 10, 0));
-        hBox.setAlignment(Pos.TOP_CENTER);
-        hBox.setSpacing(10.0);
-        vBox.getChildren().add(hBox);
+        hBox.setAlignment(Pos.CENTER_LEFT);
+        setAnchorHBox(hBox);
+        getChildren().add(hBox);
 
-        view = new Button("View");
-        addToBasket = new Button("Add to basket");
-        hBox.getChildren().add(view);
-        hBox.getChildren().add(addToBasket);
+        this.productPrice = new Label();
+        setAnchorPrice(this.productPrice);
+        getChildren().add(this.productPrice);
 
+        this.productImage = new ImageView();
+        hBox.getChildren().add(this.productImage);
+
+        VBox vBox = new VBox();
+        vBox.setAlignment(Pos.CENTER);
+        hBox.getChildren().add(vBox);
+
+        this.productName = new Label();
+        vBox.getChildren().add(this.productName);
+
+        this.productQuantity = new MenuButton();
+        vBox.getChildren().add(this.productQuantity);
 
     }
 
-    private void setAnchor(Node node) {
+    private void setAnchorHBox(Node node) {
         setBottomAnchor(node, 0.0);
-        setLeftAnchor(node, 0.0);
+        setLeftAnchor(node, 10.0);
         setRightAnchor(node, 0.0);
         setTopAnchor(node, 0.0);
     }
 
+    private void setAnchorPrice (Node node) {
+        setBottomAnchor(node, 0.0);
+        setRightAnchor(node, 10.0);
+        setTopAnchor(node, 0.0);
+    }
     public void setProductName(String productName) {
         this.productName.setText(productName);
     }
-    public void setDescription(String productDesc) {
-        this.productDesc.setText(productDesc);
-    }
-    public void setPrice(String productPrice) {
+    public void setProductPrice(String productPrice) {
         this.productPrice.setText(productPrice);
-    }
-
-    public void setButtonViewAction(EventHandler<MouseEvent> mouseEventEventHandler) {
-        this.view.setOnMouseClicked(mouseEventEventHandler);
     }
     public void goToShop() {
 

@@ -41,20 +41,10 @@ public class HomeShopClubController extends Controller {
             ProductComponent productComponent = new ProductComponent(Main.isClubCreatorOf(club.getCreator().getId()));
             productComponent.setProductName(product.getName());
             productComponent.setButtonViewAction(mouseEvent -> goToProduct(product));
-            productComponent.setButtonDeleteAction(mouseEvent -> {
-                try {
-                    deleteProduct(product);
-                } catch (ProductNotFoundException | SQLIntegrityConstraintViolationException e) {
-                    e.printStackTrace();
-                }
-            });
-            productComponent.setButtonAddAction(mouseEvent -> {
-                try {
-                    addProductTobasket(product);
-                } catch (SQLIntegrityConstraintViolationException | ProductNotFoundException e) {
-                    e.printStackTrace();
-                }
-            });
+            productComponent.setButtonAddAction(mouseEvent -> addProductTobasket(product));
+            if (Main.isClubCreatorOf(this.club.getCreator().getId())) {
+                productComponent.setButtonDeleteAction(mouseEvent -> deleteProduct(product));
+            }
             listProducts.getChildren().add(productComponent);
         }
     }
@@ -62,26 +52,34 @@ public class HomeShopClubController extends Controller {
     public void goToProduct(Product product) {
         Main.changeScene("shop/product", new ProductController(), new Object[]{product});
     }
+
     public void goToCreationProduct() {
         Main.changeScene("shop/formCreationProduct");
     }
-    public void addProductTobasket(Product product) throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
+
+    public void addProductTobasket(Product product) {
         //Basket basket = new Basket(Main.connectedUser.getId(),product);
         System.out.println(Main.connectedUser.getId());
-        System.out.println(Main.connectedUser.getBasket().getListProduct() );
+        System.out.println(Main.connectedUser.getBasket().getListProduct());
         System.out.println(Main.connectedUser.getBasket());
         System.out.println(product);
 
         Main.connectedUser.getBasket().addProduct(product);
-        facade.addProduct(Main.connectedUser.getBasket(), product);
+        try {
+            facade.addProduct(Main.connectedUser.getBasket(), product);
+        } catch (SQLIntegrityConstraintViolationException | ProductNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 
-    public void deleteProduct(Product product) throws ProductNotFoundException, SQLIntegrityConstraintViolationException {
-        facade.deleteProduct(product);
-
+    public void deleteProduct(Product product) {
+        try {
+            facade.deleteProduct(product);
+        } catch (ProductNotFoundException | SQLIntegrityConstraintViolationException e) {
+            e.printStackTrace();
+        }
     }
-
 
     @Override
     public void setParameter(Object[] params) {
