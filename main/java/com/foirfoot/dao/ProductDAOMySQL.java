@@ -105,7 +105,7 @@ public class ProductDAOMySQL implements DAO<Product>{
     }
 
     @Override
-    public void update(Product product, String[] params) {
+    public void update(Product product) {
         try {
             String query = "UPDATE PRODUCT SET product_id = '"+product.getId()+"',  product_description = '"+product.getDescription()+"', product_price = '"+product.getPrice()+" ', product_stock = '"+product.getStock()+"', product_clubId = '\"+product.getClubId()+\"' WHERE product_id = "+product.getId()+"";
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);

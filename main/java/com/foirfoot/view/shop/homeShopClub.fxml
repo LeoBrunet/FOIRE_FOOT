@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <fx:include source="../bar.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+    <AnchorPane layoutY="51.0" prefHeight="349.0" prefWidth="600.0">
+        <children>
+            <Label layoutX="248.0" layoutY="38.0" text="Montpellier Shop" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+
+            <Label text="Clothes" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="30.0" />
+
+            <Button fx:id="addProduct" mnemonicParsing="false" text="Add New Product" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+            <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                <FlowPane fx:id="listProducts" columnHalignment="CENTER" prefHeight="400.0" prefWidth="580.0">
+                </FlowPane>
+            </ScrollPane>
+        </children>
+    </AnchorPane>
+</AnchorPane>

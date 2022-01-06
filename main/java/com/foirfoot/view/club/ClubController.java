@@ -4,6 +4,7 @@ import com.foirfoot.model.club.Club;
 import com.foirfoot.model.user.User;
 import com.foirfoot.view.Controller;
 import com.foirfoot.view.Main;
+import com.foirfoot.view.shop.HomeShopClubController;
 import com.foirfoot.view.team.ListTeamsController;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -37,8 +38,6 @@ public class ClubController extends Controller {
     private ImageView clubImageView;
     @FXML
     private ImageView editClub;
-    @FXML
-    private ImageView caddie;
 
     @FXML
     public void initialize() {
@@ -72,7 +71,7 @@ public class ClubController extends Controller {
     }
 
     public void goToShopClub() {
-        Main.changeScene("shop/homeShop");
+        Main.changeScene("shop/homeShopClub", new HomeShopClubController(), new Object[]{this.club});
     }
 
     @Override

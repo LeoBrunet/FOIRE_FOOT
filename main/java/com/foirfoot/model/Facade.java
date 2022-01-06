@@ -85,6 +85,11 @@ public class Facade {
         return club;
     }
 
+    public Club getClub(int clubId) throws ClubNotFoundException {
+        ClubDAOMySQL clubDAOMySQL = (ClubDAOMySQL) this.abstractDAOFactory.create("Club");
+        return clubDAOMySQL.get(clubId).orElseThrow(ClubNotFoundException::new);
+    }
+
     public Club updateClubAndClubImage(String name, String address, String phoneNumber, String website, User creator, String localPathToImage, String imageName, InputStream imageIS, Club originalClub) throws SQLIntegrityConstraintViolationException {
         ClubDAOMySQL clubDAOMySQL = (ClubDAOMySQL) this.abstractDAOFactory.create("Club");
         originalClub.setName(name);

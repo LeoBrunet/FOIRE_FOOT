@@ -22,7 +22,7 @@ public class ProductComponent extends AnchorPane {
     private Button delete;
 
 
-    public ProductComponent(){
+    public ProductComponent(boolean isClubCreator) {
         this.setPrefHeight(200.0);
         this.setPrefWidth(190.0);
 
@@ -49,18 +49,20 @@ public class ProductComponent extends AnchorPane {
         hBox.getChildren().add(view);
         hBox.getChildren().add(addToBasket);
 
-        HBox hBox2 = new HBox();
-        hBox2.setAlignment(Pos.TOP_CENTER);
-        hBox2.setSpacing(10.0);
-        vBox.getChildren().add(hBox2);
+        if (isClubCreator) {
+            HBox hBox2 = new HBox();
+            hBox2.setAlignment(Pos.TOP_CENTER);
+            hBox2.setSpacing(10.0);
+            vBox.getChildren().add(hBox2);
 
-        change = new Button("Change");
-        delete = new Button("Delete");
-        hBox2.getChildren().add(change);
-        hBox2.getChildren().add(delete);
+            change = new Button("Change");
+            delete = new Button("Delete");
+            hBox2.getChildren().add(change);
+            hBox2.getChildren().add(delete);
+        }
     }
 
-    private void setAnchor(Node node){
+    private void setAnchor(Node node) {
         setBottomAnchor(node, 0.0);
         setLeftAnchor(node, 0.0);
         setRightAnchor(node, 0.0);
@@ -71,7 +73,7 @@ public class ProductComponent extends AnchorPane {
         this.productName.setText(productName);
     }
 
-public void setButtonViewAction(EventHandler<MouseEvent> mouseEventEventHandler){
+    public void setButtonViewAction(EventHandler<MouseEvent> mouseEventEventHandler) {
         this.view.setOnMouseClicked(mouseEventEventHandler);
     }
 }

@@ -8,8 +8,8 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 
-public class AddressDAOMySQL implements DAO<Address>{
-    public AddressDAOMySQL(){
+public class AddressDAOMySQL implements DAO<Address> {
+    public AddressDAOMySQL() {
     }
 
     @Override
@@ -28,15 +28,15 @@ public class AddressDAOMySQL implements DAO<Address>{
     }
 
     @Override
-    public void update(Address address, String[] params) {
+    public void update(Address address) {
 
     }
+
 
     @Override
     public void delete(Address address) {
 
     }
-
 
 
 }

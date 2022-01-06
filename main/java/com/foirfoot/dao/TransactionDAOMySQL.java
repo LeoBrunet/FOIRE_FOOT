@@ -45,9 +45,10 @@ public class TransactionDAOMySQL implements DAO<Transaction>{
     }
 
     @Override
-    public void update(Transaction transaction, String[] params) {
+    public void update(Transaction transaction) {
 
     }
+
 
     @Override
     public void delete(Transaction transaction) {

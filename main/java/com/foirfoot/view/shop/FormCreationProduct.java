@@ -4,10 +4,7 @@ import com.foirfoot.model.Facade;
 import com.foirfoot.view.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 
@@ -25,10 +22,8 @@ public class FormCreationProduct {
     private TextField stock;
 
     public void goToHomeShopClub() {
-        Main.changeScene("shop/homeShopSideClub");
+        Main.changeScene("shop/homeShopClub", new HomeShopClubController(), new Object[]{Main.connectedUser.getClub()});
     }
-
-
 
     public void createProduct() throws SQLIntegrityConstraintViolationException {
         if (nameProduct.getText().isEmpty() || descProduct.getText().isEmpty() || price.getText().isEmpty() || stock.getText().isEmpty()) {

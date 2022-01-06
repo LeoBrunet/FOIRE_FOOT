@@ -1,16 +1,12 @@
 package com.foirfoot.view.shop;
 
 import com.foirfoot.model.Facade;
-import com.foirfoot.model.club.Club;
 import com.foirfoot.model.shop.Product;
 import com.foirfoot.view.Controller;
 import com.foirfoot.view.Main;
+import exceptions.ClubNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.text.Text;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
 
 public class ProductController extends Controller {
     private Product product;
@@ -25,7 +21,11 @@ public class ProductController extends Controller {
     }
 
     public void goToShop() {
-        Main.changeScene("shop/homeShop");
+        try {
+            Main.changeScene("shop/homeShopClub", new HomeShopClubController(), new Object[]{facade.getClub(product.getClubId())});
+        } catch (ClubNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

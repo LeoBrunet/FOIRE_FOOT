@@ -26,7 +26,7 @@ public class BasketDAOMySQL implements DAO<Basket>{
     }
 
     @Override
-    public void update(Basket basket, String[] params) {
+    public void update(Basket basket) {
 
     }
 
