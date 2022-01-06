@@ -5,6 +5,7 @@ import com.foirfoot.model.club.Club;
 import com.foirfoot.model.user.User;
 import com.foirfoot.view.Main;
 import com.foirfoot.view.club.ClubController;
+import exceptions.ProductNotFoundException;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -32,7 +33,7 @@ public class HomeController {
     }
 
     @FXML
-    public void search() {
+    public void search() throws ProductNotFoundException {
         content.getChildren().clear();
 
         // Sum up of the research

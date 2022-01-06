@@ -79,8 +79,6 @@ public class Main extends Application {
     }
 
     public static boolean isClubCreatorOf(int clubCreatorId){
-        System.out.println(clubCreatorId);
-        System.out.println( Main.connectedUser.getId());
         return clubCreatorId == Main.connectedUser.getId();
     }
 

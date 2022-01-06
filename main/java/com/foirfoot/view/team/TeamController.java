@@ -6,6 +6,7 @@ import com.foirfoot.model.team.Team;
 import com.foirfoot.model.user.User;
 import com.foirfoot.view.Controller;
 import com.foirfoot.view.Main;
+import exceptions.ProductNotFoundException;
 import exceptions.TeamNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -43,6 +44,8 @@ public class TeamController extends Controller {
         try {
             team = facade.getTeam(team.getId());
         } catch (TeamNotFoundException e) {
+            e.printStackTrace();
+        } catch (ProductNotFoundException e) {
             e.printStackTrace();
         }
         System.out.println(team);

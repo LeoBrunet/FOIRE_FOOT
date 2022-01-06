@@ -1,6 +1,10 @@
 package com.foirfoot.view;
 
 import com.foirfoot.view.club.ClubController;
+import com.foirfoot.view.shop.BasketController;
+import com.foirfoot.view.shop.BasketProductComponent;
+import com.foirfoot.view.shop.HomeShopClubController;
+import com.foirfoot.view.shop.ProductController;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
@@ -22,7 +26,7 @@ public class BarController {
     }
 
     public void goToShop() {
-        Main.changeScene("shop/basket");
+        Main.changeScene("shop/baskettruetrue", new BasketController(),new Object[]{Main.connectedUser.getName()});
     }
 
     public void goToClub() {

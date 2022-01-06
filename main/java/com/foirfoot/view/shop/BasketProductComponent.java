@@ -1,7 +1,6 @@
 package com.foirfoot.view.shop;
 
 import com.foirfoot.view.Main;
-import exceptions.ClubNotFoundException;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,8 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class ProductComponent extends AnchorPane {
-
+public class BasketProductComponent extends AnchorPane {
     private Label productName;
     private Label productDesc;
     private Label productPrice;
@@ -27,7 +25,7 @@ public class ProductComponent extends AnchorPane {
     private Button delete;
 
 
-    public ProductComponent(boolean isClubCreator) {
+    public BasketProductComponent() {
         this.setPrefHeight(200.0);
         this.setPrefWidth(190.0);
 
@@ -62,20 +60,7 @@ public class ProductComponent extends AnchorPane {
         hBox.getChildren().add(view);
         hBox.getChildren().add(addToBasket);
 
-        System.out.println(isClubCreator);
 
-        if (isClubCreator) {
-            System.out.println("iujhvoreughvbqszrij");
-            HBox hBox2 = new HBox();
-            hBox2.setAlignment(Pos.TOP_CENTER);
-            hBox2.setSpacing(10.0);
-            vBox.getChildren().add(hBox2);
-
-            change = new Button("Change");
-            delete = new Button("Delete");
-            hBox2.getChildren().add(change);
-            hBox2.getChildren().add(delete);
-        }
     }
 
     private void setAnchor(Node node) {
@@ -98,16 +83,9 @@ public class ProductComponent extends AnchorPane {
     public void setButtonViewAction(EventHandler<MouseEvent> mouseEventEventHandler) {
         this.view.setOnMouseClicked(mouseEventEventHandler);
     }
-    public void setButtonAddAction(EventHandler<MouseEvent> mouseEventEventHandler) {
-        this.addToBasket.setOnMouseClicked(mouseEventEventHandler);
-    }
-    public void setButtonDeleteAction(EventHandler<MouseEvent> mouseEventEventHandler) {
-        this.delete.setOnMouseClicked(mouseEventEventHandler);
-    }
-
     public void goToShop() {
 
-            Main.changeScene("shop/homeShopClub");
+        Main.changeScene("shop/homeShopClub");
 
     }
 }

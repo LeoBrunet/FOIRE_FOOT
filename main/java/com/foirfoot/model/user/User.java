@@ -89,6 +89,10 @@ public class User {
         return roleName;
     }
 
+    public Basket getBasket() {
+        return basket;
+    }
+
     public User login(String password) throws WrongPasswordException {
         if(comparePassword(password)) {
             return this;

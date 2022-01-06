@@ -25,26 +25,26 @@ public class Facade {
 
     private final AbstractDAOFactory<?> abstractDAOFactory = new MySQLDAOFactory();
 
-    public User login(String email, String password) throws UserNotFoundException, WrongPasswordException, ClubNotFoundException {
+    public User login(String email, String password) throws UserNotFoundException, WrongPasswordException, ClubNotFoundException, ProductNotFoundException {
         UserDAOMySQL userDAOMySQL = (UserDAOMySQL) this.abstractDAOFactory.create("User");
         Optional<User> optionalUser = userDAOMySQL.getUserByEmail(email);
         User userFoundInDatabase = optionalUser.orElseThrow(UserNotFoundException::new);
         Club club = null;
         try {
             club = ((ClubDAOMySQL) this.abstractDAOFactory.create("Club")).get(userFoundInDatabase.getClub().getId()).orElseThrow(ClubNotFoundException::new);
-        } catch (ClubNotFoundException e){
+        } catch (ClubNotFoundException | ProductNotFoundException e){
             e.printStackTrace();
         }
         userFoundInDatabase.setClub(club);
         return userFoundInDatabase.login(password);
     }
 
-    public void register(String name, String firstName, String email, String password) throws SQLIntegrityConstraintViolationException{
+    public void register(String name, String firstName, String email, String password) throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
         UserDAOMySQL userDAOMySQL = (UserDAOMySQL) this.abstractDAOFactory.create("User");
         User user = new User(email, password, name, firstName, RoleName.classic, -1, -1, false, new Basket());
         userDAOMySQL.save(user);
     }
-    public Product createProduct(String name, String desc,String price, String stock,int clubId) throws SQLIntegrityConstraintViolationException {
+    public Product createProduct(String name, String desc,String price, String stock,int clubId) throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
         ProductDAOMySQL productDAOMySQL = (ProductDAOMySQL) this.abstractDAOFactory.create("Product");
         Product product = new Product(name, desc, price, stock, Main.connectedUser.getClub().getId());
         System.out.println(Main.connectedUser.getClub().toString());
@@ -74,7 +74,7 @@ public class Facade {
     }
 
 
-    public Club createClub(String name, String address, String phoneNumber, String website, User creator, String localPathToImage, String imageName, InputStream imageIS) throws SQLIntegrityConstraintViolationException {
+    public Club createClub(String name, String address, String phoneNumber, String website, User creator, String localPathToImage, String imageName, InputStream imageIS) throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
         ClubDAOMySQL clubDAOMySQL = (ClubDAOMySQL) this.abstractDAOFactory.create("Club");
         UserDAOMySQL userDAOMySQL  = (UserDAOMySQL) this.abstractDAOFactory.create("User");
         Club club = new Club(name, address, phoneNumber, website, creator, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), imageName, imageIS);
@@ -85,12 +85,12 @@ public class Facade {
         return club;
     }
 
-    public Club getClub(int clubId) throws ClubNotFoundException {
+    public Club getClub(int clubId) throws ClubNotFoundException, ProductNotFoundException {
         ClubDAOMySQL clubDAOMySQL = (ClubDAOMySQL) this.abstractDAOFactory.create("Club");
         return clubDAOMySQL.get(clubId).orElseThrow(ClubNotFoundException::new);
     }
 
-    public Club updateClubAndClubImage(String name, String address, String phoneNumber, String website, User creator, String localPathToImage, String imageName, InputStream imageIS, Club originalClub) throws SQLIntegrityConstraintViolationException {
+    public Club updateClubAndClubImage(String name, String address, String phoneNumber, String website, User creator, String localPathToImage, String imageName, InputStream imageIS, Club originalClub) throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
         ClubDAOMySQL clubDAOMySQL = (ClubDAOMySQL) this.abstractDAOFactory.create("Club");
         originalClub.setName(name);
         originalClub.setAddress(address);
@@ -104,7 +104,7 @@ public class Facade {
         return originalClub;
     }
 
-    public Club updateClub(String name, String address, String phoneNumber, String website, User creator, Club originalClub) throws SQLIntegrityConstraintViolationException {
+    public Club updateClub(String name, String address, String phoneNumber, String website, User creator, Club originalClub) throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
         ClubDAOMySQL clubDAOMySQL = (ClubDAOMySQL) this.abstractDAOFactory.create("Club");
         originalClub.setName(name);
         originalClub.setAddress(address);
@@ -116,27 +116,41 @@ public class Facade {
         return originalClub;
     }
 
-    public Team createTeam(Object category, Object type, Club club) throws SQLIntegrityConstraintViolationException {
+    public Team createTeam(Object category, Object type, Club club) throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
         TeamDAOMySQL teamDAOMySQL = (TeamDAOMySQL) this.abstractDAOFactory.create("Team");
         Team team = new Team((String) category, (String) type, club);
         teamDAOMySQL.save(team);
         return team;
     }
 
-    public Team getTeam(int teamId) throws TeamNotFoundException {
+    public Team getTeam(int teamId) throws TeamNotFoundException, ProductNotFoundException {
         Optional<Team> team = null;
         team = ((TeamDAOMySQL) this.abstractDAOFactory.create("Team")).get(teamId);
         System.out.println(team);
         return team.orElseThrow(TeamNotFoundException::new);
     }
 
-    public List<Club> searchClubs(String clubName){
+    public List<Club> searchClubs(String clubName) throws ProductNotFoundException {
         ClubDAOMySQL clubDAOMySQL = (ClubDAOMySQL) this.abstractDAOFactory.create("Club");
         return clubDAOMySQL.searchClub(clubName);
     }
 
-    public List<User> searchUsers(String userName){
+    public List<User> searchUsers(String userName) throws ProductNotFoundException {
         UserDAOMySQL userDAOMySQL  = (UserDAOMySQL) this.abstractDAOFactory.create("User");
         return userDAOMySQL.searchUsers(userName);
+    }
+
+    public void addProduct(Basket basket, Product p) throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
+        BasketDAOMySQL basketDAOMySQL = (BasketDAOMySQL) this.abstractDAOFactory.create("Basket");
+        //basket.addProduct(p);
+        System.out.println(Main.connectedUser.getId());
+        basketDAOMySQL.save(basket);
+    }
+
+    public void deleteProduct(Product product) throws ProductNotFoundException, SQLIntegrityConstraintViolationException {
+        ProductDAOMySQL productDAOMySQL = (ProductDAOMySQL) this.abstractDAOFactory.create("Product");
+        productDAOMySQL.delete(product);
+
+
     }
 }

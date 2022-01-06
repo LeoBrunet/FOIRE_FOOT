@@ -6,6 +6,7 @@ import com.foirfoot.model.team.Team;
 import com.foirfoot.utils.MySQLConnection;
 import com.github.sardine.Sardine;
 import com.github.sardine.SardineFactory;
+import exceptions.ProductNotFoundException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,7 +16,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class ProductDAOMySQL implements DAO<Product>{
-    public ProductDAOMySQL(){
+    List<Product> products = getAllProducts();
+
+    public ProductDAOMySQL() throws ProductNotFoundException {
     }
 
     @Override
@@ -40,6 +43,8 @@ public class ProductDAOMySQL implements DAO<Product>{
         }  catch (SQLException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ProductNotFoundException e) {
             e.printStackTrace();
         }
         return Optional.ofNullable(product);
@@ -82,9 +87,9 @@ public class ProductDAOMySQL implements DAO<Product>{
     @Override
     public void save(Product product) throws SQLIntegrityConstraintViolationException {
         try {
-            String query = "INSERT INTO PRODUCT (product_name, product_description,product_price,product_stock) " +
+            String query = "INSERT INTO PRODUCT (product_name, product_description,product_price,product_stock,product_clubId) " +
                     "VALUES ('" + product.getName() + "', '" + product.getDescription()+ "', '" + product.getPrice() + "', " +
-                    "'" + product.getStock()  + "');";
+                    "'" + product.getStock() +"', '" + product.getClubId()   + "');";
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.executeUpdate();
             try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
@@ -115,9 +120,36 @@ public class ProductDAOMySQL implements DAO<Product>{
         }
 
     }
+    public List<Product> getAllProducts() throws ProductNotFoundException {
+        List<Optional<Product>> products = getAll();
+        List<Product> returnedProducts = new ArrayList<>();
+        for (Optional<Product> product : products) {
+            returnedProducts.add(product.orElseThrow(ProductNotFoundException::new));
+        }
+        return returnedProducts;
+    }
 
     @Override
-    public void delete(Product product) {
+    public void delete(Product product) throws SQLIntegrityConstraintViolationException {
+        try {
+            String query = "DELETE INTO PRODUCT (product_name, product_description,product_price,product_stock,product_clubId) " +
+                    "WHERE product_id = "+product.getId()+"";
+            PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.executeUpdate();
+            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    product.setId(generatedKeys.getInt(1));
+                }
+                else {
+                    throw new SQLException("delete product failed, no ID obtained.");
+                }
+            }
+
+        } catch (SQLIntegrityConstraintViolationException sqlIntegrityConstraintViolationException) {
+            throw sqlIntegrityConstraintViolationException;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 }

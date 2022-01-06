@@ -1,34 +1,57 @@
 package com.foirfoot.model.shop;
 import java.util.*;
 import com.foirfoot.model.team.Team;
+import com.foirfoot.view.Main;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class Basket {
-    private HashMap<Product,Integer> mapProduct ;
+    private int user_id;
+    private List<Product> listProduct = new ArrayList<>() ;
 
+    public Basket(int user_id,List<Product> listProduct) {
+        this.user_id = user_id;
 
-    public Basket(HashMap<Product,Integer> mapProduct) {
-        this.mapProduct= mapProduct;
+        this.listProduct= listProduct;
     }
+    /*public Basket(int user_id,Product p){
+        this.user_id = user_id;
+        this.listProduct.add(p);
+
+    }*/
     public Basket(){};
+    public List<Product> getListProduct(){
+        return this.listProduct;
+    }
+    public int getProductId(){
+
+        return this.listProduct.get(listProduct.size()-1).getId();
+    }
+
+    public int getUser_id(){
+        return this.user_id;
+    }
 
     public void addProduct(Product p){
-        this.mapProduct.put(p,1);
+        System.out.println(Main.connectedUser.getId());
+
+            this.listProduct.add(p);
+            System.out.println(listProduct);
+
     }
     public void deleteProduct(Product p){
-                this.mapProduct.remove(p);
+                this.listProduct.remove(p);
 
     }
     public void deleteBasket(){
-        this.mapProduct = null;//revoir pour la mettre vide mieux
+        this.listProduct = null;//revoir pour la mettre vide mieux
     }
     public void validBasket(){
 
     }
     public boolean emptyBasket(){
-        return mapProduct.size() == 0;
+        return listProduct.size() == 0;
     }
 
     public void changeQuantity(Product p, int quantity){

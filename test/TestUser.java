@@ -4,6 +4,7 @@ import com.foirfoot.model.shop.Basket;
 import com.foirfoot.model.user.RoleName;
 import com.foirfoot.model.user.User;
 import exceptions.ClubNotFoundException;
+import exceptions.ProductNotFoundException;
 import exceptions.UserNotFoundException;
 import exceptions.WrongPasswordException;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -25,6 +26,8 @@ public class TestUser {
             assertEquals(user.getEmail(), "leobrunet91@gmail.com");
             assertEquals(user.getPassword(), DigestUtils.sha1Hex("1234"));
         } catch (UserNotFoundException | WrongPasswordException | ClubNotFoundException e) {
+            e.printStackTrace();
+        } catch (ProductNotFoundException e) {
             e.printStackTrace();
         }
     }

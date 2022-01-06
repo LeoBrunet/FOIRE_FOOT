@@ -1,8 +1,10 @@
 package com.foirfoot.dao;
 
+import exceptions.ProductNotFoundException;
+
 public class MySQLDAOFactory implements AbstractDAOFactory<DAO<?>>{
     @Override
-    public DAO<?> create(String mySQLDAOType) {
+    public DAO<?> create(String mySQLDAOType) throws ProductNotFoundException {
         if ("User".equalsIgnoreCase(mySQLDAOType)) {
             return new UserDAOMySQL();
         }else if ("Club".equalsIgnoreCase(mySQLDAOType)) {
@@ -10,9 +12,9 @@ public class MySQLDAOFactory implements AbstractDAOFactory<DAO<?>>{
         }else if ("Product".equalsIgnoreCase(mySQLDAOType)) {
             return new ProductDAOMySQL();
         }else if ("Basket".equalsIgnoreCase(mySQLDAOType)) {
-            return new ProductDAOMySQL();
+            return new BasketDAOMySQL();
         }else if ("Transaction".equalsIgnoreCase(mySQLDAOType)) {
-            return new ProductDAOMySQL();
+            return new TransactionDAOMySQL();
         }else if ("Address".equalsIgnoreCase(mySQLDAOType)) {
             return new AddressDAOMySQL();
         }else if ("Team".equalsIgnoreCase(mySQLDAOType)) {

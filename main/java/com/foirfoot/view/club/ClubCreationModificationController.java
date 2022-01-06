@@ -4,6 +4,7 @@ import com.foirfoot.model.Facade;
 import com.foirfoot.model.club.Club;
 import com.foirfoot.view.Controller;
 import com.foirfoot.view.Main;
+import exceptions.ProductNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -83,6 +84,8 @@ public class ClubCreationModificationController extends Controller {
                 result.setStyle("-fx-text-fill: #e10000");
                 result.setText("File not found");
                 e.printStackTrace();
+            } catch (ProductNotFoundException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -102,6 +105,8 @@ public class ClubCreationModificationController extends Controller {
             } catch (FileNotFoundException | SQLIntegrityConstraintViolationException e) {
                 result.setStyle("-fx-text-fill: #e10000");
                 result.setText("File not found");
+                e.printStackTrace();
+            } catch (ProductNotFoundException e) {
                 e.printStackTrace();
             }
         }

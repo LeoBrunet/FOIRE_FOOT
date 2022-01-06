@@ -2,6 +2,7 @@ package com.foirfoot.view.shop;
 
 import com.foirfoot.model.Facade;
 import com.foirfoot.view.Main;
+import exceptions.ProductNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -25,7 +26,7 @@ public class FormCreationProduct {
         Main.changeScene("shop/homeShopClub", new HomeShopClubController(), new Object[]{Main.connectedUser.getClub()});
     }
 
-    public void createProduct() throws SQLIntegrityConstraintViolationException {
+    public void createProduct() throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
         if (nameProduct.getText().isEmpty() || descProduct.getText().isEmpty() || price.getText().isEmpty() || stock.getText().isEmpty()) {
         } else {
 

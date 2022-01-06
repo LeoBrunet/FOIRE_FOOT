@@ -4,6 +4,7 @@ import com.foirfoot.model.Facade;
 import com.foirfoot.model.user.User;
 import com.foirfoot.view.Main;
 import exceptions.ClubNotFoundException;
+import exceptions.ProductNotFoundException;
 import exceptions.UserNotFoundException;
 import exceptions.WrongPasswordException;
 import javafx.event.ActionEvent;
@@ -46,7 +47,7 @@ public class UserController {
                 wrongLogIn.setText("Connexion...");
                 Main.connectedUser = user;
                 Main.changeScene("home/home");
-            } catch (WrongPasswordException | UserNotFoundException | ClubNotFoundException e) {
+            } catch (WrongPasswordException | UserNotFoundException | ClubNotFoundException | ProductNotFoundException e) {
                 wrongLogIn.setStyle("-fx-font: 15.0 System;-fx-text-fill: #e10000");
                 wrongLogIn.setText(e.getMessage());
             }
@@ -65,6 +66,8 @@ public class UserController {
             } catch (SQLIntegrityConstraintViolationException e) {
                 wrongLogIn.setStyle("-fx-font: 15.0 System;-fx-text-fill: #e10000");
                 wrongLogIn.setText("Email address already used");
+            } catch (ProductNotFoundException e) {
+                e.printStackTrace();
             }
 
         }
