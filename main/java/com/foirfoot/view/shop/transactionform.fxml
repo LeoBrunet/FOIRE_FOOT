@@ -19,7 +19,7 @@
                <TextField fx:id="userAddress" layoutX="160.0" layoutY="160.0" />
                <TextField fx:id="userCity" layoutX="160.0" layoutY="188.0" />
                <TextField fx:id="userCountry" layoutX="160.0" layoutY="218.0" />
-               <Button fx:id="giveUp" layoutX="70.0" layoutY="255.0" mnemonicParsing="false" text="Give up Transaction" />
+               <Button onMouseClicked="#giveUp" layoutX="70.0" layoutY="255.0" mnemonicParsing="false" text="Give up Transaction" />
                <Button layoutX="224.0" layoutY="256.0" mnemonicParsing="false" onMouseClicked="#createTransaction" text="Valid information" />
             </children>
          </AnchorPane>

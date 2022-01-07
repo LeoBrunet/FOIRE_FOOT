@@ -54,6 +54,9 @@ public class PaymentTypeController {
             return payment;
 
     }
+    public void giveUp(){
+            Main.changeScene("shop/basket", new BasketController(),new Object[]{Main.connectedUser.getBasket()});
+    }
 
 
 

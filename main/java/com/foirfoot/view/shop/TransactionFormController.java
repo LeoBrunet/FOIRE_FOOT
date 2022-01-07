@@ -45,8 +45,8 @@ public class TransactionFormController extends Controller {
     public void goToPayment() throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
         Main.changeScene("shop/orderSummary",new OrderSummaryController(),new Object[]{facade.createTransaction(Main.connectedUser,Main.connectedUser.getBasket(), userAddress.getText(), userCity.getText(), userCountry.getText(),payment)});
     }
-    public void returnToBasket() {
-        Main.changeScene("shop/basket");
+    public void giveUp(){
+        Main.changeScene("shop/basket", new BasketController(),new Object[]{Main.connectedUser.getBasket()});
     }
 
     public void createTransaction() throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
