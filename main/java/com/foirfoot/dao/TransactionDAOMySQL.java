@@ -21,15 +21,15 @@ public class TransactionDAOMySQL implements DAO<Transaction>{
 
     @Override
     public void save(Transaction transaction) throws SQLIntegrityConstraintViolationException {
-        /*try {
-            String query = "INSERT INTO TRANSACTION (product_name, product_description,product_price,product_stock) " +
-                    "VALUES ('" + product.getName() + "', '" + product.getDescription()+ "', '" + product.getPrice() + "', " +
-                    "'" + product.getStock()  + "');";
+        try {
+            String query = "INSERT INTO TRANSACTION (transaction_user, transaction_basket,transaction_address,transaction_city,transaction_country,transaction_payment) " +
+                    "VALUES ('" + transaction.getUserId() + "', '" + transaction.getBasketId()+ "', '" + transaction.getaddress() + "', " +
+                    "'" + transaction.getCity() +"', '" + transaction.getCountry() +"', '" + transaction.getPayment()  + "');";
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.executeUpdate();
             try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
-                    product.setId(generatedKeys.getInt(1));
+                    transaction.setId(generatedKeys.getInt(1));
                 }
                 else {
                     throw new SQLException("Creating user failed, no ID obtained.");
@@ -40,7 +40,7 @@ public class TransactionDAOMySQL implements DAO<Transaction>{
             throw sqlIntegrityConstraintViolationException;
         } catch (SQLException e) {
             e.printStackTrace();
-        }*/
+        }
 
     }
 

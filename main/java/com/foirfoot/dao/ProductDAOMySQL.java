@@ -71,13 +71,16 @@ public class ProductDAOMySQL implements DAO<Product>{
     public List<Optional<Product>> getAllProductsOfClub(int clubId) {
         List<Optional<Product>> products = new ArrayList<>();
         try {
-            String query = "SELECT * FROM PRODUCT WHERE product_clubId = " + clubId;
+            String query = "SELECT * FROM PRODUCT WHERE PRODUCT.product_clubId = " + clubId + ";";
+
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
                 products.add(Optional.of(new Product(rs.getInt("product_id"),rs.getString("product_name"),rs.getString("product_description"),rs.getString("product_price"),rs.getString("product_stock"),rs.getInt("product_clubId"))));
             }
-
+            System.out.println("hello");
+            System.out.println(products.toString());
+            System.out.println("hello");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -132,7 +135,7 @@ public class ProductDAOMySQL implements DAO<Product>{
     @Override
     public void delete(Product product) throws SQLIntegrityConstraintViolationException {
         try {
-            String query = "DELETE INTO PRODUCT (product_name, product_description,product_price,product_stock,product_clubId) " +
+            String query = "DELETE FROM PRODUCT (product_name, product_description,product_price,product_stock,product_clubId) " +
                     "WHERE product_id = "+product.getId()+"";
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.executeUpdate();

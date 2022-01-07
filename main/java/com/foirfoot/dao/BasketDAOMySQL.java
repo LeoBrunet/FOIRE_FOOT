@@ -6,6 +6,7 @@ import com.foirfoot.utils.MySQLConnection;
 import com.foirfoot.view.Main;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,7 +53,30 @@ public class BasketDAOMySQL implements DAO<Basket>{
 
     }
 
+
+
+
+
     public Basket getBasketOfUser(int user_id) {
-        return new Basket();
+        List<Product> products = new ArrayList<>();
+
+        try {
+
+                String query = "SELECT * FROM PRODUCT INNER JOIN BASKET ON PRODUCT.product_id = BASKET.product_id WHERE  user_id = " + user_id + ";";//ou id
+                PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    Product product = new Product(rs.getInt("product_id"), rs.getString("product_name"), rs.getString("product_description"), rs.getString("product_price"), rs.getString("product_stock"), rs.getInt("product_clubId"));
+                    products.add(product);
+                }
+
+
+            } catch(SQLException e){
+                e.printStackTrace();
+            }
+
+        Basket basket = new Basket(user_id,products);
+
+        return basket;
     }
 }

@@ -8,6 +8,10 @@ import exceptions.ClubNotFoundException;
 import exceptions.ProductNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+
+import java.awt.*;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 public class ProductController extends Controller {
     private Product product;
@@ -19,12 +23,16 @@ public class ProductController extends Controller {
     public Label productDesc;
     @FXML
     public Label productPrice;
+    /*@FXML
+    public Button addToBasket;*/
 
     @FXML
     public void initialize() {
         productName.setText(this.product.getName());
         productDesc.setText(this.product.getDescription());
         productPrice.setText(this.product.getPrice());
+        //this.addToBasket.setOnMouseClicked(mouseEvent -> this.addProductToBasket(product));
+
 
     }
 
@@ -37,6 +45,19 @@ public class ProductController extends Controller {
             e.printStackTrace();
         }
     }
+
+    public void addProductToBasket(Product product) {
+
+
+        Main.connectedUser.getBasket().addProduct(product);
+        try {
+            facade.addProduct(Main.connectedUser.getBasket(), product);
+        } catch (SQLIntegrityConstraintViolationException | ProductNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     @Override
     public void setParameter(Object[] params) {

@@ -32,7 +32,6 @@ public class FormCreationProduct {
 
 
                 facade.createProduct(nameProduct.getText(), descProduct.getText(), price.getText(), stock.getText(),Main.connectedUser.getClub().getId());
-                //wrongLogIn.setStyle("-fx-font: 1.0 System");
                 goToHomeShopClub();
 
 

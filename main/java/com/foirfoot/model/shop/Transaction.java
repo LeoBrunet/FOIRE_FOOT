@@ -35,10 +35,38 @@ public class Transaction {
         this.payment = payment;
     }
 
+    public int getUserId() {
+        return user.getId();
+    }
+
+    public int getBasketId() {
+        return basket.getUser_id();
+    }
+
+    public String getaddress() {
+        return address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public PaymentType getPayment() {
+        return payment;
+    }
+
     public void cancelTransaction(){
 
     }
     public void validTransaction(){
 
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

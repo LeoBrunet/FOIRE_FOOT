@@ -65,7 +65,7 @@ public class Facade {
 
     public List<Product> getAllProducts() throws ProductNotFoundException {
         ProductDAOMySQL productDAOMySQL = (ProductDAOMySQL) this.abstractDAOFactory.create("Product");
-        List<Optional<Product>> products = productDAOMySQL.getAll();
+        List<Optional<Product>> products = productDAOMySQL.getAllProductsOfClub(Main.connectedUser.getClub().getId());
         List<Product> returnedProducts = new ArrayList<>();
         for (Optional<Product> product : products) {
             returnedProducts.add(product.orElseThrow(ProductNotFoundException::new));
@@ -153,4 +153,14 @@ public class Facade {
 
 
     }
+    public Transaction createTransaction(User user,Basket basket, String address, String city, String country,PaymentType payment) throws ProductNotFoundException, SQLIntegrityConstraintViolationException {
+
+
+        TransactionDAOMySQL transactionDAOMySQL = (TransactionDAOMySQL) this.abstractDAOFactory.create("Transaction");
+        Transaction transaction = new Transaction(user, basket, address, city, country, payment);
+        transactionDAOMySQL.save(transaction);
+        return transaction;
+
+    }
+
 }
