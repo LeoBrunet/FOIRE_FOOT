@@ -17,11 +17,14 @@ public class OrderSummaryController extends Controller {
     public Label address;
     @FXML
     public Label payment;
+    @FXML
+    public Label total;
 
     @FXML
     public void initialize() {
         address.setText(this.transaction.getaddress()+this.transaction.getCity()+this.transaction.getCountry());
         payment.setText((String)this.transaction.getPayment());
+        total.setText(Integer.toString(this.transaction.getBasket().calculTotal()));
 
 
     }

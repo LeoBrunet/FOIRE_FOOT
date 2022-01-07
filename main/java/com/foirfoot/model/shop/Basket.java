@@ -36,6 +36,11 @@ public class Basket {
         }
                 return total;
     }
+
+    public List<Product> deleteAll(){
+        this.listProduct = new ArrayList<>() ;
+        return this.listProduct;
+    }
     public int getProductId(){
 
         return this.listProduct.get(listProduct.size()-1).getId();

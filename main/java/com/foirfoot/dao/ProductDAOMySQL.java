@@ -135,18 +135,10 @@ public class ProductDAOMySQL implements DAO<Product>{
     @Override
     public void delete(Product product) throws SQLIntegrityConstraintViolationException {
         try {
-            String query = "DELETE FROM PRODUCT (product_name, product_description,product_price,product_stock,product_clubId) " +
-                    "WHERE product_id = "+product.getId()+"";
+            String query = "DELETE FROM PRODUCT WHERE product_id = "+product.getId()+"";
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.executeUpdate();
-            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    product.setId(generatedKeys.getInt(1));
-                }
-                else {
-                    throw new SQLException("delete product failed, no ID obtained.");
-                }
-            }
+
 
         } catch (SQLIntegrityConstraintViolationException sqlIntegrityConstraintViolationException) {
             throw sqlIntegrityConstraintViolationException;

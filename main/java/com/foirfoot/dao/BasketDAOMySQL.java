@@ -53,7 +53,19 @@ public class BasketDAOMySQL implements DAO<Basket>{
 
     }
 
+    public void deleteAll(){
+        try {
+            String query = "DELETE FROM BASKET WHERE user_id = "+Main.connectedUser.getId()+"";
+            PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.executeUpdate();
 
+        } catch (SQLIntegrityConstraintViolationException sqlIntegrityConstraintViolationException) {
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
 

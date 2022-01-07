@@ -47,6 +47,11 @@ public class BasketController extends Controller {
     public void goToProduct(Product product) {
         Main.changeScene("shop/product", new ProductController(), new Object[]{product});
     }
+    public void deleteAll() throws ProductNotFoundException {
+        basket.deleteAll();
+        facade.deleteAll();
+        initialize();
+    }
 
 
     @Override

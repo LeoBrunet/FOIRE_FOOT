@@ -163,6 +163,13 @@ public class Facade {
 
     }
 
+    public void deleteAll() throws ProductNotFoundException {
+        BasketDAOMySQL basketDAOMySQL = (BasketDAOMySQL) this.abstractDAOFactory.create("Basket");
+        basketDAOMySQL.deleteAll();
+
+
+    }
+
 
 
 

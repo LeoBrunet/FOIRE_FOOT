@@ -63,6 +63,10 @@ public class Transaction {
         return id;
     }
 
+    public Basket getBasket() {
+        return basket;
+    }
+
     public void cancelTransaction(){
 
     }
