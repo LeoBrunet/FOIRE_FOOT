@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foirfoot.view.shop.OrderSummaryController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
                 <fx:include source="../bar.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    <AnchorPane layoutX="1.0" layoutY="51.0" prefHeight="506.0" prefWidth="600.0">
       <children>
@@ -34,8 +34,9 @@
                <Label layoutX="301.0" layoutY="224.0" text="Total : 22$" />
                <Label layoutX="55.0" layoutY="241.0" text="Status : Payed" />
                <Label layoutX="55.0" layoutY="266.0" text="Estimated arrival date : 24/11/2021 " />
-               <Label layoutX="55.0" layoutY="293.0" text="Delivery to 11 street paquerette, London, UK" />
+               <Label layoutX="55.0" layoutY="293.0" text="Delivery to " />
                <Label layoutX="55.0" layoutY="316.0" text="Delivery Status : Preparing" />
+               <Label fx:id="address" layoutX="116.0" layoutY="293.0" text="11 street paquerette, London, UK" />
             </children>
          </AnchorPane>
          <Button layoutX="466.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#goToSeeAll" text="See all of my orders" />

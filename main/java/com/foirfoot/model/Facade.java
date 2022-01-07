@@ -153,7 +153,7 @@ public class Facade {
 
 
     }
-    public Transaction createTransaction(User user,Basket basket, String address, String city, String country,PaymentType payment) throws ProductNotFoundException, SQLIntegrityConstraintViolationException {
+    public Transaction createTransaction(User user,Basket basket, String address, String city, String country,Object payment) throws ProductNotFoundException, SQLIntegrityConstraintViolationException {
 
 
         TransactionDAOMySQL transactionDAOMySQL = (TransactionDAOMySQL) this.abstractDAOFactory.create("Transaction");
@@ -162,5 +162,7 @@ public class Facade {
         return transaction;
 
     }
+
+
 
 }

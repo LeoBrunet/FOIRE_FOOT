@@ -49,7 +49,7 @@ public class BasketController extends Controller {
     }
 
     public void goToTransaction() {
-        Main.changeScene("shop/transactionform");
+        Main.changeScene("shop/PaymentType");
     }
 
 

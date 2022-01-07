@@ -12,9 +12,9 @@ public class Transaction {
     private String address;
     private String city;
     private String country;
-    private PaymentType payment;
+    private Object payment;
 
-    public Transaction(int id,User user,Basket basket,String address,String city, String country,PaymentType payment){
+    public Transaction(int id,User user,Basket basket,String address,String city, String country,Object payment){
         //this.transactionClub = transactionClub;
         this.id = id;
         this.user = user;
@@ -24,7 +24,7 @@ public class Transaction {
         this.country = country;
         this.payment = payment;
     }
-    public Transaction(User user,Basket basket,String address,String city, String country,PaymentType payment){
+    public Transaction(User user,Basket basket,String address,String city, String country,Object payment){
         //this.transactionClub = transactionClub;
 
         this.user = user;
@@ -55,8 +55,12 @@ public class Transaction {
         return country;
     }
 
-    public PaymentType getPayment() {
+    public Object getPayment() {
         return payment;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void cancelTransaction(){
