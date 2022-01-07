@@ -17,7 +17,7 @@
                         </ScrollPane>
                         <Button mnemonicParsing="false" text="Delete All" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
                         <Label text="Total" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="10.0" />
-                        <Label text="16,82$" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0" />
+                        <Label fx:id="Total" text="16,82$" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0" />
                     </children>
                 </AnchorPane>
 

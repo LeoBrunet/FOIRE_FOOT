@@ -10,10 +10,12 @@ public class Basket {
     private int user_id;
     private List<Product> listProduct = new ArrayList<>() ;
 
+
     public Basket(int user_id,List<Product> listProduct) {
         this.user_id = user_id;
 
         this.listProduct= listProduct;
+
     }
     /*public Basket(int user_id,Product p){
         this.user_id = user_id;
@@ -23,6 +25,16 @@ public class Basket {
     public Basket(){};
     public List<Product> getListProduct(){
         return this.listProduct;
+    }
+
+
+    public int calculTotal(){
+        int total = 0;
+        for(int i =0;i< listProduct.size();i++){
+            total += listProduct.get(i).getPrice();
+
+        }
+                return total;
     }
     public int getProductId(){
 

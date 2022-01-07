@@ -15,10 +15,13 @@ public class OrderSummaryController extends Controller {
     private Button SeeOrders;
     @FXML
     public Label address;
+    @FXML
+    public Label payment;
 
     @FXML
     public void initialize() {
         address.setText(this.transaction.getaddress()+this.transaction.getCity()+this.transaction.getCountry());
+        payment.setText((String)this.transaction.getPayment());
 
 
     }

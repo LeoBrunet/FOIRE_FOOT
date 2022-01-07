@@ -29,9 +29,9 @@ public class FormCreationProduct {
     public void createProduct() throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
         if (nameProduct.getText().isEmpty() || descProduct.getText().isEmpty() || price.getText().isEmpty() || stock.getText().isEmpty()) {
         } else {
+                //Object prix = price.getText();
 
-
-                facade.createProduct(nameProduct.getText(), descProduct.getText(), price.getText(), stock.getText(),Main.connectedUser.getClub().getId());
+                facade.createProduct(nameProduct.getText(), descProduct.getText(), Integer.parseInt(price.getText()), stock.getText(),Main.connectedUser.getClub().getId());
                 goToHomeShopClub();
 
 

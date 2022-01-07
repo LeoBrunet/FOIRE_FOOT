@@ -59,15 +59,18 @@ public class BasketDAOMySQL implements DAO<Basket>{
 
     public Basket getBasketOfUser(int user_id) {
         List<Product> products = new ArrayList<>();
+        int total = 0;
 
         try {
 
                 String query = "SELECT * FROM PRODUCT INNER JOIN BASKET ON PRODUCT.product_id = BASKET.product_id WHERE  user_id = " + user_id + ";";//ou id
+
                 PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    Product product = new Product(rs.getInt("product_id"), rs.getString("product_name"), rs.getString("product_description"), rs.getString("product_price"), rs.getString("product_stock"), rs.getInt("product_clubId"));
+                    Product product = new Product(rs.getInt("product_id"), rs.getString("product_name"), rs.getString("product_description"), rs.getInt("product_price"), rs.getString("product_stock"), rs.getInt("product_clubId"));
                     products.add(product);
+                    //total+= product.getPrice();
                 }
 
 

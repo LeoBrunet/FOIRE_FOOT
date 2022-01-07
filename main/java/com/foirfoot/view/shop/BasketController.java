@@ -9,6 +9,7 @@ import com.foirfoot.view.Main;
 import exceptions.ProductNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
@@ -23,11 +24,16 @@ public class BasketController extends Controller {
     private VBox listProducts;
     @FXML
     private Button valid;
+    @FXML
+    private Label Total;
 
     @FXML
     public void initialize() {
         List<Product> products = new ArrayList<>();
         products = this.basket.getListProduct();
+        String tot = Integer.toString(this.basket.calculTotal());
+        String tota = (String) tot;
+        Total.setText((tot));
 
 
         for (Product product : products) {

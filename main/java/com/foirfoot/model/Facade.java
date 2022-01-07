@@ -44,7 +44,7 @@ public class Facade {
         User user = new User(email, password, name, firstName, RoleName.classic, -1, -1, false, new Basket());
         userDAOMySQL.save(user);
     }
-    public Product createProduct(String name, String desc,String price, String stock,int clubId) throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
+    public Product createProduct(String name, String desc,int price, String stock,int clubId) throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
         ProductDAOMySQL productDAOMySQL = (ProductDAOMySQL) this.abstractDAOFactory.create("Product");
         Product product = new Product(name, desc, price, stock, Main.connectedUser.getClub().getId());
         System.out.println(Main.connectedUser.getClub().toString());
@@ -162,6 +162,8 @@ public class Facade {
         return transaction;
 
     }
+
+
 
 
 

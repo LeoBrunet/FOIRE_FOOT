@@ -5,12 +5,12 @@ public class Product {
      private String nameProduct;
      //private String nameCategory;
      private String description;
-     private String price;
+     private int price;
      private String stock;
      private int clubId;
      //private String imageName;
 
-     public Product(int id,String nameProduct,  String description, String price, String stock,int clubId) {
+     public Product(int id,String nameProduct,  String description, int price, String stock,int clubId) {
           this.id = id;
           this.nameProduct = nameProduct;
           //this.nameCategory = nameCategory;
@@ -21,7 +21,7 @@ public class Product {
           //this.imageName = imageName;
      }
 
-     public Product(String product_name, String product_description, String product_price, String product_stock,int clubId) {
+     public Product(String product_name, String product_description, int product_price, String product_stock,int clubId) {
           this.nameProduct = product_name;
           //this.nameCategory = product_category;
           this.description=product_description;
@@ -40,7 +40,7 @@ public class Product {
      public String getDescription(){
           return this.description;
      }
-     public String getPrice(){
+     public int getPrice(){
           return this.price;
      }
      public String getStock(){
