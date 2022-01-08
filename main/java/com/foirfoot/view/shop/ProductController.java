@@ -7,6 +7,7 @@ import com.foirfoot.view.Main;
 import exceptions.ClubNotFoundException;
 import exceptions.ProductNotFoundException;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,6 +26,9 @@ public class ProductController extends Controller {
     public Label productDesc;
     @FXML
     public Label productPrice;
+
+    @FXML
+    private Button addProduct;
 
     @FXML
     public ImageView pictureProduct;
@@ -55,7 +59,12 @@ public class ProductController extends Controller {
         }
     }
 
-    public void addProductToBasket(Product product) {
+    public void addProductToBasket() {
+        System.out.println(Main.connectedUser.getId());
+        System.out.println(Main.connectedUser.getBasket().getListProduct());
+        System.out.println(Main.connectedUser.getBasket());
+        System.out.println(product);
+
 
 
         Main.connectedUser.getBasket().addProduct(product);

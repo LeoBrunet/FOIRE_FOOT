@@ -25,7 +25,7 @@
 
          <HBox layoutX="215.0" layoutY="235.0" prefHeight="26.0" prefWidth="208.0">
             <children>
-               <Button mnemonicParsing="false" text="Give Up Payment" />
+               <Button mnemonicParsing="false" onMouseClicked="#giveUp" text="Give Up Payment" />
                <Button mnemonicParsing="false" onMouseClicked="#goToSummary" text="Valid Payment" />
             </children>
          </HBox>
