@@ -29,12 +29,8 @@ public class BasketController extends Controller {
 
     @FXML
     public void initialize() {
-        List<Product> products = new ArrayList<>();
-        products = this.basket.getListProduct();
-        String tot = Integer.toString(this.basket.calculTotal());
-        String tota = (String) tot;
-        Total.setText((tot));
-
+        List<Product> products = this.basket.getListProduct();
+        Total.setText(this.basket.calculTotal() + "$");
 
         for (Product product : products) {
             BasketProductComponent basketProductComponent = new BasketProductComponent();

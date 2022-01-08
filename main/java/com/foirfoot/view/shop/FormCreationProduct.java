@@ -25,7 +25,6 @@ public class FormCreationProduct {
     private Button addButton;
     @FXML
     private TextField nameProduct;
-
     @FXML
     private TextField productImageLocalPath;
     @FXML
@@ -39,7 +38,6 @@ public class FormCreationProduct {
         Main.changeScene("shop/homeShopClub", new HomeShopClubController(), new Object[]{Main.connectedUser.getClub()});
     }
 
-    @FXML
     public void openFileChooser() {
         productImageLocalPath.clear();
         FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
@@ -49,6 +47,7 @@ public class FormCreationProduct {
             printLog(productImageLocalPath, file);
         }
     }
+
     private void printLog(TextField textField, File file) {
         if (file == null) {
             return;
@@ -60,15 +59,9 @@ public class FormCreationProduct {
     public void createProduct() throws SQLIntegrityConstraintViolationException, ProductNotFoundException, FileNotFoundException {
         if (nameProduct.getText().isEmpty() || descProduct.getText().isEmpty() || price.getText().isEmpty() || stock.getText().isEmpty()) {
         } else {
-                //Object prix = price.getText();
-
             InputStream targetStream = new FileInputStream(file);
-
-
-            facade.createProduct(nameProduct.getText(), descProduct.getText(), Integer.parseInt(price.getText()), stock.getText(),Main.connectedUser.getClub().getId(),productImageLocalPath.getText(), file.getName(), targetStream);
-                goToHomeShopClub();
-
-
+            facade.createProduct(nameProduct.getText(), descProduct.getText(), Integer.parseInt(price.getText()), stock.getText(), Main.connectedUser.getClub().getId(), productImageLocalPath.getText(), file.getName(), targetStream);
+            goToHomeShopClub();
         }
     }
 }

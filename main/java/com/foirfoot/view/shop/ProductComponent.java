@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -37,6 +38,9 @@ public class ProductComponent extends AnchorPane {
         getChildren().add(vBox);
 
         productImageView = new ImageView();
+        productImageView.setFitHeight(50.0);
+        productImageView.setPreserveRatio(true);
+        VBox.setMargin(productImageView, new Insets(10, 0, 0, 0));
         vBox.getChildren().add(productImageView);
 
         productName = new Label();
@@ -62,10 +66,7 @@ public class ProductComponent extends AnchorPane {
         hBox.getChildren().add(view);
         hBox.getChildren().add(addToBasket);
 
-        System.out.println(isClubCreator);
-
         if (isClubCreator) {
-            System.out.println("iujhvoreughvbqszrij");
             HBox hBox2 = new HBox();
             hBox2.setAlignment(Pos.TOP_CENTER);
             hBox2.setSpacing(10.0);
@@ -83,6 +84,10 @@ public class ProductComponent extends AnchorPane {
         setLeftAnchor(node, 0.0);
         setRightAnchor(node, 0.0);
         setTopAnchor(node, 0.0);
+    }
+
+    public void setProductImage(Image productImage) {
+        this.productImageView.setImage(productImage);
     }
 
     public void setProductName(String productName) {

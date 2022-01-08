@@ -32,7 +32,7 @@ public class Facade {
         Club club = null;
         try {
             club = ((ClubDAOMySQL) this.abstractDAOFactory.create("Club")).get(userFoundInDatabase.getClub().getId()).orElseThrow(ClubNotFoundException::new);
-        } catch (ClubNotFoundException | ProductNotFoundException e){
+        } catch (ClubNotFoundException | ProductNotFoundException e) {
             e.printStackTrace();
         }
         userFoundInDatabase.setClub(club);
@@ -44,14 +44,12 @@ public class Facade {
         User user = new User(email, password, name, firstName, RoleName.classic, -1, -1, false, new Basket());
         userDAOMySQL.save(user);
     }
-    public Product createProduct(String name, String desc,int price, String stock,int clubId, String localPathToImage, String imageName, InputStream imageIS) throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
-        ProductDAOMySQL productDAOMySQL = (ProductDAOMySQL) this.abstractDAOFactory.create("Product");
-        Product product = new Product(name, desc, price, stock, Main.connectedUser.getClub().getId(),imageName,imageIS);
-        System.out.println(Main.connectedUser.getClub().toString());
-        System.out.println(product.toString());
-        productDAOMySQL.save(product);
-        return product;
 
+    public void createProduct(String name, String desc, int price, String stock, int clubId, String localPathToImage, String imageName, InputStream imageIS) throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
+        ProductDAOMySQL productDAOMySQL = (ProductDAOMySQL) this.abstractDAOFactory.create("Product");
+        Product product = new Product(name, desc, price, stock, Main.connectedUser.getClub().getId(), imageName, imageIS);
+        System.out.println(product);
+        productDAOMySQL.save(product, localPathToImage);
     }
 
     /*public Address createAddress(  String address,String city, String country) throws SQLIntegrityConstraintViolationException {
@@ -63,9 +61,9 @@ public class Facade {
 
     }*/
 
-    public List<Product> getAllProducts() throws ProductNotFoundException {
+    public List<Product> getAllProductsOfClub(int clubId) throws ProductNotFoundException {
         ProductDAOMySQL productDAOMySQL = (ProductDAOMySQL) this.abstractDAOFactory.create("Product");
-        List<Optional<Product>> products = productDAOMySQL.getAllProductsOfClub(Main.connectedUser.getClub().getId());
+        List<Optional<Product>> products = productDAOMySQL.getAllProductsOfClub(clubId);
         List<Product> returnedProducts = new ArrayList<>();
         for (Optional<Product> product : products) {
             returnedProducts.add(product.orElseThrow(ProductNotFoundException::new));
@@ -76,7 +74,7 @@ public class Facade {
 
     public Club createClub(String name, String address, String phoneNumber, String website, User creator, String localPathToImage, String imageName, InputStream imageIS) throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
         ClubDAOMySQL clubDAOMySQL = (ClubDAOMySQL) this.abstractDAOFactory.create("Club");
-        UserDAOMySQL userDAOMySQL  = (UserDAOMySQL) this.abstractDAOFactory.create("User");
+        UserDAOMySQL userDAOMySQL = (UserDAOMySQL) this.abstractDAOFactory.create("User");
         Club club = new Club(name, address, phoneNumber, website, creator, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), imageName, imageIS);
         clubDAOMySQL.save(club, localPathToImage);
         creator.setClub(club);
@@ -136,7 +134,7 @@ public class Facade {
     }
 
     public List<User> searchUsers(String userName) throws ProductNotFoundException {
-        UserDAOMySQL userDAOMySQL  = (UserDAOMySQL) this.abstractDAOFactory.create("User");
+        UserDAOMySQL userDAOMySQL = (UserDAOMySQL) this.abstractDAOFactory.create("User");
         return userDAOMySQL.searchUsers(userName);
     }
 
@@ -153,7 +151,8 @@ public class Facade {
 
 
     }
-    public Transaction createTransaction(int user,Basket basket, String address, String city, String country,Object payment,int nbProducts, int total) throws ProductNotFoundException, SQLIntegrityConstraintViolationException {
+
+    public Transaction createTransaction(int user, Basket basket, String address, String city, String country, Object payment, int nbProducts, int total) throws ProductNotFoundException, SQLIntegrityConstraintViolationException {
 
 
         TransactionDAOMySQL transactionDAOMySQL = (TransactionDAOMySQL) this.abstractDAOFactory.create("Transaction");
@@ -176,9 +175,6 @@ public class Facade {
 
 
     }
-
-
-
 
 
 }

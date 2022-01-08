@@ -2,7 +2,6 @@ package com.foirfoot.view.shop;
 
 import com.foirfoot.model.Facade;
 import com.foirfoot.model.club.Club;
-import com.foirfoot.model.shop.Basket;
 import com.foirfoot.model.shop.Product;
 import com.foirfoot.view.Controller;
 import com.foirfoot.view.Main;
@@ -32,7 +31,7 @@ public class HomeShopClubController extends Controller {
         }
         List<Product> products = new ArrayList<>();
         try {
-            products = facade.getAllProducts();
+            products = facade.getAllProductsOfClub(club.getId());
         } catch (ProductNotFoundException e) {
             e.printStackTrace();
         }
@@ -41,7 +40,8 @@ public class HomeShopClubController extends Controller {
             ProductComponent productComponent = new ProductComponent(Main.isClubCreatorOf(club.getCreator().getId()));
             productComponent.setProductName(product.getName());
             productComponent.setButtonViewAction(mouseEvent -> goToProduct(product));
-            productComponent.setButtonAddAction(mouseEvent -> addProductTobasket(product));
+            productComponent.setButtonAddAction(mouseEvent -> addProductToBasket(product));
+            productComponent.setProductImage(Main.downloadImage(product.getImageName(), product.getImageIS()));
             if (Main.isClubCreatorOf(this.club.getCreator().getId())) {
                 productComponent.setButtonDeleteAction(mouseEvent -> deleteProduct(product));
             }
@@ -57,8 +57,7 @@ public class HomeShopClubController extends Controller {
         Main.changeScene("shop/formCreationProduct");
     }
 
-    public void addProductTobasket(Product product) {
-        //Basket basket = new Basket(Main.connectedUser.getId(),product);
+    public void addProductToBasket(Product product) {
         System.out.println(Main.connectedUser.getId());
         System.out.println(Main.connectedUser.getBasket().getListProduct());
         System.out.println(Main.connectedUser.getBasket());

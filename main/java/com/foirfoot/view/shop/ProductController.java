@@ -31,7 +31,7 @@ public class ProductController extends Controller {
         int price = this.product.getPrice();
         productName.setText(this.product.getName());
         productDesc.setText(this.product.getDescription());
-        productPrice.setText(Integer.toString(price));
+        productPrice.setText(price + "$");
         //this.addToBasket.setOnMouseClicked(mouseEvent -> this.addProductToBasket(product));
 
 
@@ -40,9 +40,7 @@ public class ProductController extends Controller {
     public void goToShop() {
         try {
             Main.changeScene("shop/homeShopClub", new HomeShopClubController(), new Object[]{facade.getClub(product.getClubId())});
-        } catch (ClubNotFoundException e) {
-            e.printStackTrace();
-        } catch (ProductNotFoundException e) {
+        } catch (ClubNotFoundException | ProductNotFoundException e) {
             e.printStackTrace();
         }
     }

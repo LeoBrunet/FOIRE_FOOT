@@ -19,8 +19,6 @@ import java.io.InputStream;
 
 public class ClubController extends Controller {
 
-    public static final int DEFAULT_BUFFER_SIZE = 8192;
-
     private Club club;
     @FXML
     private Text clubName;
@@ -53,20 +51,13 @@ public class ClubController extends Controller {
             coaches.getChildren().add(new Text(c.getFirstName() + " " + c.getName()));
         }
 
-        //TODO Delete files
-        File file = new File(System.getProperty("user.dir") + "/main/java/com/foirfoot/view/assets/images/temp/" + club.getImageName());
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-                copyInputStreamToFile(club.getImageIS(), file);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        clubImageView.setImage(new Image(file.toURI().toString()));
+        Image image = Main.downloadImage(club.getImageName(), club.getImageIS());
+        clubImageView.setImage(image);
 
-        if (club.getId() != Main.connectedUser.getClub().getId()){
-            editClub.setVisible(false);
+        if (Main.connectedUser.getClub() != null) {
+            if (club.getId() != Main.connectedUser.getClub().getId()) {
+                editClub.setVisible(false);
+            }
         }
     }
 
@@ -89,16 +80,5 @@ public class ClubController extends Controller {
 
     public void goToClubModification() {
         Main.changeScene("club/clubCreationModification", new ClubCreationModificationController(), new Object[]{Main.connectedUser.getClub(), true});
-    }
-
-    private static void copyInputStreamToFile(InputStream inputStream, File file)
-            throws IOException {
-        try (FileOutputStream outputStream = new FileOutputStream(file, false)) {
-            int read;
-            byte[] bytes = new byte[DEFAULT_BUFFER_SIZE];
-            while ((read = inputStream.read(bytes)) != -1) {
-                outputStream.write(bytes, 0, read);
-            }
-        }
     }
 }

@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class ProductDAOMySQL implements DAO<Product>{
-    List<Product> products = getAllProducts();
 
     public ProductDAOMySQL() throws ProductNotFoundException {
     }
@@ -31,18 +30,12 @@ public class ProductDAOMySQL implements DAO<Product>{
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                ProductDAOMySQL productDAOMySQL = new ProductDAOMySQL();
-
-                /*Sardine sardine = SardineFactory.begin("leo-ig", "ftyx-mloi-fhci");
+                Sardine sardine = SardineFactory.begin("leo-ig", "ftyx-mloi-fhci");
                 InputStream is = sardine.get("http://webdav-leo-ig.alwaysdata.net/foir_foot/images/" + rs.getString("product_image"));
-*/
-                product = new Product(rs.getString("product_name"),  rs.getString("product_description"), rs.getInt("product_price"),  rs.getString("product_stock"), rs.getInt("product_clubId"), rs.getString("product_image"));
 
-
+                product = new Product(rs.getString("product_name"),  rs.getString("product_description"), rs.getInt("product_price"),  rs.getString("product_stock"), rs.getInt("product_clubId"), rs.getString("product_image"), is);
             }
-        }  catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ProductNotFoundException e) {
+        }  catch (SQLException | IOException e) {
             e.printStackTrace();
         }
         return Optional.ofNullable(product);
@@ -74,15 +67,11 @@ public class ProductDAOMySQL implements DAO<Product>{
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
-                /*Sardine sardine = SardineFactory.begin("leo-ig", "ftyx-mloi-fhci");
-                InputStream is = sardine.get("http://webdav-leo-ig.alwaysdata.net/foir_foot/images/" + rs.getString("club_image_name"));*/
-                products.add(Optional.of(new Product(rs.getInt("product_id"),rs.getString("product_name"),rs.getString("product_description"),rs.getInt("product_price"),rs.getString("product_stock"),rs.getInt("product_clubId"), rs.getString("product_image"))));
+                Sardine sardine = SardineFactory.begin("leo-ig", "ftyx-mloi-fhci");
+                InputStream is = sardine.get("http://webdav-leo-ig.alwaysdata.net/foir_foot/images/" + rs.getString("product_image"));
+                products.add(Optional.of(new Product(rs.getInt("product_id"),rs.getString("product_name"),rs.getString("product_description"),rs.getInt("product_price"),rs.getString("product_stock"),rs.getInt("product_clubId"), rs.getString("product_image"), is)));
             }
-            System.out.println("hello");
-            System.out.println(products.toString());
-            System.out.println("hello");
-
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
         return products;
@@ -116,7 +105,8 @@ public class ProductDAOMySQL implements DAO<Product>{
         }
 
     }
-   /* public void save(Product product, String localPathToImage) throws SQLIntegrityConstraintViolationException {
+
+    public void save(Product product, String localPathToImage) throws SQLIntegrityConstraintViolationException {
         save(product);
         try {
             Sardine sardine = SardineFactory.begin("leo-ig", "ftyx-mloi-fhci");
@@ -125,7 +115,7 @@ public class ProductDAOMySQL implements DAO<Product>{
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
     @Override
     public void update(Product product) {

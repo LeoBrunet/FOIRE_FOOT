@@ -11,12 +11,15 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
 
 
 public class Main extends Application {
+    public static final int DEFAULT_BUFFER_SIZE = 8192;
     private static Stage stg; //fake stage
 
     public static User connectedUser;
@@ -59,7 +62,7 @@ public class Main extends Application {
         stg.setTitle(stg.getTitle().split(" :")[0] + " : " + fxml.split("/")[1].replace(".fxml", ""));
     }
 
-    public static void changeScene(String fxml, Controller controller, Object[] params){
+    public static void changeScene(String fxml, Controller controller, Object[] params) {
         fxml = fxml + ".fxml";
         Parent pane = null;
         try {
@@ -78,11 +81,36 @@ public class Main extends Application {
 
     }
 
-    public static boolean isClubCreatorOf(int clubCreatorId){
+    public static Image downloadImage(String imageName, InputStream is) {
+        //TODO Delete files
+        File file = new File(System.getProperty("user.dir") + "/main/java/com/foirfoot/view/assets/images/temp/" + imageName);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+                copyInputStreamToFile(is, file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return new Image(file.toURI().toString());
+    }
+
+    public static boolean isClubCreatorOf(int clubCreatorId) {
         return clubCreatorId == Main.connectedUser.getId();
     }
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    private static void copyInputStreamToFile(InputStream inputStream, File file)
+            throws IOException {
+        try (FileOutputStream outputStream = new FileOutputStream(file, false)) {
+            int read;
+            byte[] bytes = new byte[DEFAULT_BUFFER_SIZE];
+            while ((read = inputStream.read(bytes)) != -1) {
+                outputStream.write(bytes, 0, read);
+            }
+        }
     }
 }
