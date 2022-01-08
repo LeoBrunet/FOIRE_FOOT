@@ -8,6 +8,8 @@ import com.foirfoot.view.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
@@ -27,6 +29,8 @@ public class OrderSummaryController extends Controller {
     public Label payment;
     @FXML
     public Label total;
+    @FXML
+    public ImageView productImage;
 
     @FXML
     public void initialize() {
@@ -41,11 +45,15 @@ public class OrderSummaryController extends Controller {
             OrderProductComponent orderProductComponent = new OrderProductComponent();
             orderProductComponent.setProductName(product.getName());
             orderProductComponent.setProductPrice(product.getPrice() + "$");
+            orderProductComponent.setProductImage(Main.downloadImage(product.getImageName(), product.getImageIS()));
+
             listProducts.getChildren().add(orderProductComponent);
         }
 
 
     }
+
+
 
     public void goToSeeAll() {
         System.out.println(transaction.getId());

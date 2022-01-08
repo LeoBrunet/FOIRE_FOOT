@@ -36,6 +36,8 @@ public class BasketController extends Controller {
             BasketProductComponent basketProductComponent = new BasketProductComponent();
             basketProductComponent.setProductName(product.getName());
             basketProductComponent.setProductPrice(product.getPrice() + "$");
+            basketProductComponent.setProductImage(Main.downloadImage(product.getImageName(), product.getImageIS()));
+
             listProducts.getChildren().add(basketProductComponent);
         }
     }

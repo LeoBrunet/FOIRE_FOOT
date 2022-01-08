@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -35,6 +36,9 @@ public class BasketProductComponent extends AnchorPane {
         getChildren().add(this.productPrice);
 
         this.productImage = new ImageView();
+        productImage.setFitHeight(50.0);
+        productImage.setPreserveRatio(true);
+
         hBox.getChildren().add(this.productImage);
 
         VBox vBox = new VBox();
@@ -60,6 +64,9 @@ public class BasketProductComponent extends AnchorPane {
         setBottomAnchor(node, 0.0);
         setRightAnchor(node, 10.0);
         setTopAnchor(node, 0.0);
+    }
+    public void setProductImage(Image productImage) {
+        this.productImage.setImage(productImage);
     }
     public void setProductName(String productName) {
         this.productName.setText(productName);
