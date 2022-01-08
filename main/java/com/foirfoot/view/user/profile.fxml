@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -8,12 +9,22 @@
     <fx:include source="../bar.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
     <VBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
         <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0">
-         <VBox.margin>
-            <Insets left="10.0" top="10.0" />
-         </VBox.margin>
-         <font>
-            <Font name="Segoe UI Bold" size="24.0" />
-         </font></Text>
+            <VBox.margin>
+                <Insets left="10.0" top="10.0" />
+            </VBox.margin>
+            <font>
+                <Font name="Segoe UI Bold" size="24.0" />
+            </font>
+        </Text>
     </VBox>
+    <ImageView fx:id="basket" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="60.0">
+        <Image url="@../assets/images/shopping-cart.png" />
+    </ImageView>
+    <ImageView fx:id="settings" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="10.0">
+        <Image url="@../assets/images/settings.png" />
+    </ImageView>
+    <ImageView fx:id="logout" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#logOut" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+        <Image url="@../assets/images/logout.png" />
+    </ImageView>
 
 </AnchorPane>

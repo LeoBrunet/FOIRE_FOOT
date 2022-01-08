@@ -40,6 +40,7 @@ public class Main extends Application {
     }
 
     public static void changeScene(String fxml) {
+        System.out.println("redirect to " + fxml + "...");
         fxml = fxml + ".fxml";
         Parent pane = null;
         try {
