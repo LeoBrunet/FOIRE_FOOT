@@ -57,7 +57,7 @@ public class TransactionFormController extends Controller {
 
             System.out.println(payment);
 
-            facade.createTransaction(Main.connectedUser,Main.connectedUser.getBasket(), userAddress.getText(), userCity.getText(), userCountry.getText(),payment);
+            //facade.createTransaction(Main.connectedUser,Main.connectedUser.getBasket(), userAddress.getText(), userCity.getText(), userCountry.getText(),payment);
             goToPayment();
 
 
