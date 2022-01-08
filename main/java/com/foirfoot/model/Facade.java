@@ -45,9 +45,9 @@ public class Facade {
         userDAOMySQL.save(user);
     }
 
-    public void createProduct(String name, String desc, int price, String stock, int clubId, String localPathToImage, String imageName, InputStream imageIS) throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
+    public void createProduct(String name,Object category, String desc, int price, String stock, int clubId, String localPathToImage, String imageName, InputStream imageIS) throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
         ProductDAOMySQL productDAOMySQL = (ProductDAOMySQL) this.abstractDAOFactory.create("Product");
-        Product product = new Product(name, desc, price, stock, Main.connectedUser.getClub().getId(), imageName, imageIS);
+        Product product = new Product(name,category, desc, price, stock, Main.connectedUser.getClub().getId(), imageName, imageIS);
         System.out.println(product);
         productDAOMySQL.save(product, localPathToImage);
     }

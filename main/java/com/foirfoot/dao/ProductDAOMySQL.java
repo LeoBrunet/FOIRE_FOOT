@@ -33,7 +33,7 @@ public class ProductDAOMySQL implements DAO<Product>{
                 Sardine sardine = SardineFactory.begin("leo-ig", "ftyx-mloi-fhci");
                 InputStream is = sardine.get("http://webdav-leo-ig.alwaysdata.net/foir_foot/images/" + rs.getString("product_image"));
 
-                product = new Product(rs.getString("product_name"),  rs.getString("product_description"), rs.getInt("product_price"),  rs.getString("product_stock"), rs.getInt("product_clubId"), rs.getString("product_image"), is);
+                product = new Product(rs.getString("product_name"), rs.getString("product_category"), rs.getString("product_description"), rs.getInt("product_price"),  rs.getString("product_stock"), rs.getInt("product_clubId"), rs.getString("product_image"), is);
             }
         }  catch (SQLException | IOException e) {
             e.printStackTrace();
@@ -50,7 +50,7 @@ public class ProductDAOMySQL implements DAO<Product>{
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
-                products.add(Optional.of(new Product(rs.getInt("product_id"),rs.getString("product_name"),rs.getString("product_description"),rs.getInt("product_price"),rs.getString("product_stock"),rs.getInt("product_clubId"), rs.getString("product_image"))));
+                products.add(Optional.of(new Product(rs.getInt("product_id"),rs.getString("product_name"),rs.getString("product_category"),rs.getString("product_description"),rs.getInt("product_price"),rs.getString("product_stock"),rs.getInt("product_clubId"), rs.getString("product_image"))));
             }
 
         } catch (SQLException e) {
@@ -69,7 +69,7 @@ public class ProductDAOMySQL implements DAO<Product>{
             while (rs.next()){
                 Sardine sardine = SardineFactory.begin("leo-ig", "ftyx-mloi-fhci");
                 InputStream is = sardine.get("http://webdav-leo-ig.alwaysdata.net/foir_foot/images/" + rs.getString("product_image"));
-                products.add(Optional.of(new Product(rs.getInt("product_id"),rs.getString("product_name"),rs.getString("product_description"),rs.getInt("product_price"),rs.getString("product_stock"),rs.getInt("product_clubId"), rs.getString("product_image"), is)));
+                products.add(Optional.of(new Product(rs.getInt("product_id"),rs.getString("product_name"),rs.getString("product_category"),rs.getString("product_description"),rs.getInt("product_price"),rs.getString("product_stock"),rs.getInt("product_clubId"), rs.getString("product_image"), is)));
             }
         } catch (SQLException | IOException e) {
             e.printStackTrace();
@@ -80,8 +80,8 @@ public class ProductDAOMySQL implements DAO<Product>{
     @Override
     public void save(Product product) throws SQLIntegrityConstraintViolationException {
         try {
-            String query = "INSERT INTO PRODUCT (product_name, product_description,product_price,product_stock,product_clubId,product_image) " +
-                    "VALUES ('" + product.getName() + "', '" + product.getDescription()+ "', '" + product.getPrice() + "', " +
+            String query = "INSERT INTO PRODUCT (product_name, product_category,product_description,product_price,product_stock,product_clubId,product_image) " +
+                    "VALUES ('" + product.getName() + "', '"  + product.getNameCategory() + "', '"+ product.getDescription()+ "', '" + product.getPrice() + "', " +
                     "'" + product.getStock() +"', '" + product.getClubId() +"', '" + product.getImageName()  + "');";
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
@@ -120,7 +120,7 @@ public class ProductDAOMySQL implements DAO<Product>{
     @Override
     public void update(Product product) {
         try {
-            String query = "UPDATE PRODUCT SET product_id = '"+product.getId()+"',  product_description = '"+product.getDescription()+"', product_price = '"+product.getPrice()+" ', product_stock = '"+product.getStock()+"', product_clubId = '"+product.getClubId()+"', product_image = '"+product.getImageName()+"' WHERE product_id = "+product.getId()+"";
+            String query = "UPDATE PRODUCT SET product_id = '"+product.getId()+"', product_description = '"+product.getNameCategory()+"', product_description = '"+product.getDescription()+"', product_price = '"+product.getPrice()+" ', product_stock = '"+product.getStock()+"', product_clubId = '"+product.getClubId()+"', product_image = '"+product.getImageName()+"' WHERE product_id = "+product.getId()+"";
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ps.executeUpdate();
         } catch (SQLException e) {

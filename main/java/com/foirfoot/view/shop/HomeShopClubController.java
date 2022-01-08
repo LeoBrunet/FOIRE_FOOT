@@ -8,6 +8,7 @@ import com.foirfoot.view.Main;
 import exceptions.ProductNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 
 import java.sql.SQLIntegrityConstraintViolationException;
@@ -18,6 +19,9 @@ public class HomeShopClubController extends Controller {
     Facade facade = new Facade();
 
     private Club club;
+
+    @FXML
+    private Label nameShop;
     @FXML
     private FlowPane listProducts;
     @FXML
@@ -25,6 +29,7 @@ public class HomeShopClubController extends Controller {
 
     @FXML
     public void initialize() {
+        this.nameShop.setText(this.club.getName() + " Shop");
 
         if (!Main.isClubCreatorOf(club.getCreator().getId())) {
             this.addProduct.setVisible(false);
@@ -39,6 +44,8 @@ public class HomeShopClubController extends Controller {
         for (Product product : products) {
             ProductComponent productComponent = new ProductComponent(Main.isClubCreatorOf(club.getCreator().getId()));
             productComponent.setProductName(product.getName());
+            productComponent.setPrice(Integer.toString(product.getPrice()) + "$");
+
             productComponent.setButtonViewAction(mouseEvent -> goToProduct(product));
             productComponent.setButtonAddAction(mouseEvent -> addProductToBasket(product));
             productComponent.setProductImage(Main.downloadImage(product.getImageName(), product.getImageIS()));

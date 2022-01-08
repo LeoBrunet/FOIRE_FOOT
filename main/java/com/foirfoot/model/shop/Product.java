@@ -5,7 +5,7 @@ import java.io.InputStream;
 public class Product {
      private int id;
      private String nameProduct;
-     //private String nameCategory;
+     private Object nameCategory;
      private String description;
      private int price;
      private String stock;
@@ -13,10 +13,10 @@ public class Product {
      private String imageName;
      private InputStream imageIS;
 
-     public Product(int id,String nameProduct,  String description, int price, String stock,int clubId,String imageName,InputStream imageIS) {
+     public Product(int id,String nameProduct, Object nameCategory, String description, int price, String stock,int clubId,String imageName,InputStream imageIS) {
           this.id = id;
           this.nameProduct = nameProduct;
-          //this.nameCategory = nameCategory;
+          this.nameCategory = nameCategory;
           this.description = description;
           this.price = price;
           this.stock = stock;
@@ -25,9 +25,9 @@ public class Product {
           this.imageIS = imageIS;
      }
 
-     public Product(String product_name, String product_description, int product_price, String product_stock,int clubId,String imageName,InputStream imageIS) {
+     public Product(String product_name,Object nameCategory, String product_description, int product_price, String product_stock,int clubId,String imageName,InputStream imageIS) {
           this.nameProduct = product_name;
-          //this.nameCategory = product_category;
+          this.nameCategory = nameCategory;
           this.description=product_description;
           this.price= product_price;
           this.stock= product_stock;
@@ -37,9 +37,9 @@ public class Product {
 
      }
 
-     public Product(String product_name, String product_description, int product_price, String product_stock,int clubId,String imageName) {
+     public Product(String product_name, Object nameCategory,String product_description, int product_price, String product_stock,int clubId,String imageName) {
           this.nameProduct = product_name;
-          //this.nameCategory = product_category;
+          this.nameCategory = nameCategory;
           this.description=product_description;
           this.price= product_price;
           this.stock= product_stock;
@@ -48,10 +48,10 @@ public class Product {
 
      }
 
-     public Product(int id,String product_name, String product_description, int product_price, String product_stock,int clubId,String imageName) {
+     public Product(int id,String product_name,Object nameCategory, String product_description, int product_price, String product_stock,int clubId,String imageName) {
           this.id =id;
           this.nameProduct = product_name;
-          //this.nameCategory = product_category;
+          this.nameCategory = nameCategory;
           this.description=product_description;
           this.price= product_price;
           this.stock= product_stock;
@@ -67,9 +67,14 @@ public class Product {
      public String getName(){
           return this.nameProduct;
      }
+
+     public Object getNameCategory() {
+          return nameCategory;
+     }
+
      /*public String getNameCategory(){
-          return this.nameCategory;
-     }*/
+               return this.nameCategory;
+          }*/
      public String getDescription(){
           return this.description;
      }

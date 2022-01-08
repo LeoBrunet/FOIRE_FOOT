@@ -8,6 +8,8 @@ import exceptions.ClubNotFoundException;
 import exceptions.ProductNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.awt.*;
@@ -23,6 +25,9 @@ public class ProductController extends Controller {
     public Label productDesc;
     @FXML
     public Label productPrice;
+
+    @FXML
+    public ImageView pictureProduct;
     /*@FXML
     public Button addToBasket;*/
 
@@ -32,9 +37,14 @@ public class ProductController extends Controller {
         productName.setText(this.product.getName());
         productDesc.setText(this.product.getDescription());
         productPrice.setText(price + "$");
+        setProductImage(Main.downloadImage(product.getImageName(), product.getImageIS()));
+
         //this.addToBasket.setOnMouseClicked(mouseEvent -> this.addProductToBasket(product));
 
 
+    }
+    public void setProductImage(Image productImage) {
+        this.pictureProduct.setImage(productImage);
     }
 
     public void goToShop() {

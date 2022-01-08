@@ -7,7 +7,7 @@
     <fx:include source="../bar.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
     <AnchorPane layoutY="51.0" prefHeight="349.0" prefWidth="600.0">
         <children>
-            <Label layoutX="248.0" layoutY="38.0" text="Montpellier Shop" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+            <Label fx:id="nameShop" layoutX="248.0" layoutY="38.0" text="Montpellier Shop" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
 
             <Label text="Clothes" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="30.0" />
 
