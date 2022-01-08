@@ -7,7 +7,9 @@ import com.foirfoot.utils.MySQLConnection;
 import com.github.sardine.Sardine;
 import com.github.sardine.SardineFactory;
 import exceptions.ProductNotFoundException;
+import org.apache.commons.io.FileUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -31,18 +33,14 @@ public class ProductDAOMySQL implements DAO<Product>{
             while (rs.next()) {
                 ProductDAOMySQL productDAOMySQL = new ProductDAOMySQL();
 
-
-
-                Sardine sardine = SardineFactory.begin("leo-ig", "ftyx-mloi-fhci");
+                /*Sardine sardine = SardineFactory.begin("leo-ig", "ftyx-mloi-fhci");
                 InputStream is = sardine.get("http://webdav-leo-ig.alwaysdata.net/foir_foot/images/" + rs.getString("product_image"));
-
-                product = new Product(rs.getString("product_name"),  rs.getString("product_description"), rs.getInt("product_price"),  rs.getString("product_stock"), rs.getInt("product_clubId"));
+*/
+                product = new Product(rs.getString("product_name"),  rs.getString("product_description"), rs.getInt("product_price"),  rs.getString("product_stock"), rs.getInt("product_clubId"), rs.getString("product_image"));
 
 
             }
         }  catch (SQLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         } catch (ProductNotFoundException e) {
             e.printStackTrace();
@@ -59,7 +57,7 @@ public class ProductDAOMySQL implements DAO<Product>{
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
-                products.add(Optional.of(new Product(rs.getInt("product_id"),rs.getString("product_name"),rs.getString("product_description"),rs.getInt("product_price"),rs.getString("product_stock"),rs.getInt("product_clubId"))));
+                products.add(Optional.of(new Product(rs.getInt("product_id"),rs.getString("product_name"),rs.getString("product_description"),rs.getInt("product_price"),rs.getString("product_stock"),rs.getInt("product_clubId"), rs.getString("product_image"))));
             }
 
         } catch (SQLException e) {
@@ -76,11 +74,14 @@ public class ProductDAOMySQL implements DAO<Product>{
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
-                products.add(Optional.of(new Product(rs.getInt("product_id"),rs.getString("product_name"),rs.getString("product_description"),rs.getInt("product_price"),rs.getString("product_stock"),rs.getInt("product_clubId"))));
+                /*Sardine sardine = SardineFactory.begin("leo-ig", "ftyx-mloi-fhci");
+                InputStream is = sardine.get("http://webdav-leo-ig.alwaysdata.net/foir_foot/images/" + rs.getString("club_image_name"));*/
+                products.add(Optional.of(new Product(rs.getInt("product_id"),rs.getString("product_name"),rs.getString("product_description"),rs.getInt("product_price"),rs.getString("product_stock"),rs.getInt("product_clubId"), rs.getString("product_image"))));
             }
             System.out.println("hello");
             System.out.println(products.toString());
             System.out.println("hello");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -90,11 +91,15 @@ public class ProductDAOMySQL implements DAO<Product>{
     @Override
     public void save(Product product) throws SQLIntegrityConstraintViolationException {
         try {
-            String query = "INSERT INTO PRODUCT (product_name, product_description,product_price,product_stock,product_clubId) " +
+            String query = "INSERT INTO PRODUCT (product_name, product_description,product_price,product_stock,product_clubId,product_image) " +
                     "VALUES ('" + product.getName() + "', '" + product.getDescription()+ "', '" + product.getPrice() + "', " +
-                    "'" + product.getStock() +"', '" + product.getClubId()   + "');";
+                    "'" + product.getStock() +"', '" + product.getClubId() +"', '" + product.getImageName()  + "');";
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+
+
+
             ps.executeUpdate();
+
             try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     product.setId(generatedKeys.getInt(1));
@@ -111,11 +116,21 @@ public class ProductDAOMySQL implements DAO<Product>{
         }
 
     }
+   /* public void save(Product product, String localPathToImage) throws SQLIntegrityConstraintViolationException {
+        save(product);
+        try {
+            Sardine sardine = SardineFactory.begin("leo-ig", "ftyx-mloi-fhci");
+            byte[] data = FileUtils.readFileToByteArray(new File(localPathToImage));
+            sardine.put("http://webdav-leo-ig.alwaysdata.net/foir_foot/images/" + product.getImageName(), data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
 
     @Override
     public void update(Product product) {
         try {
-            String query = "UPDATE PRODUCT SET product_id = '"+product.getId()+"',  product_description = '"+product.getDescription()+"', product_price = '"+product.getPrice()+" ', product_stock = '"+product.getStock()+"', product_clubId = '\"+product.getClubId()+\"' WHERE product_id = "+product.getId()+"";
+            String query = "UPDATE PRODUCT SET product_id = '"+product.getId()+"',  product_description = '"+product.getDescription()+"', product_price = '"+product.getPrice()+" ', product_stock = '"+product.getStock()+"', product_clubId = '"+product.getClubId()+"', product_image = '"+product.getImageName()+"' WHERE product_id = "+product.getId()+"";
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ps.executeUpdate();
         } catch (SQLException e) {

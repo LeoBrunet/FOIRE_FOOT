@@ -1,5 +1,7 @@
 package com.foirfoot.model.shop;
 
+import java.io.InputStream;
+
 public class Product {
      private int id;
      private String nameProduct;
@@ -8,9 +10,10 @@ public class Product {
      private int price;
      private String stock;
      private int clubId;
-     //private String imageName;
+     private String imageName;
+     private InputStream imageIS;
 
-     public Product(int id,String nameProduct,  String description, int price, String stock,int clubId) {
+     public Product(int id,String nameProduct,  String description, int price, String stock,int clubId,String imageName,InputStream imageIS) {
           this.id = id;
           this.nameProduct = nameProduct;
           //this.nameCategory = nameCategory;
@@ -18,17 +21,47 @@ public class Product {
           this.price = price;
           this.stock = stock;
           this.clubId = clubId;
-          //this.imageName = imageName;
+          this.imageName = imageName;
+          this.imageIS = imageIS;
      }
 
-     public Product(String product_name, String product_description, int product_price, String product_stock,int clubId) {
+     public Product(String product_name, String product_description, int product_price, String product_stock,int clubId,String imageName,InputStream imageIS) {
           this.nameProduct = product_name;
           //this.nameCategory = product_category;
           this.description=product_description;
           this.price= product_price;
           this.stock= product_stock;
           this.clubId = clubId;
-          //this.imageName = product_image;
+          this.imageName = imageName;
+          this.imageIS = imageIS;
+
+     }
+
+     public Product(String product_name, String product_description, int product_price, String product_stock,int clubId,String imageName) {
+          this.nameProduct = product_name;
+          //this.nameCategory = product_category;
+          this.description=product_description;
+          this.price= product_price;
+          this.stock= product_stock;
+          this.clubId = clubId;
+          this.imageName = imageName;
+
+     }
+
+     public Product(int id,String product_name, String product_description, int product_price, String product_stock,int clubId,String imageName) {
+          this.id =id;
+          this.nameProduct = product_name;
+          //this.nameCategory = product_category;
+          this.description=product_description;
+          this.price= product_price;
+          this.stock= product_stock;
+          this.clubId = clubId;
+          this.imageName = imageName;
+
+     }
+
+     public InputStream getImageIS() {
+          return imageIS;
      }
 
      public String getName(){
@@ -49,6 +82,15 @@ public class Product {
      /*public String getImage(){
           return this.imageName;
      }*/
+
+     public String getNameProduct() {
+          return nameProduct;
+     }
+
+     public String getImageName() {
+          return imageName;
+     }
+
      public void setId(int id) {
           this.id = id;
      }

@@ -37,6 +37,9 @@
                   <cursor>
                      <Cursor fx:constant="TEXT" />
                   </cursor></TextField>
+                  <TextField fx:id="productImageLocalPath" editable="false" promptText="/path_to_image/logo.png">
+                  </TextField>
+               <Button layoutX="310.0" layoutY="124.0"  onAction="#openFileChooser" mnemonicParsing="false" text="Add picture" />
             </children>
          </AnchorPane>
          <Button layoutX="121.0" layoutY="331.0" mnemonicParsing="false" onAction="#createProduct" prefHeight="26.0" prefWidth="250.0" text="Add" />

@@ -27,6 +27,10 @@ public class Basket {
         return this.listProduct;
     }
 
+    public int getNbProducts(){
+        return this.listProduct.size();
+    }
+
 
     public int calculTotal(){
         int total = 0;

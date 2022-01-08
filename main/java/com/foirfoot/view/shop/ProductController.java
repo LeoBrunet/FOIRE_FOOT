@@ -28,10 +28,10 @@ public class ProductController extends Controller {
 
     @FXML
     public void initialize() {
-        Object price = this.product.getPrice();
+        int price = this.product.getPrice();
         productName.setText(this.product.getName());
         productDesc.setText(this.product.getDescription());
-        productPrice.setText((String)price);
+        productPrice.setText(Integer.toString(price));
         //this.addToBasket.setOnMouseClicked(mouseEvent -> this.addProductToBasket(product));
 
 

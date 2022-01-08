@@ -11,15 +11,16 @@ CREATE TABLE PRODUCT
     product_price       varchar(255) NOT NULL,
     product_stock         varchar(255) NOT NULL,
     product_clubId       MEDIUMINT,
+    product_image       varchar(255) NOT NULL,
     PRIMARY KEY (product_id),
     FOREIGN KEY (product_clubId) REFERENCES CLUBS (club_id)
 )ENGINE = InnoDB
  DEFAULT CHARSET = utf8;
 
-INSERT INTO PRODUCT (product_id, product_name,  product_description, product_price,  product_stock ,product_clubId)
-VALUES (1, 'shirt MTP', 'beautiful shirt', 2, 2,1);
-INSERT INTO PRODUCT (product_id, product_name,  product_description, product_price,  product_stock,product_clubId )
-VALUES (2, 'tote bag',  'beautiful tote bag', 2, 2,2);
+INSERT INTO PRODUCT (product_id, product_name,  product_description, product_price,  product_stock ,product_clubId,product_image)
+VALUES (1, 'shirt MTP', 'beautiful shirt', 2, 2,1,'girondins.png');
+INSERT INTO PRODUCT (product_id, product_name,  product_description, product_price,  product_stock,product_clubId, product_image )
+VALUES (2, 'tote bag',  'beautiful tote bag', 2, 2,2,'girondins.png');
 
 CREATE TABLE TRANSACTION
 (
@@ -31,6 +32,8 @@ CREATE TABLE TRANSACTION
     transaction_city       varchar(255) NOT NULL,
     transaction_country         varchar(255) NOT NULL,
     transaction_payment         varchar(255) NOT NULL,
+    transaction_nbproducts  MEDIUMINT,
+    transaction_total       MEDIUMINT,
     PRIMARY KEY (transaction_id)
 )ENGINE = InnoDB
  DEFAULT CHARSET = utf8;

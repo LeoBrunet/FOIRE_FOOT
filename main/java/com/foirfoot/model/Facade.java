@@ -44,9 +44,9 @@ public class Facade {
         User user = new User(email, password, name, firstName, RoleName.classic, -1, -1, false, new Basket());
         userDAOMySQL.save(user);
     }
-    public Product createProduct(String name, String desc,int price, String stock,int clubId) throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
+    public Product createProduct(String name, String desc,int price, String stock,int clubId, String localPathToImage, String imageName, InputStream imageIS) throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
         ProductDAOMySQL productDAOMySQL = (ProductDAOMySQL) this.abstractDAOFactory.create("Product");
-        Product product = new Product(name, desc, price, stock, Main.connectedUser.getClub().getId());
+        Product product = new Product(name, desc, price, stock, Main.connectedUser.getClub().getId(),imageName,imageIS);
         System.out.println(Main.connectedUser.getClub().toString());
         System.out.println(product.toString());
         productDAOMySQL.save(product);
@@ -153,11 +153,11 @@ public class Facade {
 
 
     }
-    public Transaction createTransaction(User user,Basket basket, String address, String city, String country,Object payment) throws ProductNotFoundException, SQLIntegrityConstraintViolationException {
+    public Transaction createTransaction(int user,Basket basket, String address, String city, String country,Object payment,int nbProducts, int total) throws ProductNotFoundException, SQLIntegrityConstraintViolationException {
 
 
         TransactionDAOMySQL transactionDAOMySQL = (TransactionDAOMySQL) this.abstractDAOFactory.create("Transaction");
-        Transaction transaction = new Transaction(user, basket, address, city, country, payment);
+        Transaction transaction = new Transaction(user, basket, address, city, country, payment, nbProducts, total);
         transactionDAOMySQL.save(transaction);
         return transaction;
 
@@ -166,6 +166,13 @@ public class Facade {
     public void deleteAll() throws ProductNotFoundException {
         BasketDAOMySQL basketDAOMySQL = (BasketDAOMySQL) this.abstractDAOFactory.create("Basket");
         basketDAOMySQL.deleteAll();
+
+
+    }
+
+    public List<Transaction> getAllTransactions(int user_id) throws ProductNotFoundException {
+        TransactionDAOMySQL transactionDAOMySQL = (TransactionDAOMySQL) this.abstractDAOFactory.create("Transaction");
+        return transactionDAOMySQL.getAllTransactionsPerUser(user_id);
 
 
     }

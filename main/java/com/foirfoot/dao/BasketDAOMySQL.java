@@ -80,7 +80,7 @@ public class BasketDAOMySQL implements DAO<Basket>{
                 PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    Product product = new Product(rs.getInt("product_id"), rs.getString("product_name"), rs.getString("product_description"), rs.getInt("product_price"), rs.getString("product_stock"), rs.getInt("product_clubId"));
+                    Product product = new Product(rs.getInt("product_id"), rs.getString("product_name"), rs.getString("product_description"), rs.getInt("product_price"), rs.getString("product_stock"), rs.getInt("product_clubId"),rs.getString("product_image"));
                     products.add(product);
                     //total+= product.getPrice();
                 }

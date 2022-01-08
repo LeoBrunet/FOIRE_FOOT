@@ -1,32 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foirfoot.view.shop.OrdersListController">
                 <fx:include source="../bar.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    <AnchorPane layoutX="1.0" layoutY="52.0" prefHeight="348.0" prefWidth="600.0">
       <children>
          <Label layoutX="76.0" layoutY="36.0" text="My Old Orders" />
-         <AnchorPane layoutX="14.0" layoutY="114.0" prefHeight="43.0" prefWidth="544.0">
-            <children>
-               <Label layoutY="6.0" text="01/11/2021" />
-               <Label layoutX="84.0" layoutY="6.0" text="2 products" />
-               <Label layoutX="193.0" layoutY="6.0" text="Total : 12$" />
-               <Label layoutX="328.0" layoutY="7.0" text="Status : Arrived" />
-               <Button layoutX="475.0" layoutY="2.0" mnemonicParsing="false" text="View" />
-            </children>
-         </AnchorPane>
-         <AnchorPane layoutX="14.0" layoutY="153.0" prefHeight="43.0" prefWidth="544.0">
-            <children>
-               <Label layoutY="6.0" text="01/09/2021" />
-               <Label layoutX="84.0" layoutY="6.0" text="4 products" />
-               <Label layoutX="193.0" layoutY="6.0" text="Total : 12$" />
-               <Label layoutX="328.0" layoutY="7.0" text="Status : Arrived" />
-               <Button layoutX="475.0" layoutY="2.0" mnemonicParsing="false" text="View" />
-            </children>
-         </AnchorPane>
+         <ScrollPane layoutX="16.0" layoutY="66.0" prefHeight="170.0" prefWidth="569.0">
+           <content>
+             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                  <children>
+                     <VBox fx:id="listOrders" layoutX="18.0" layoutY="22.0" prefHeight="138.0" prefWidth="490.0" />
+                  </children>
+               </AnchorPane>
+           </content>
+         </ScrollPane>
       </children>
    </AnchorPane>
 
