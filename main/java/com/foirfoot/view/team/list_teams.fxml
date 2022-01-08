@@ -2,29 +2,33 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17"
-            xmlns:fx="http://javafx.com/fxml/1">
-    <fx:include source="../bar.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                AnchorPane.topAnchor="0.0"/>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <fx:include source="../bar.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
     <AnchorPane layoutY="53.0" prefHeight="348.0" prefWidth="600.0">
         <children>
-            <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0"  fx:id="text" text="List of **** teams">
+         <ImageView fitHeight="27.0" fitWidth="78.0" layoutX="559.0" layoutY="10.0" onMouseClicked="#goToClub" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../assets/images/retour.png" />
+            </image>
+         </ImageView>
+            <Text fx:id="text" layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of **** teams">
                 <font>
-                    <Font name="Segoe UI Bold" size="24.0"/>
+                    <Font name="Segoe UI Bold" size="24.0" />
                 </font>
             </Text>
             <ScrollPane layoutX="86.0" layoutY="51.0" prefHeight="247.0" prefWidth="429.0">
                 <content>
-                    <VBox fx:id="teams" prefHeight="245.0" prefWidth="413.0"/>
+                    <VBox fx:id="teams" prefHeight="245.0" prefWidth="413.0" />
                 </content>
             </ScrollPane>
-            <Button layoutX="195.0" layoutY="309.0" onAction="#goToTeamCreation" mnemonicParsing="false" prefHeight="25.0" prefWidth="210.0"
-                    text="Create a new team"/>
+            <Button layoutX="195.0" layoutY="309.0" mnemonicParsing="false" onAction="#goToTeamCreation" prefHeight="25.0" prefWidth="210.0" text="Create a new team" />
         </children>
     </AnchorPane>
 </AnchorPane>

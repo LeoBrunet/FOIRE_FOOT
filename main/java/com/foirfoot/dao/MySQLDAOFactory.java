@@ -13,6 +13,8 @@ public class MySQLDAOFactory implements AbstractDAOFactory<DAO<?>>{
             return new CategoryDAOMySQL();
         }else if ("Type".equalsIgnoreCase(mySQLDAOType)) {
             return new TypeDAOMySQL();
+        }else if ("Result".equalsIgnoreCase(mySQLDAOType)) {
+            return new ResultDAOMySQL();
         }
         return null;
     }

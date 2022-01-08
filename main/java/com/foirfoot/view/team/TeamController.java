@@ -6,6 +6,7 @@ import com.foirfoot.model.team.Team;
 import com.foirfoot.model.user.User;
 import com.foirfoot.view.Controller;
 import com.foirfoot.view.Main;
+import com.foirfoot.view.results.ResultsController;
 import exceptions.TeamNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -58,6 +59,18 @@ public class TeamController extends Controller {
         //TODO Delete files
         File file = new File(System.getProperty("user.dir") + "/main/java/com/foirfoot/view/assets/images/temp/" + team.getClub().getImageName());
         clubImageView.setImage(new Image(file.toURI().toString()));
+    }
+
+    public void goToTeams() {
+        if (Main.connectedUser.getClub().getTeams().isEmpty()) {
+            Main.changeScene("team/no_team");
+        } else {
+            Main.changeScene("team/list_teams", new ListTeamsController(), new Object[]{team.getClub()});
+        }
+    }
+
+    public void goToResults(){
+        Main.changeScene("results/results", new ResultsController(), new Object[]{team});
     }
 
     @Override
