@@ -55,6 +55,7 @@ CREATE TABLE BASKET
 (
     user_id         MEDIUMINT    ,
     product_id MEDIUMINT,
+    quantity MEDIUMINT,
 
 
 
@@ -62,5 +63,5 @@ CREATE TABLE BASKET
 )ENGINE = InnoDB
  DEFAULT CHARSET = utf8;
 
-INSERT INTO BASKET (user_id,product_id )
-VALUES (7,2);
+INSERT INTO BASKET (user_id,product_id,quantity )
+VALUES (7,2,1);

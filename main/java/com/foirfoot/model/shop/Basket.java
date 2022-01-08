@@ -9,12 +9,15 @@ import java.util.List;
 public class Basket {
     private int user_id;
     private List<Product> listProduct = new ArrayList<>() ;
+    private List<Integer> listQuantity = new ArrayList<>() ;
 
 
-    public Basket(int user_id,List<Product> listProduct) {
+
+    public Basket(int user_id,List<Product> listProduct,List<Integer> listQuantity) {
         this.user_id = user_id;
 
         this.listProduct= listProduct;
+        this.listQuantity= listQuantity;
 
     }
     /*public Basket(int user_id,Product p){
@@ -25,6 +28,10 @@ public class Basket {
     public Basket(){};
     public List<Product> getListProduct(){
         return this.listProduct;
+    }
+
+    public List<Integer> getListQuantity() {
+        return listQuantity;
     }
 
     public int getNbProducts(){
@@ -49,16 +56,23 @@ public class Basket {
 
         return this.listProduct.get(listProduct.size()-1).getId();
     }
+    public int getQuantity(){
+
+        return this.listQuantity.get(listQuantity.size()-1);
+    }
 
     public int getUser_id(){
         return this.user_id;
     }
 
-    public void addProduct(Product p){
+    public void addProduct(Product p,Integer quantity){
         System.out.println(Main.connectedUser.getId());
 
             this.listProduct.add(p);
+            this.listQuantity.add(quantity);
             System.out.println(listProduct);
+
+            System.out.println(listQuantity);
 
     }
     public void deleteProduct(Product p){

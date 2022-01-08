@@ -138,7 +138,7 @@ public class Facade {
         return userDAOMySQL.searchUsers(userName);
     }
 
-    public void addProduct(Basket basket, Product p) throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
+    public void addProduct(Basket basket, Product p,int quantity) throws SQLIntegrityConstraintViolationException, ProductNotFoundException {
         BasketDAOMySQL basketDAOMySQL = (BasketDAOMySQL) this.abstractDAOFactory.create("Basket");
         //basket.addProduct(p);
         System.out.println(Main.connectedUser.getId());

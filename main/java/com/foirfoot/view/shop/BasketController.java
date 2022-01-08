@@ -30,15 +30,22 @@ public class BasketController extends Controller {
     @FXML
     public void initialize() {
         List<Product> products = this.basket.getListProduct();
+        List<Integer> quantities = this.basket.getListQuantity();
         Total.setText(this.basket.calculTotal() + "$");
+        int i = 0;
 
         for (Product product : products) {
-            BasketProductComponent basketProductComponent = new BasketProductComponent();
-            basketProductComponent.setProductName(product.getName());
-            basketProductComponent.setProductPrice(product.getPrice() + "$");
-            basketProductComponent.setProductImage(Main.downloadImage(product.getImageName(), product.getImageIS()));
 
-            listProducts.getChildren().add(basketProductComponent);
+                BasketProductComponent basketProductComponent = new BasketProductComponent();
+                basketProductComponent.setProductName(product.getName());
+                //basketProductComponent.setProductQuantity(quantities.get(i));
+
+                basketProductComponent.setProductPrice(product.getPrice() + "$");
+                basketProductComponent.setProductImage(Main.downloadImage(product.getImageName(), product.getImageIS()));
+
+                listProducts.getChildren().add(basketProductComponent);
+                //i++;
+
         }
     }
 

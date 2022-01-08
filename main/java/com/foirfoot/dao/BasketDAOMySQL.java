@@ -29,8 +29,8 @@ public class BasketDAOMySQL implements DAO<Basket>{
         try {
             System.out.println(Main.connectedUser.getId());
             System.out.println(basket.getUser_id());
-            String query = "INSERT INTO BASKET (user_id, product_id) " +
-                    "VALUES ('" + Main.connectedUser.getId() + "', '" + basket.getProductId() + "');";
+            String query = "INSERT INTO BASKET (user_id, product_id,quantity) " +
+                    "VALUES ('" + Main.connectedUser.getId() + "', '" + basket.getProductId() + "', '" + basket.getQuantity() + "');";
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.executeUpdate();
 
@@ -71,6 +71,7 @@ public class BasketDAOMySQL implements DAO<Basket>{
 
     public Basket getBasketOfUser(int user_id) {
         List<Product> products = new ArrayList<>();
+        List<Integer> quantities = new ArrayList<>();
         int total = 0;
 
         try {
@@ -90,7 +91,7 @@ public class BasketDAOMySQL implements DAO<Basket>{
                 e.printStackTrace();
             }
 
-        Basket basket = new Basket(user_id,products);
+        Basket basket = new Basket(user_id,products,quantities);
 
         return basket;
     }

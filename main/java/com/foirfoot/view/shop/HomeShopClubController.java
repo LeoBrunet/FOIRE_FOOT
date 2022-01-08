@@ -65,14 +65,15 @@ public class HomeShopClubController extends Controller {
     }
 
     public void addProductToBasket(Product product) {
+        int quantity = 1;
         System.out.println(Main.connectedUser.getId());
         System.out.println(Main.connectedUser.getBasket().getListProduct());
         System.out.println(Main.connectedUser.getBasket());
         System.out.println(product);
 
-        Main.connectedUser.getBasket().addProduct(product);
+        Main.connectedUser.getBasket().addProduct(product,quantity);
         try {
-            facade.addProduct(Main.connectedUser.getBasket(), product);
+            facade.addProduct(Main.connectedUser.getBasket(), product,quantity);
         } catch (SQLIntegrityConstraintViolationException | ProductNotFoundException e) {
             e.printStackTrace();
         }
