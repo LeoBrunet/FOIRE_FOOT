@@ -34,22 +34,36 @@ public class Basket {
         return listQuantity;
     }
 
-    public int getNbProducts(){
+    /*public int getNbProducts(){
         return this.listProduct.size();
+    }*/
+    public int getNbProducts(){
+        int sum =0;
+        for(int i=0;i<listQuantity.size(); i++){
+            sum += listQuantity.get(i);
+        }
+
+        return sum;
     }
+
 
 
     public int calculTotal(){
         int total = 0;
-        for(int i =0;i< listProduct.size();i++){
-            total += listProduct.get(i).getPrice();
+        System.out.println(listQuantity);
+        System.out.println(listProduct);
+        if(!listQuantity.isEmpty()) {
+            for (int i = 0; i < listProduct.size(); i++) {
+                total += listProduct.get(i).getPrice() * listQuantity.get(i);
 
+            }
         }
                 return total;
     }
 
     public List<Product> deleteAll(){
         this.listProduct = new ArrayList<>() ;
+        this.listQuantity = new ArrayList<>() ;
         return this.listProduct;
     }
     public int getProductId(){

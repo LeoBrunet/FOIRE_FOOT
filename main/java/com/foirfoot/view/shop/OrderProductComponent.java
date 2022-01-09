@@ -14,6 +14,8 @@ import javafx.scene.layout.VBox;
 public class OrderProductComponent extends AnchorPane{
     private Label productName;
     private Label productPrice;
+    private Label quantity;
+
 
     private ImageView productImage;
     private MenuButton productQuantity;
@@ -43,8 +45,10 @@ public class OrderProductComponent extends AnchorPane{
         this.productName = new Label();
         vBox.getChildren().add(this.productName);
 
-        this.productQuantity = new MenuButton();
-        vBox.getChildren().add(this.productQuantity);
+        this.quantity = new Label();
+        vBox.getChildren().add(this.quantity);
+
+
 
     }
 
@@ -65,6 +69,9 @@ public class OrderProductComponent extends AnchorPane{
     }
     public void setProductName(String productName) {
         this.productName.setText(productName);
+    }
+    public void setProductQuantity(int quantity) {
+        this.quantity.setText(Integer.toString(quantity));
     }
     public void setProductPrice(String productPrice) {
         this.productPrice.setText(productPrice);

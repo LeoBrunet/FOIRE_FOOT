@@ -176,5 +176,11 @@ public class Facade {
 
     }
 
+    public int getQuantityOfProduct(int productId) throws ProductNotFoundException {
+        BasketDAOMySQL basketDAOMySQL = (BasketDAOMySQL) this.abstractDAOFactory.create("Basket");
+        System.out.println("hey");
+        return basketDAOMySQL.getQuantityOfProduct(productId);
+    }
+
 
 }

@@ -66,6 +66,36 @@ public class BasketDAOMySQL implements DAO<Basket>{
         }
 
     }
+     public int getQuantityOfProduct(int product_id){
+        int quant = 1;
+         System.out.println("oh");
+
+         try {
+             System.out.println("hy");
+
+             String query = "SELECT quantity FROM BASKET WHERE BASKET.product_id = " + product_id + " AND user_id = " + Main.connectedUser.getId() + ";";
+             System.out.println("y");
+
+             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
+             ResultSet rs = ps.executeQuery();
+             System.out.println("hyo");
+             while (rs.next()) {
+                 quant = rs.getInt("quantity");
+             }
+
+             System.out.println("hyaaa");
+
+             System.out.println(quant);
+
+
+         } catch(SQLException e){
+             e.printStackTrace();
+         }
+
+
+         return quant;
+
+     }
 
 
 
@@ -83,7 +113,7 @@ public class BasketDAOMySQL implements DAO<Basket>{
                 while (rs.next()) {
                     Product product = new Product(rs.getInt("product_id"), rs.getString("product_name"), rs.getString("product_category"),rs.getString("product_description"), rs.getInt("product_price"), rs.getString("product_stock"), rs.getInt("product_clubId"),rs.getString("product_image"));
                     products.add(product);
-                    //total+= product.getPrice();
+                    quantities.add(rs.getInt("quantity"));
                 }
 
 

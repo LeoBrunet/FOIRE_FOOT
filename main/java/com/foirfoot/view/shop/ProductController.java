@@ -79,6 +79,8 @@ public class ProductController extends Controller {
 
         System.out.println(Main.connectedUser.getId());
         System.out.println(Main.connectedUser.getBasket().getListProduct());
+        System.out.println(Main.connectedUser.getBasket().getListQuantity());
+
         System.out.println(Main.connectedUser.getBasket());
         System.out.println(product);
 

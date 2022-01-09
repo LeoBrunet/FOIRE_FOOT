@@ -28,7 +28,7 @@ public class BasketController extends Controller {
     private Label Total;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws ProductNotFoundException {
         List<Product> products = this.basket.getListProduct();
         List<Integer> quantities = this.basket.getListQuantity();
         Total.setText(this.basket.calculTotal() + "$");
@@ -38,13 +38,13 @@ public class BasketController extends Controller {
 
                 BasketProductComponent basketProductComponent = new BasketProductComponent();
                 basketProductComponent.setProductName(product.getName());
-                //basketProductComponent.setProductQuantity(quantities.get(i));
+                basketProductComponent.setProductQuantity(facade.getQuantityOfProduct(product.getId()));
 
-                basketProductComponent.setProductPrice(product.getPrice() + "$");
+                basketProductComponent.setProductPrice(product.getPrice()*facade.getQuantityOfProduct(product.getId()) + "$");
                 basketProductComponent.setProductImage(Main.downloadImage(product.getImageName(), product.getImageIS()));
 
                 listProducts.getChildren().add(basketProductComponent);
-                //i++;
+
 
         }
     }

@@ -5,6 +5,7 @@ import com.foirfoot.model.shop.Product;
 import com.foirfoot.model.shop.Transaction;
 import com.foirfoot.view.Controller;
 import com.foirfoot.view.Main;
+import exceptions.ProductNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -33,7 +34,7 @@ public class OrderSummaryController extends Controller {
     public ImageView productImage;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws ProductNotFoundException {
         address.setText(this.transaction.getaddress()+this.transaction.getCity()+this.transaction.getCountry());
         payment.setText((String)this.transaction.getPayment());
         total.setText(Integer.toString(this.transaction.getBasket().calculTotal()));
@@ -44,7 +45,9 @@ public class OrderSummaryController extends Controller {
         for (Product product : products) {
             OrderProductComponent orderProductComponent = new OrderProductComponent();
             orderProductComponent.setProductName(product.getName());
-            orderProductComponent.setProductPrice(product.getPrice() + "$");
+            orderProductComponent.setProductQuantity(facade.getQuantityOfProduct(product.getId()));
+
+            orderProductComponent.setProductPrice(product.getPrice()*facade.getQuantityOfProduct(product.getId()) + "$");
             orderProductComponent.setProductImage(Main.downloadImage(product.getImageName(), product.getImageIS()));
 
             listProducts.getChildren().add(orderProductComponent);

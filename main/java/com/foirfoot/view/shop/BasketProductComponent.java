@@ -52,8 +52,7 @@ public class BasketProductComponent extends AnchorPane {
         this.quantity = new Label();
         vBox.getChildren().add(this.quantity);
 
-        this.productQuantity = new MenuButton();
-        vBox.getChildren().add(this.productQuantity);
+
 
     }
 
