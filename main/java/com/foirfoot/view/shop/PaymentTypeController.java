@@ -9,10 +9,7 @@ import com.foirfoot.view.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +19,9 @@ public class PaymentTypeController {
     Facade facade = new Facade();
 
     Object payment;
+
+    @FXML
+    private Label missPay;
 
     @FXML
     private Button ValidPayment;
@@ -38,16 +38,22 @@ public class PaymentTypeController {
         }
 
     public void goToSummary() {
-        this.payment =  wayPay.getValue();
+        if (wayPay.getValue() == null) {
+            missPay.setText("Please enter payment");
+        } else {
+            this.payment = wayPay.getValue();
 
 
-        System.out.println(payment.toString());
-        Main.changeScene("shop/transactionform",new TransactionFormController(), new Object[]{payment});
-    }
+            System.out.println(payment.toString());
+            Main.changeScene("shop/transactionform", new TransactionFormController(), new Object[]{payment});
+        }
+        }
+
 
     public Object getPayment(){
 
-        Object payment =  wayPay.getValue();
+
+            Object payment = wayPay.getValue();
 
             System.out.println(payment.toString());
 
