@@ -1,6 +1,7 @@
 package com.foirfoot.model.user;
 
 import com.foirfoot.model.club.Club;
+import com.foirfoot.model.shop.Basket;
 import exceptions.WrongPasswordException;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -17,8 +18,9 @@ public class User {
     private File picture;
     private RoleName roleName;
     private Role role;
+    private Basket basket;
 
-    public User(String email, String password, String name, String firstname, RoleName roleName, int club, int team, boolean isClubCreator) {
+    public User(String email, String password, String name, String firstname, RoleName roleName, int club, int team, boolean isClubCreator,Basket basket) {
         this.name = name;
         this.firstname = firstname;
         this.email = email;
@@ -31,10 +33,11 @@ public class User {
         } else{
             this.role = new ClassicUser(club, -1, isClubCreator);
         }
+        this.basket = basket;
     }
 
-    public User(int id, String email, String password, String name, String firstname, RoleName roleName, int club, int team, boolean isClubCreator) {
-        this(email, password, name, firstname, roleName, club, team, isClubCreator);
+    public User(int id, String email, String password, String name, String firstname, RoleName roleName, int club, int team, boolean isClubCreator,Basket basket) {
+        this(email, password, name, firstname, roleName, club, team, isClubCreator,basket);
         this.id = id;
     }
 
@@ -84,6 +87,10 @@ public class User {
 
     public RoleName getRoleName() {
         return roleName;
+    }
+
+    public Basket getBasket() {
+        return basket;
     }
 
     public User login(String password) throws WrongPasswordException {

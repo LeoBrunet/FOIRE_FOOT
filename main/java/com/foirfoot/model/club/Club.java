@@ -1,5 +1,6 @@
 package com.foirfoot.model.club;
 
+import com.foirfoot.model.shop.Product;
 import com.foirfoot.model.team.Team;
 import com.foirfoot.model.user.User;
 import javafx.scene.image.Image;
@@ -160,6 +161,12 @@ public class Club {
                 ", imageName='" + imageName + '\'' +
                 '}';
     }
+    public void addProductToShop(Product p){
 
 
+    }
+    public void removeproductFromShop(Product p){
+
+
+    }
 }

@@ -12,12 +12,12 @@
                 <Insets right="10.0" />
             </HBox.margin>
         </Text>
-        <Text fx:id="shop" onMouseClicked="#goToShop" text="Shop">
+        <Text fx:id="shop" onMouseClicked="#goToShop" text="My Basket">
             <HBox.margin>
-                <Insets right="10.0"/>
+                <Insets right="10.0" />
             </HBox.margin>
         </Text>
-        <Text fx:id="club" onMouseClicked="#goToClub" text="Club">
+        <Text fx:id="club" onMouseClicked="#goToClub" text="My Club">
             <HBox.margin>
                 <Insets right="10.0" />
             </HBox.margin>
@@ -25,7 +25,7 @@
     </HBox>
     <HBox AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
         <ImageView onMouseClicked="#goToProfile" pickOnBounds="true" preserveRatio="true">
-            <Image url="@assets/images/user.png"/>
+            <Image url="@assets/images/user.png" />
         </ImageView>
     </HBox>
 </AnchorPane>

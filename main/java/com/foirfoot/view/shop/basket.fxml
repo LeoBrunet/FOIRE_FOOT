@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+            <fx:include source="../bar.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <AnchorPane layoutY="51.0" prefHeight="349.0" prefWidth="600.0">
+                    <children>
+                        <Label layoutX="248.0" layoutY="38.0" text="My Basket" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+
+
+                        <Button fx:id="valid" mnemonicParsing="false" onAction="#goToTransaction" text="Valid basket" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                            <VBox fx:id="listProducts" prefHeight="400.0" prefWidth="580.0">
+                            </VBox>
+                        </ScrollPane>
+                        <Button fx:id="deleteAll" onAction="#deleteAll" mnemonicParsing="false" text="Delete All" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+                        <Label text="Total" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="10.0" />
+                        <Label fx:id="Total" text="16,82$" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0" />
+                    </children>
+                </AnchorPane>
+
+</AnchorPane>

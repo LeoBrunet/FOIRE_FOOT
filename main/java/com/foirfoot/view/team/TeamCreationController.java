@@ -7,6 +7,7 @@ import com.foirfoot.model.club.Club;
 import com.foirfoot.model.team.Team;
 import com.foirfoot.view.Controller;
 import com.foirfoot.view.Main;
+import exceptions.ProductNotFoundException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -59,6 +60,8 @@ public class TeamCreationController extends Controller {
                 Main.changeScene("team/list_teams", new ListTeamsController(), new Object[]{Main.connectedUser.getClub()});
             }  catch (SQLIntegrityConstraintViolationException throwables) {
                 throwables.printStackTrace();
+            } catch (ProductNotFoundException e) {
+                e.printStackTrace();
             }
         }
     }
