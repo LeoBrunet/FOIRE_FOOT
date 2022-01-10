@@ -1,11 +1,10 @@
 package com.foirfoot.view.results;
 
 import com.foirfoot.model.Facade;
-import com.foirfoot.model.club.Club;
 import com.foirfoot.model.result.Result;
 import com.foirfoot.model.team.Team;
 import com.foirfoot.view.Main;
-import com.foirfoot.view.club.ClubController;
+import exceptions.ProductNotFoundException;
 import exceptions.TeamNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -13,9 +12,6 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.sql.SQLIntegrityConstraintViolationException;
 
 public class ResultCreationController {
@@ -39,17 +35,10 @@ public class ResultCreationController {
         valueFactory2.setValue(0);
         score_ot.setValueFactory(valueFactory1);
         score_ht.setValueFactory(valueFactory2);
-
-
-
     }
 
     private boolean verifiedEntries() {
-        if (id_ht.getText().isEmpty() || id_ot.getText().isEmpty() || score_ht.getValue() == null || score_ot.getValue() == null ) {
-
-            return false;
-        }
-        return true;
+        return !id_ht.getText().isEmpty() && !id_ot.getText().isEmpty() && score_ht.getValue() != null && score_ot.getValue() != null;
     }
 
     public void createResult(){
@@ -60,7 +49,7 @@ public class ResultCreationController {
                 Team outsideTeam = facade.getTeam(Integer.parseInt(id_ot.getText()));
                 Result result = facade.createResult((Integer) score_ht.getValue(), (Integer) score_ot.getValue(), homeTeam, outsideTeam);
                 goToClub();
-            } catch (SQLIntegrityConstraintViolationException | TeamNotFoundException e) {
+            } catch (SQLIntegrityConstraintViolationException | TeamNotFoundException | ProductNotFoundException e) {
                 e.printStackTrace();
             }
         }else {

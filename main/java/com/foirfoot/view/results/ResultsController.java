@@ -6,6 +6,7 @@ import com.foirfoot.model.team.Team;
 import com.foirfoot.view.Controller;
 import com.foirfoot.view.Main;
 import com.foirfoot.view.team.TeamController;
+import exceptions.ProductNotFoundException;
 import exceptions.TeamNotFoundException;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -45,9 +46,7 @@ public class ResultsController extends Controller {
     @FXML
     private VBox results;
 
-
-
-    public void initialize() throws TeamNotFoundException {
+    public void initialize() throws TeamNotFoundException, ProductNotFoundException {
         System.out.println("initialize()");
         resultsFacade = facade.getResults(team.getId());
         Collections.reverse(resultsFacade);

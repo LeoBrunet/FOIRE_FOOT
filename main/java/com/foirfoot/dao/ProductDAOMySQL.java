@@ -19,7 +19,7 @@ import java.util.Optional;
 
 public class ProductDAOMySQL implements DAO<Product>{
 
-    public ProductDAOMySQL() throws ProductNotFoundException {
+    public ProductDAOMySQL() {
     }
 
     @Override

@@ -27,8 +27,6 @@ public class TestUser {
             assertEquals(user.getPassword(), DigestUtils.sha1Hex("1234"));
         } catch (UserNotFoundException | WrongPasswordException | ClubNotFoundException e) {
             e.printStackTrace();
-        } catch (ProductNotFoundException e) {
-            e.printStackTrace();
         }
     }
 

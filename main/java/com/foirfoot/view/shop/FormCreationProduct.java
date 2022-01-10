@@ -72,7 +72,7 @@ public class FormCreationProduct {
         this.file = file;
     }
 
-    public void createProduct() throws SQLIntegrityConstraintViolationException, ProductNotFoundException, FileNotFoundException {
+    public void createProduct() throws SQLIntegrityConstraintViolationException, FileNotFoundException {
         if (nameProduct.getText().isEmpty() || descProduct.getText().isEmpty() || price.getText().isEmpty() || stock.getText().isEmpty()) {
         } else {
             InputStream targetStream = new FileInputStream(file);

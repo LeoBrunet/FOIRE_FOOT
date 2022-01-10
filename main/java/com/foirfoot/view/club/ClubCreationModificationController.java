@@ -84,8 +84,6 @@ public class ClubCreationModificationController extends Controller {
                 result.setStyle("-fx-text-fill: #e10000");
                 result.setText("File not found");
                 e.printStackTrace();
-            } catch (ProductNotFoundException e) {
-                e.printStackTrace();
             }
         }
     }
@@ -97,9 +95,9 @@ public class ClubCreationModificationController extends Controller {
             try {
                 if (!clubImageLocalPath.getText().equals(this.club.getImageName())){
                     InputStream targetStream = new FileInputStream(file);
-                    facade.updateClubAndClubImage(clubName.getText(), clubAddress.getText(), clubPhoneNumber.getText(), clubWebsite.getText(), Main.connectedUser, clubImageLocalPath.getText(), file.getName(), targetStream, this.club);
+                    facade.updateClubAndClubImage(clubName.getText(), clubAddress.getText(), clubPhoneNumber.getText(), clubWebsite.getText(), clubImageLocalPath.getText(), file.getName(), targetStream, this.club);
                 } else {
-                    facade.updateClub(clubName.getText(), clubAddress.getText(), clubPhoneNumber.getText(), clubWebsite.getText(), Main.connectedUser, this.club);
+                    facade.updateClub(clubName.getText(), clubAddress.getText(), clubPhoneNumber.getText(), clubWebsite.getText(), this.club);
                 }
                 goToClub();
             } catch (FileNotFoundException | SQLIntegrityConstraintViolationException e) {
