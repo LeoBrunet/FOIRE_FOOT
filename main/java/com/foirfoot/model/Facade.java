@@ -2,6 +2,7 @@ package com.foirfoot.model;
 
 import com.foirfoot.dao.*;
 import com.foirfoot.model.club.Club;
+import com.foirfoot.model.result.Result;
 import com.foirfoot.model.team.Team;
 import com.foirfoot.model.user.Player;
 import com.foirfoot.model.shop.*;
@@ -126,6 +127,19 @@ public class Facade {
         team = ((TeamDAOMySQL) this.abstractDAOFactory.create("Team")).get(teamId);
         System.out.println(team);
         return team.orElseThrow(TeamNotFoundException::new);
+    }
+
+    public Result createResult(int score_ht, int score_ot, Team home_team, Team outside_team) throws SQLIntegrityConstraintViolationException {
+        ResultDAOMySQL resultDAOMySQL = (ResultDAOMySQL) this.abstractDAOFactory.create("Result");
+        Result result = new Result(home_team,outside_team, score_ht, score_ot);
+        resultDAOMySQL.save(result);
+        return result;
+    }
+
+    public List<Result> getResults(int teamId) throws TeamNotFoundException {
+        List<Result> results = new ArrayList<>();
+        results = ((ResultDAOMySQL) this.abstractDAOFactory.create("Result")).getAllResultsOfTeam(teamId);
+        return results;
     }
 
     public List<Club> searchClubs(String clubName) throws ProductNotFoundException {

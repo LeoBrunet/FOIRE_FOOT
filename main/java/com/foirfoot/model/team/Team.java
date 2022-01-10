@@ -1,12 +1,13 @@
 package com.foirfoot.model.team;
 
 import com.foirfoot.model.club.Club;
+import com.foirfoot.model.result.Result;
 import com.foirfoot.model.user.User;
 
+import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 
-public class Team {
+public class Team{
     private int id;
     private String name;
     private Club club;
@@ -14,6 +15,7 @@ public class Team {
     private String type;
     private List<User> players;
     private List<User> coachs;
+    private List<Result> results;
 
     public Team(int id) {
         this.id = id;
@@ -77,6 +79,10 @@ public class Team {
         return coachs;
     }
 
+    public List<Result> getResults() {
+        return results;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -111,4 +117,6 @@ public class Team {
                 ", type='" + type + '\'' +
                 '}';
     }
+
+
 }
