@@ -86,7 +86,7 @@ public class HomeShopClubController extends Controller {
         } catch (ProductNotFoundException | SQLIntegrityConstraintViolationException e) {
             e.printStackTrace();
         }
-        initialize();
+        //initialize();
     }
 
     @Override
