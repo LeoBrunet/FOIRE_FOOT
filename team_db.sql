@@ -5,7 +5,6 @@ DROP TABLE IF EXISTS TYPES RESTRICT;
 CREATE TABLE TEAMS
 (
     team_id         MEDIUMINT    NOT NULL AUTO_INCREMENT,
-    team_name      varchar(255) NOT NULL UNIQUE,
     club_id  MEDIUMINT NOT NULL,
 
     category varchar(255) NOT NULL,

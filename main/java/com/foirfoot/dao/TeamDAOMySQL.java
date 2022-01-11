@@ -68,7 +68,7 @@ public class TeamDAOMySQL implements DAO<Team>{
     public void save(Team team) throws SQLIntegrityConstraintViolationException {
         System.out.println(team.getClub());
         try {
-            String query = "INSERT INTO TEAMS (team_name, club_id, category, type) " +
+            String query = "INSERT INTO TEAMS (club_id, category, type) " +
                     "VALUES ('" + team.getName() + "', " + team.getClub().getId() + ", '" + team.getCategory() + "', '" + team.getType() + "');";
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.executeUpdate();
