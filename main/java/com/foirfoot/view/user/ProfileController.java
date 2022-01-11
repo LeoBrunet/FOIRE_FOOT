@@ -1,6 +1,8 @@
 package com.foirfoot.view.user;
 
 import com.foirfoot.view.Main;
+import com.foirfoot.view.shop.BasketController;
+import com.foirfoot.view.shop.HomeShopClubController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -47,6 +49,7 @@ public class ProfileController {
         roleEdit.setOnMouseClicked(mouseEvent -> Main.changeScene("user/edit", new EditController(), new Object[]{"Role"}));
         teamEdit.setOnMouseClicked(mouseEvent -> Main.changeScene("user/edit", new EditController(), new Object[]{"Team"}));
         clubEdit.setOnMouseClicked(mouseEvent -> Main.changeScene("user/edit", new EditController(), new Object[]{"Club"}));
+        basket.setOnMouseClicked(mouseEvent -> Main.changeScene("shop/basket", new BasketController(), new Object[]{Main.connectedUser.getBasket()}));
     }
 
     @FXML
