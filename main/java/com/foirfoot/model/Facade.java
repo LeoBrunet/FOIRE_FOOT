@@ -48,6 +48,11 @@ public class Facade {
         productDAOMySQL.save(product, localPathToImage);
     }
 
+    public void updateUser(User user){
+        UserDAOMySQL userDAOMySQL = (UserDAOMySQL) this.abstractDAOFactory.create("User");
+        userDAOMySQL.update(user);
+    }
+
     public List<Club> getAllClubs() throws ClubNotFoundException {
         List<Club> clubs = new ArrayList<>();
         ClubDAOMySQL clubDAOMySQL = (ClubDAOMySQL) this.abstractDAOFactory.create("Club");

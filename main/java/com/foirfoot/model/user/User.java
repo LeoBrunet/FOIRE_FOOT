@@ -50,6 +50,9 @@ public class User {
         this.roleName = roleName;
     }
 
+    public void setTeam(Team team){
+        this.role.setTeam(team);
+    }
     public void setEmail(String email) {
         this.email = email;
     }

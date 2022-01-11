@@ -2,6 +2,9 @@ SET FOREIGN_KEY_CHECKS = 0; -- to disable them
 DROP TABLE IF EXISTS USERS RESTRICT;
 DROP TABLE IF EXISTS CLUBS RESTRICT;
 DROP TABLE IF EXISTS TEAMS RESTRICT;
+DROP TABLE IF EXISTS RESULTS RESTRICT;
+DROP TABLE IF EXISTS CATEGORIES RESTRICT;
+DROP TABLE IF EXISTS TYPES RESTRICT;
 CREATE TABLE USERS
 (
     user_id         MEDIUMINT    NOT NULL AUTO_INCREMENT,
@@ -26,24 +29,56 @@ CREATE TABLE CLUBS
     club_image_name   varchar(255),
     creator_user_id   MEDIUMINT,
     PRIMARY KEY (club_id),
-    FOREIGN KEY (creator_user_id) REFERENCES USERS (user_id)
+    FOREIGN KEY (creator_user_id) REFERENCES USERS (user_id) ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
 CREATE TABLE TEAMS
 (
     team_id   MEDIUMINT    NOT NULL AUTO_INCREMENT,
-    team_name varchar(255) NOT NULL,
-    club_id   MEDIUMINT,
+    team_name varchar(255) NOT NULL UNIQUE,
+    club_id   MEDIUMINT    NOT NULL,
+    category  varchar(255) NOT NULL,
+    type      varchar(255) NOT NULL,
     PRIMARY KEY (team_id),
     FOREIGN KEY (club_id) REFERENCES CLUBS (club_id)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
+CREATE TABLE RESULTS
+(
+    result_id    MEDIUMINT NOT NULL AUTO_INCREMENT,
+    score_ht     MEDIUMINT,
+    score_ot     MEDIUMINT,
+    home_team    MEDIUMINT NOT NULL,
+    outside_team MEDIUMINT NOT NULL,
+    PRIMARY KEY (result_id),
+    FOREIGN KEY (home_team) REFERENCES TEAMS (team_id),
+    FOREIGN KEY (outside_team) REFERENCES TEAMS (team_id)
+
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+CREATE TABLE CATEGORIES
+(
+    cat_id   MEDIUMINT    NOT NULL AUTO_INCREMENT,
+    cat_name varchar(255) NOT NULL,
+    PRIMARY KEY (cat_id)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+CREATE TABLE TYPES
+(
+    type_id   MEDIUMINT    NOT NULL AUTO_INCREMENT,
+    type_name varchar(255) NOT NULL,
+    PRIMARY KEY (type_id)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
 ALTER TABLE USERS
-    ADD FOREIGN KEY (club_id) REFERENCES CLUBS (club_id) ON DELETE SET NULL;
+    ADD FOREIGN KEY (club_id) REFERENCES CLUBS (club_id) ON DELETE SET NULL ON UPDATE CASCADE ;
 ALTER TABLE USERS
-    ADD FOREIGN KEY (team_id) REFERENCES TEAMS (team_id) ON DELETE SET NULL;
+    ADD FOREIGN KEY (team_id) REFERENCES TEAMS (team_id) ON DELETE SET NULL ON UPDATE CASCADE ;
 
 INSERT INTO USERS (user_email, user_password, user_name, user_first_name, club_id, user_role)
 VALUES ('admin', SHA1('admin'), 'admin', 'admin', null, 0);
@@ -70,4 +105,6 @@ VALUES ('Montpellier Hérault FC', 2, 'Rue Joliot-Curie, Le Haillan 33185 Bordea
 
 SET FOREIGN_KEY_CHECKS = 1; -- to re-enable them
 
-DELETE FROM CLUBS WHERE CLUBS.club_id = 11
+DELETE
+FROM CLUBS
+WHERE CLUBS.club_id = 11

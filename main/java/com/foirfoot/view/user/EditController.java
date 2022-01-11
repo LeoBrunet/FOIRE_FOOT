@@ -3,7 +3,6 @@ package com.foirfoot.view.user;
 import com.foirfoot.model.Facade;
 import com.foirfoot.model.club.Club;
 import com.foirfoot.model.team.Team;
-import com.foirfoot.model.user.Role;
 import com.foirfoot.model.user.RoleName;
 import com.foirfoot.view.Controller;
 import com.foirfoot.view.Main;
@@ -25,31 +24,59 @@ public class EditController extends Controller {
     public ChoiceBox<String> choiceBox;
     @FXML
     public Button valid;
-    List<Club> clubs;
+
     private String typeEdit;
-    private Facade facade = new Facade();
+    private final Facade facade = new Facade();
 
     public void initialize() {
 
         text.setText("Personnal " + typeEdit + " edition.");
-        valid.setOnMouseClicked(mouseEvent -> {Main.changeScene("user/profile");});
         if (typeEdit.equals("Team")) {
             try {
+                if (Main.connectedUser.getTeam() != null) {
+                    choiceBox.setValue(Main.connectedUser.getTeam().getCategory() + " " + Main.connectedUser.getTeam().getType());
+                }
                 List<Team> teams = facade.getAllTeams();
                 for (Team t : teams){
                     choiceBox.getItems().add(t.getCategory() + " " + t.getType());
                 }
+                valid.setOnMouseClicked(mouseEvent -> {
+                    Team team = null;
+                    for (Team t : teams) {
+                        if (t.getName().equals(choiceBox.getValue())){
+                            team = t;
+                        }
+                    }
+                    Main.connectedUser.setTeam(team);
+                    facade.updateUser(Main.connectedUser);
+                    Main.changeScene("user/profile");
+                });
             } catch (TeamNotFoundException ignored) {
             }
         } else if (typeEdit.equals("Club")) {
             try {
+                if (Main.connectedUser.getClub() != null) {
+                    choiceBox.setValue(Main.connectedUser.getClub().getName());
+                }
                 List<Club> clubs = facade.getAllClubs();
                 for (Club c : clubs){
                     choiceBox.getItems().add(c.getName());
                 }
+                valid.setOnMouseClicked(mouseEvent -> {
+                    Club club = null;
+                    for (Club c : clubs) {
+                        if (c.getName().equals(choiceBox.getValue())){
+                            club = c;
+                        }
+                    }
+                    Main.connectedUser.setClub(club);
+                    facade.updateUser(Main.connectedUser);
+                    Main.changeScene("user/profile");
+                });
             } catch (ClubNotFoundException ignored) {
             }
         } else {
+            choiceBox.setValue(Main.connectedUser.getRoleName().name());
             List<RoleName> roleNames = Arrays.asList(RoleName.values());
             for (RoleName r : roleNames){
                 choiceBox.getItems().add(r.name());
@@ -62,6 +89,7 @@ public class EditController extends Controller {
                     }
                 }
                 Main.connectedUser.setRoleName(newRoleName);
+                facade.updateUser(Main.connectedUser);
                 Main.changeScene("user/profile");
             });
         }

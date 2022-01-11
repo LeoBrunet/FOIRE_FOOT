@@ -14,7 +14,7 @@ CREATE TABLE PRODUCT
     product_clubId       MEDIUMINT,
     product_image       varchar(255) NOT NULL,
     PRIMARY KEY (product_id),
-    FOREIGN KEY (product_clubId) REFERENCES CLUBS (club_id)
+    FOREIGN KEY (product_clubId) REFERENCES CLUBS (club_id) ON DELETE CASCADE
 )ENGINE = InnoDB
  DEFAULT CHARSET = utf8;
 

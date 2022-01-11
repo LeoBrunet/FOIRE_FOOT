@@ -112,12 +112,12 @@ public class UserDAOMySQL implements DAO<User> {
     public List<User> getAllUsersOfTeamWithRole(long teamId, RoleName roleName) {
         List<User> players = new ArrayList<>();
         try {
-            String query = "SELECT * FROM USERS INNER JOIN TEAMS T on USERS.team_id = T.team_id INNER JOIN CLUBS C on USERS.club_id = C.club_id WHERE USERS.team_id = "+teamId+" AND user_role = "+roleName.ordinal()+";";
+            String query = "SELECT * FROM USERS INNER JOIN TEAMS T on USERS.team_id = T.team_id INNER JOIN CLUBS C on USERS.club_id = C.club_id WHERE USERS.team_id = " + teamId + " AND user_role = " + roleName.ordinal() + ";";
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 boolean isClubCreator = rs.getInt("user_id") == rs.getInt("creator_user_id");
-                players.add(new User(rs.getInt("user_id"), rs.getString("user_email"), rs.getString("user_password"),rs.getString("user_name"), rs.getString("user_first_name"), RoleName.values()[rs.getInt("user_role")], rs.getInt("club_id"), (int)teamId, isClubCreator, new Basket()));
+                players.add(new User(rs.getInt("user_id"), rs.getString("user_email"), rs.getString("user_password"), rs.getString("user_name"), rs.getString("user_first_name"), RoleName.values()[rs.getInt("user_role")], rs.getInt("club_id"), (int) teamId, isClubCreator, new Basket()));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -145,7 +145,20 @@ public class UserDAOMySQL implements DAO<User> {
     @Override
     public void update(User user) {
         try {
-            String query = "UPDATE USERS SET club_id = '" + user.getClub().getId() + "', user_email = '" + user.getEmail() + "', user_first_name = '" + user.getFirstName() + "', user_name = '" + user.getName() + "' WHERE user_id = " + user.getId() + "";
+            int clubId = -1;
+            if (user.getClub() != null) {
+                clubId = user.getClub().getId();
+            }
+            int teamId = -1;
+            if (user.getTeam() != null) {
+                teamId = user.getTeam().getId();
+            }
+            String query = "UPDATE USERS SET club_id = '" + clubId +
+                    "', user_email = '" + user.getEmail() +
+                    "', user_first_name = '" + user.getFirstName() +
+                    "', team_id = '" + teamId +
+                    "', user_role = '" + user.getRoleName().ordinal() +
+                    "' WHERE user_id = " + user.getId() + "";
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ps.executeUpdate();
         } catch (SQLException e) {
