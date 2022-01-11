@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <fx:include source="../bar.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+
+    <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+        <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0">
+            <VBox.margin>
+                <Insets top="10.0" />
+            </VBox.margin>
+            <font>
+                <Font name="Segoe UI Bold" size="24.0" />
+            </font>
+        </Text>
+      <ChoiceBox fx:id="choiceBox" prefWidth="150.0" />
+      <Button fx:id="valid" mnemonicParsing="false" text="Valid" />
+      <padding>
+         <Insets left="10.0" />
+      </padding>
+    </VBox>
+
+
+</AnchorPane>

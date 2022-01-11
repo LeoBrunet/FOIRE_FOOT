@@ -2,6 +2,7 @@ package com.foirfoot.model.user;
 
 import com.foirfoot.model.club.Club;
 import com.foirfoot.model.shop.Basket;
+import com.foirfoot.model.team.Team;
 import exceptions.WrongPasswordException;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -45,6 +46,10 @@ public class User {
         return id;
     }
 
+    public void setRoleName(RoleName roleName) {
+        this.roleName = roleName;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -67,6 +72,10 @@ public class User {
 
     public String getFirstName() {
         return firstname;
+    }
+
+    public Team getTeam() {
+        return this.role.getTeam();
     }
 
     public Club getClub() {

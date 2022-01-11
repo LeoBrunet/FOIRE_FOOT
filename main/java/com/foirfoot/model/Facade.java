@@ -48,6 +48,24 @@ public class Facade {
         productDAOMySQL.save(product, localPathToImage);
     }
 
+    public List<Club> getAllClubs() throws ClubNotFoundException {
+        List<Club> clubs = new ArrayList<>();
+        ClubDAOMySQL clubDAOMySQL = (ClubDAOMySQL) this.abstractDAOFactory.create("Club");
+        for(Optional<Club> c : clubDAOMySQL.getAll()){
+            clubs.add(c.orElseThrow(ClubNotFoundException::new));
+        }
+        return clubs;
+    }
+
+    public List<Team> getAllTeams() throws TeamNotFoundException {
+        List<Team> teams = new ArrayList<>();
+        TeamDAOMySQL teamDAOMySQL = (TeamDAOMySQL) this.abstractDAOFactory.create("Team");
+        for(Optional<Team> t : teamDAOMySQL.getAll()){
+            teams.add(t.orElseThrow(TeamNotFoundException::new));
+        }
+        return teams;
+    }
+
     public List<Product> getAllProductsOfClub(int clubId) throws ProductNotFoundException {
         ProductDAOMySQL productDAOMySQL = (ProductDAOMySQL) this.abstractDAOFactory.create("Product");
         List<Optional<Product>> products = productDAOMySQL.getAllProductsOfClub(clubId);

@@ -24,7 +24,6 @@ public class ProductComponent extends AnchorPane {
     private ImageView productImageView;
     private Button view;
     private Button addToBasket;
-    private Button change;
     private Button delete;
 
 
@@ -71,10 +70,7 @@ public class ProductComponent extends AnchorPane {
             hBox2.setAlignment(Pos.TOP_CENTER);
             hBox2.setSpacing(10.0);
             vBox.getChildren().add(hBox2);
-
-            change = new Button("Change");
             delete = new Button("Delete");
-            hBox2.getChildren().add(change);
             hBox2.getChildren().add(delete);
         }
     }

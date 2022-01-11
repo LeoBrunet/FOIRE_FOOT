@@ -67,7 +67,6 @@ public class UserController {
                 wrongLogIn.setStyle("-fx-font: 15.0 System;-fx-text-fill: #e10000");
                 wrongLogIn.setText("Email address already used");
             }
-
         }
     }
 

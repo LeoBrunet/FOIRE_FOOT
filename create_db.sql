@@ -41,9 +41,9 @@ CREATE TABLE TEAMS
   DEFAULT CHARSET = utf8;
 
 ALTER TABLE USERS
-    ADD FOREIGN KEY (club_id) REFERENCES CLUBS (club_id);
+    ADD FOREIGN KEY (club_id) REFERENCES CLUBS (club_id) ON DELETE SET NULL;
 ALTER TABLE USERS
-    ADD FOREIGN KEY (team_id) REFERENCES TEAMS (team_id);
+    ADD FOREIGN KEY (team_id) REFERENCES TEAMS (team_id) ON DELETE SET NULL;
 
 INSERT INTO USERS (user_email, user_password, user_name, user_first_name, club_id, user_role)
 VALUES ('admin', SHA1('admin'), 'admin', 'admin', null, 0);
