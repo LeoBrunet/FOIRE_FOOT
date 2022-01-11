@@ -6,14 +6,13 @@ import com.foirfoot.model.user.RoleName;
 import com.foirfoot.model.user.User;
 import com.foirfoot.utils.MySQLConnection;
 import exceptions.ClubNotFoundException;
-import exceptions.UserNotFoundException;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class TeamDAOMySQL implements DAO<Team>{
+public class TeamDAOMySQL implements DAO<Team> {
 
     @Override
     public Optional<Team> get(int id) {
@@ -27,7 +26,7 @@ public class TeamDAOMySQL implements DAO<Team>{
                 UserDAOMySQL userDAOMySQL = new UserDAOMySQL();
                 List<User> players = userDAOMySQL.getAllUsersOfTeamWithRole(id, RoleName.player);
                 List<User> coachs = userDAOMySQL.getAllUsersOfTeamWithRole(id, RoleName.coach);
-                team = new Team(rs.getInt("team_id"),rs.getString("team_name"),null,rs.getString("category"),rs.getString("type"), players, coachs);
+                team = new Team(rs.getInt("team_id"), rs.getString("team_name"), null, rs.getString("category"), rs.getString("type"), players, coachs);
                 Club club = clubDAOMySQL.get(rs.getInt("club_id")).orElseThrow(ClubNotFoundException::new);
                 team.setClub(club);
                 for (User p : players) {
@@ -69,14 +68,13 @@ public class TeamDAOMySQL implements DAO<Team>{
         System.out.println(team.getClub());
         try {
             String query = "INSERT INTO TEAMS (club_id, category, type) " +
-                    "VALUES ('" + team.getName() + "', " + team.getClub().getId() + ", '" + team.getCategory() + "', '" + team.getType() + "');";
+                    "VALUES ('" + team.getClub().getId() + "', '" + team.getCategory() + "', '" + team.getType() + "');";
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.executeUpdate();
             try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     team.setId(generatedKeys.getInt(1));
-                }
-                else {
+                } else {
                     throw new SQLException("Creating user failed, no ID obtained.");
                 }
             }
