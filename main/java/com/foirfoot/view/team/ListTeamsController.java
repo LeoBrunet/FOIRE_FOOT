@@ -50,7 +50,7 @@ public class ListTeamsController extends Controller {
 
     @FXML
     private void goToTeamCreation(){
-        Main.changeScene("team/teamCreation", new TeamCreationController(), new Object[]{Main.connectedUser.getClub(), true});
+        Main.changeScene("team/teamCreation");
     }
 
     @FXML

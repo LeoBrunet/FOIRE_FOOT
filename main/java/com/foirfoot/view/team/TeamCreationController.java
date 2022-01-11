@@ -19,7 +19,7 @@ import javafx.scene.text.Text;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 
-public class TeamCreationController extends Controller {
+public class TeamCreationController {
 
     private final Facade facade = new Facade();
     private Club club;
@@ -36,6 +36,8 @@ public class TeamCreationController extends Controller {
 
     @FXML
     public void initialize(){
+
+        club = Main.connectedUser.getClub();
 
         ObservableList<String> catList = FXCollections.observableArrayList(CategoryDAOMySQL.getCategoryList());
         ObservableList<String> typeList = FXCollections.observableArrayList(TypeDAOMySQL.getTypeList());
@@ -68,15 +70,9 @@ public class TeamCreationController extends Controller {
                 }
             }else{
                 showTeamAlreadyExistsAlert();
-                Main.changeScene("team/teamCreation", new TeamCreationController(), new Object[]{Main.connectedUser.getClub(), true});
+                Main.changeScene("team/teamCreation");
             }
         }
-    }
-
-
-    @Override
-    public void setParameter(Object[] params) {
-        this.club = (Club) params[0];
     }
 
     public void goToTeams() {
