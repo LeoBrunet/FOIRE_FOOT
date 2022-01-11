@@ -7,9 +7,11 @@ import com.foirfoot.model.user.User;
 import com.foirfoot.view.Controller;
 import com.foirfoot.view.Main;
 import com.foirfoot.view.results.ResultsController;
+import com.foirfoot.view.shop.HomeShopClubController;
 import exceptions.ProductNotFoundException;
 import exceptions.TeamNotFoundException;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -70,6 +72,21 @@ public class TeamController extends Controller {
         } else {
             Main.changeScene("team/list_teams", new ListTeamsController(), new Object[]{team.getClub()});
         }
+    }
+    public void apply(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(team.getClub().getName());
+        alert.setHeaderText( "Please send your request by mail" + "\n" + team.getClub().getName() + " contact details : ");
+        alert.setContentText(team.getClub().getName()+ " adress : "+ team.getClub().getAddress() + "\n" +
+                team.getClub().getName()+ " phone number : "+ team.getClub().getPhoneNumber() + "\n" +
+                team.getClub().getName()+ " website : "+ team.getClub().getWebsite());
+
+
+        alert.showAndWait();
+    }
+
+    public void goToShopClub() {
+        Main.changeScene("shop/homeShopClub", new HomeShopClubController(), new Object[]{this.team.getClub()});
     }
 
     public void goToResults(){

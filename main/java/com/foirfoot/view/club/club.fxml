@@ -101,7 +101,7 @@
                     <Insets bottom="10" left="10.0" right="5.0" />
                 </HBox.margin>
             </Button>
-            <Button maxWidth="Infinity" text="Lasts results" HBox.hgrow="ALWAYS">
+            <Button onMouseClicked="#goToResults" maxWidth="Infinity" text="Lasts results" HBox.hgrow="ALWAYS">
                 <HBox.margin>
                     <Insets bottom="10" left="5.0" right="10.0" />
                 </HBox.margin>

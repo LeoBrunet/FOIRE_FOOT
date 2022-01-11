@@ -53,9 +53,6 @@ public class ResultsController extends Controller {
         //System.out.println(facade.getResults(team.getId()));
         text.setText("Latest results - " + team.getType()+ " - "+ team.getCategory() + " - "+ team.getClub().getName());
         for (Result r : resultsFacade) {
-            System.out.println("------");
-            System.out.println(r.getHomeTeam());
-            System.out.println(r.getOutsideTeam());
             HBox resultBox = new HBox();
             resultBox.setAlignment(Pos.TOP_CENTER);
             resultBox.setStyle("-fx-border-width: 2; -fx-border-style: solid; -fx-border-radius: 4;");
