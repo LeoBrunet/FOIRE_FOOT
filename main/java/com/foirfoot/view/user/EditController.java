@@ -70,6 +70,7 @@ public class EditController extends Controller {
                         }
                     }
                     Main.connectedUser.setClub(club);
+                    Main.connectedUser.setIsClubCreator(false);
                     facade.updateUser(Main.connectedUser);
                     Main.changeScene("user/profile");
                 });

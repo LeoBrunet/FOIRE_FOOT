@@ -35,7 +35,7 @@ public class ListTeamsController extends Controller {
         teamOrd = club.getTeams();
         TeamComparator teamComparator = new TeamComparator();
         Collections.sort(teamOrd, teamComparator);
-        text.setText("List of " + Main.connectedUser.getName()+ " teams");
+        text.setText("List of " + Main.connectedUser.getClub().getName()+ " teams");
         for (Team t : club.getTeams()) {
             Text teamNameText = new Text(t.getType() + " - " + t.getCategory());
             teamNameText.setOnMouseClicked(mouseEvent -> goToTeam(t));

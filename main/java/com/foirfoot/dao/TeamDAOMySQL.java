@@ -26,7 +26,7 @@ public class TeamDAOMySQL implements DAO<Team> {
                 UserDAOMySQL userDAOMySQL = new UserDAOMySQL();
                 List<User> players = userDAOMySQL.getAllUsersOfTeamWithRole(id, RoleName.player);
                 List<User> coachs = userDAOMySQL.getAllUsersOfTeamWithRole(id, RoleName.coach);
-                team = new Team(rs.getInt("team_id"), rs.getString("team_name"), null, rs.getString("category"), rs.getString("type"), players, coachs);
+                team = new Team(rs.getInt("team_id"),null, null, rs.getString("category"), rs.getString("type"), players, coachs);
                 Club club = clubDAOMySQL.get(rs.getInt("club_id")).orElseThrow(ClubNotFoundException::new);
                 team.setClub(club);
                 for (User p : players) {
@@ -55,7 +55,7 @@ public class TeamDAOMySQL implements DAO<Team> {
             PreparedStatement ps = MySQLConnection.getConnection().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                teams.add(new Team(rs.getInt("team_id"), rs.getString("team_name"), null, rs.getString("category"), rs.getString("type")));
+                teams.add(new Team(rs.getInt("team_id"), null, null, rs.getString("category"), rs.getString("type")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
