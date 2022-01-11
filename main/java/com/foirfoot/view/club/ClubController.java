@@ -1,9 +1,12 @@
 package com.foirfoot.view.club;
 
+import com.foirfoot.model.category.Category;
 import com.foirfoot.model.club.Club;
+import com.foirfoot.model.team.Team;
 import com.foirfoot.model.user.User;
 import com.foirfoot.view.Controller;
 import com.foirfoot.view.Main;
+import com.foirfoot.view.results.ResultsController;
 import com.foirfoot.view.shop.HomeShopClubController;
 import com.foirfoot.view.team.ListTeamsController;
 import javafx.fxml.FXML;
@@ -63,6 +66,17 @@ public class ClubController extends Controller {
 
     public void goToShopClub() {
         Main.changeScene("shop/homeShopClub", new HomeShopClubController(), new Object[]{this.club});
+    }
+
+    public void goToResults(){
+        for(Team t : club.getTeams()){
+            System.out.println(t.getCategory());
+            System.out.println(t.getType());
+            if(t.getCategory().equals("SENIOR") && t.getType().equals("Team A")){
+                System.out.println("ghfezgiufezufbe");
+                Main.changeScene("results/results", new ResultsController(), new Object[]{t});
+            }
+        }
     }
 
     @Override
