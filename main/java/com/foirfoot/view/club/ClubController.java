@@ -58,7 +58,7 @@ public class ClubController extends Controller {
         clubImageView.setImage(image);
 
         if (Main.connectedUser.getClub() != null) {
-            if (club.getId() != Main.connectedUser.getClub().getId()) {
+            if (club.getCreator().getId() != Main.connectedUser.getClub().getId()) {
                 editClub.setVisible(false);
             }
         }
